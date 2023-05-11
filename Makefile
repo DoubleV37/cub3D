@@ -6,7 +6,7 @@
 #    By: jduval <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/02 13:27:39 by jduval            #+#    #+#              #
-#    Updated: 2023/05/10 14:51:05 by jduval           ###   ########.fr        #
+#    Updated: 2023/05/11 09:10:02 by jduval           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,11 +72,13 @@ $(BUILD_DIR)/%.o : %.c
 
 clean:
 	@${MAKE} -C libft/ clean
+	@${MAKE} -C MLX42/build/ clean
 	rm -rf .build
 .PHONY:clean
 
 fclean: clean 
 	@${MAKE} -C libft/ fclean
+	@${MAKE} -C MLX42/build/ clean
 	rm -f ${NAME}
 .PHONY: fclean
 
