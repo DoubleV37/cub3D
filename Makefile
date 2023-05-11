@@ -6,7 +6,7 @@
 #    By: jduval <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/02 13:27:39 by jduval            #+#    #+#              #
-#    Updated: 2023/05/11 09:10:02 by jduval           ###   ########.fr        #
+#    Updated: 2023/05/11 12:55:41 by jduval           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ MAKEFLAGS	+=	--no-print-directory
 
 ###############################################################################
 
-LIBS 		=	ft mlx42 Xext X11 m z
+LIBS 		=	ft mlx42 dl glfw pthread m
 
 LIBS_TARGET =	libft/libft.a			\
 				MLX42/build/libmlx42.a	\
@@ -29,18 +29,22 @@ INCLUDES	=	libft/include 			\
 
 BUILD_DIR 	= 	.obj
 
-SRCS 		=
+SRC_DIR		=	sources
 
-OBJS = $(SRCS:%.c=$(BUILD_DIR)/%.o)
+SRCS 		=	main.c	\
 
-DEPS = $(OBJS:.o=.d)
+SRCS		:=	$(SRCS:%=$(SRC_DIR)/%)
+
+OBJS 		:= $(SRCS:%.c=$(BUILD_DIR)/%.o)
+
+DEPS 		:= $(OBJS:.o=.d)
 
 
 ###############################################################################
 
 CC 			=	gcc
 
-CFLAGS 		=	-Werror -Wextra -Wall -ggdb3
+CFLAGS 		=	-Wextra -Wall -ggdb3
 
 CPPFLAGS 	=	-MMD -MP $(addprefix -I,$(INCLUDES))
 
