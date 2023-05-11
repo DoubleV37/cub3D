@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 10:57:22 by vviovi            #+#    #+#             */
-/*   Updated: 2023/05/11 10:57:27 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/05/11 11:05:36 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	iscub(char	*path)
 
 	i = ft_strlen(path) - 1;
 	if (path[i] == 'b' && path[i - 1] == 'u'
-		&& path[i - 2] == 'c' && ft_isprint(path[i - 3]))
+		&& path[i - 2] == 'c' && path[i - 3] == '.' && ft_isprint(path[i - 4]))
 		return (1);
 	return (0);
 }
