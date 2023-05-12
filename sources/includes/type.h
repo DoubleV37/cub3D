@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:43:28 by jduval            #+#    #+#             */
-/*   Updated: 2023/05/12 10:24:56 by jduval           ###   ########.fr       */
+/*   Updated: 2023/05/12 15:49:22 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ typedef enum e_card
 {
 	NO,
 	SO,
-	EA,
-	WE
+	WE,
+	EA
 }	t_card;
 
 typedef enum e_rgb
@@ -38,16 +38,26 @@ typedef enum e_rgb
 
 //------STRUCT------//
 
+typedef struct s_vector
+{
+	int	x;
+	int	y;
+	int	norm;
+}	t_vector;
+
 typedef struct s_player
 {
-	int	*pos[2];
-	int	*focal[2];
+	int	pos[2];
+	int	focal[2];
 	int	fov[2];
+	int	count[2];
+	int	indexs[2];
 }	t_player;
 
 typedef struct s_texture
 {
 	mlx_texture_t	texture[4];
+	int				unit[2];
 	int				color_floor[3];
 	int				color_ceil[3];
 }	t_texture;
