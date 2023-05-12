@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:34:11 by jduval            #+#    #+#             */
-/*   Updated: 2023/05/11 15:18:04 by jduval           ###   ########.fr       */
+/*   Updated: 2023/05/12 10:24:58 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	main(int argc, char **argv)
 {
 	mlx_t		*mlx;
 	mlx_image_t	*img;
+	mlx_image_t	*img2;
 
 	(void) argc;
 	(void) argv;
@@ -61,6 +62,7 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	img = mlx_new_image(mlx, WIDTH, HEIGHT);
+	img2 = mlx_new_image(mlx, WIDTH, HEIGHT);
 	if (mlx == NULL)
 	{
 		mlx_close_window(mlx);
@@ -73,7 +75,11 @@ int	main(int argc, char **argv)
 		printf("%s", mlx_strerror(mlx_errno));
 		return (1);
 	}
+	mlx_image_to_window(mlx, img2, 200, 200);
 	trace_test(img);
+	trace_test(img2);
+	//img->enabled = false;
+	img2->enabled = false;
 	mlx_loop_hook(mlx, escape_hook, mlx);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
