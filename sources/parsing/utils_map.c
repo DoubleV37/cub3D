@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_verif.c                                        :+:      :+:    :+:   */
+/*   utils_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/11 10:57:22 by vviovi            #+#    #+#             */
-/*   Updated: 2023/05/12 11:47:37 by vviovi           ###   ########.fr       */
+/*   Created: 2023/05/12 11:32:35 by vviovi            #+#    #+#             */
+/*   Updated: 2023/05/12 11:48:37 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	valid_extension(char *path, char *extension)
+void	print_error_map(int	type_error)
 {
-	size_t	len1;
-	size_t	len2;
-
-	len1 = ft_strlen(path);
-	len2 = ft_strlen(extension);
-	if (len1 > len2 && ft_strncmp(&path[len1 - len2], extension, len2) == 0)
-		return (1);
-	print_error_map(0);
-	return (0);
+	if (type_error == 404)
+		ft_putstr_fd("Error\nNo map found\n", 2);
+	else if (type_error == 0)
+		ft_putstr_fd("Error\nWrong file extension\n", 2);
+	else if (type_error == 1)
+		ft_putstr_fd("Error\nWrong texture file\n", 2);
+	else if (type_error == 2)
+		ft_putstr_fd("Error\nWrong color\n", 2);
+	else if (type_error == 3)
+		ft_putstr_fd("Error\nMap incorrect\n", 2);
 }
