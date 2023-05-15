@@ -1,0 +1,39 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    to_do_list                                         :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jduval <marvin@42.fr>                      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/05/15 09:18:22 by jduval            #+#    #+#              #
+#    Updated: 2023/05/15 16:31:12 by jduval           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+- Définir l'unité de quadrillage (cmb de pixel par case).
+
+- Définir la ligne de caméra. (distance / point focal et longueur (largeur de l'ecran ?))
+
+- Définir le point focal.
+
+- Définir le nombre de rayon a envoyé
+
+- Définir l'angle (focal - rayon) pour chaque rayon lancé
+
+- Définir son point d'intersection (focal - caméra)
+
+#################################################################################
+- Calcul distance d'intersection la plus courte du rayon sur chaque case.		#
+																				#
+- En déduire les coordoonnées de la nouvelle case du rayon						#	boucle jusque
+																				#	case spé
+- Verif si mur si case spé ou non.												#
+#################################################################################
+
+Next rayon, Meme boucle.
+
+entre deux rayon, calcul des pixel a mettre. OU stock la data des coordonnées
+
+FONCTION qui faut bordel
+
+-> fonction qui preset et stock dans struct la cam, focal, unité de quadrillage, pas entre chaque 		rayon
