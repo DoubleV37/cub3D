@@ -6,13 +6,15 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:43:28 by jduval            #+#    #+#             */
-/*   Updated: 2023/05/12 10:24:56 by jduval           ###   ########.fr       */
+/*   Updated: 2023/05/15 16:31:11 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPE_H
 # define TYPE_H
 
+# define WIDTH 1920
+# define HEIGHT 1080
 //------ENUM------//
 
 typedef enum e_coord
@@ -25,8 +27,8 @@ typedef enum e_card
 {
 	NO,
 	SO,
-	EA,
-	WE
+	WE,
+	EA
 }	t_card;
 
 typedef enum e_rgb
@@ -38,16 +40,26 @@ typedef enum e_rgb
 
 //------STRUCT------//
 
+typedef struct s_setup
+{
+	float	focal[2];
+	float	cam1[2];
+	float	cam2[2];
+	float	step;
+}	t_setup;
+
 typedef struct s_player
 {
-	int	*pos[2];
-	int	*focal[2];
-	int	fov[2];
+	float	pos[2];
+	int		indexs[2];
+	t_card	start_view;
+	t_setup	setup;
 }	t_player;
 
 typedef struct s_texture
 {
 	mlx_texture_t	texture[4];
+	int				unit[2];
 	int				color_floor[3];
 	int				color_ceil[3];
 }	t_texture;
