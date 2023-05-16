@@ -6,17 +6,23 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:43:28 by jduval            #+#    #+#             */
-/*   Updated: 2023/05/16 16:29:06 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/05/16 17:15:37 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPE_H
 # define TYPE_H
 
+//------DEFINE------//
+
 # define WIDTH 1920
 # define HEIGHT 1080
 
 # include "MLX42.h"
+# define UNIT 10
+# define CAM 1
+# define FOV 90
+
 //------ENUM------//
 
 typedef enum e_coord
@@ -45,9 +51,13 @@ typedef enum e_rgb
 typedef struct s_setup
 {
 	float	focal[2];
-	float	cam1[2];
-	float	cam2[2];
+	float	len_focal;
+	float	cam[2];
+	float	nbr_of_ray;
 	float	step;
+	float	delta_angle;
+	float	cos_x;
+	float	cos_y;
 }	t_setup;
 
 typedef struct s_player
