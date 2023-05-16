@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jduval <marvin@42.fr>                      +#+  +:+       +#+         #
+#    By: vviovi <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/02 13:27:39 by jduval            #+#    #+#              #
-#    Updated: 2023/05/12 14:46:19 by jduval           ###   ########.fr        #
+#    Updated: 2023/05/16 13:38:06 by vviovi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,9 @@ BUILD_DIR 	= 	.obj
 SRC_DIR		=	sources
 
 SRCS 		=	main.c	\
+				parsing/load_map.c \
+				parsing/utils_map.c \
+				parsing/map_verif.c
 
 SRCS		:=	$(SRCS:%=$(SRC_DIR)/%)
 
@@ -52,7 +55,7 @@ LDFLAGS		=	$(addprefix -L,$(dir $(LIBS_TARGET)))
 
 LDLIBS		=	$(addprefix -l,$(LIBS))
 
-DIRDUP 		= 	mkdir -p $(@D) 
+DIRDUP 		= 	mkdir -p $(@D)
 
 
 ###############################################################################
@@ -80,7 +83,7 @@ clean:
 	rm -rf .build
 .PHONY:clean
 
-fclean: clean 
+fclean: clean
 	@${MAKE} -C libft/ fclean
 	@${MAKE} -C MLX42/build/ clean
 	rm -f ${NAME}
