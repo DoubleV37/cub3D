@@ -6,13 +6,13 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 11:32:35 by vviovi            #+#    #+#             */
-/*   Updated: 2023/05/16 15:36:30 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/05/16 18:11:40 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*gnl_skip_void(int	fd_file)
+char	*gnl_skip_void(int fd_file)
 {
 	char	*line;
 	size_t	len;
