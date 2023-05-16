@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 10:15:52 by vviovi            #+#    #+#             */
-/*   Updated: 2023/05/12 14:19:34 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/05/16 09:35:59 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,26 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
-int	load_textures_info(int file_fd, t_data *data);
+int	load_textures_info(int file_fd, t_data *data)
+{
+	if (get_texture_info(file_fd, "NO", data))
+		return (0);
+	if (get_texture_info(file_fd, "SO", data))
+		return (0);
+	if (get_texture_info(file_fd, "WE", data))
+		return (0);
+	if (get_texture_info(file_fd, "EA", data))
+		return (0);
+	return (1);
+}
 
-int	load_colors(int file_fd, t_data *data);
+int	load_colors(int file_fd, t_data *data)
+{
+	if (get_color_info(file_fd, "F", data))
+		return (0);
+	if (get_color_info(file_fd, "C", data))
+		return (0);
+}
 
 int	load_map(int file_fd, t_data *data);
 
