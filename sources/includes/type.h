@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   type.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:43:28 by jduval            #+#    #+#             */
-/*   Updated: 2023/05/15 16:31:11 by jduval           ###   ########.fr       */
+/*   Updated: 2023/05/16 16:29:06 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # define WIDTH 1920
 # define HEIGHT 1080
+
+# include "MLX42.h"
 //------ENUM------//
 
 typedef enum e_coord
@@ -58,7 +60,7 @@ typedef struct s_player
 
 typedef struct s_texture
 {
-	mlx_texture_t	texture[4];
+	mlx_texture_t	*texture[4];
 	int				unit[2];
 	int				color_floor[3];
 	int				color_ceil[3];
