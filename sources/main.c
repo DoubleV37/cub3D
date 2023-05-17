@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:34:11 by jduval            #+#    #+#             */
-/*   Updated: 2023/05/15 16:31:35 by jduval           ###   ########.fr       */
+/*   Updated: 2023/05/17 15:28:25 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MLX42.h"
+#include "includes/src.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -49,7 +50,18 @@ static void	trace_test(void *param)
 
 int	main(int argc, char **argv)
 {
-	mlx_t		*mlx;
+	t_data	data;
+
+	if (argc != 2)
+	{
+		print_error_map(404);
+		return (1);
+	}
+	if (!load_file(argv, &data))
+		return (1);
+	clean_texture_nb(&data.textures, 4);
+	return (0);
+	/*mlx_t		*mlx;
 	mlx_image_t	*img;
 	mlx_image_t	*img2;
 
@@ -82,5 +94,5 @@ int	main(int argc, char **argv)
 	img2->enabled = false;
 	mlx_loop_hook(mlx, escape_hook, mlx);
 	mlx_loop(mlx);
-	mlx_terminate(mlx);
+	mlx_terminate(mlx);*/
 }

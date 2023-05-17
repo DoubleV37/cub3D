@@ -6,12 +6,11 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 10:57:22 by vviovi            #+#    #+#             */
-/*   Updated: 2023/05/16 17:24:28 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/05/17 15:28:11 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <fcntl.h>
+#include "../includes/src.h"
 
 int	valid_extension(char *path, char *extension)
 {
@@ -34,17 +33,12 @@ int	valid_texture(char *path_texture)
 {
 	int	fd;
 
+	path_texture[ft_strlen(path_texture) - 1] = '\0';
 	if (!valid_extension(path_texture, ".png"))
-	{
-		print_error_map(1);
 		return (0);
-	}
 	fd = open(path_texture, O_RDONLY);
 	if (fd < 2)
-	{
-		print_error_map(1);
 		return (0);
-	}
 	close(fd);
 	return (1);
 }
