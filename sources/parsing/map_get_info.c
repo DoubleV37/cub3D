@@ -6,11 +6,11 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 14:02:26 by vviovi            #+#    #+#             */
-/*   Updated: 2023/05/17 15:27:36 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/05/17 16:20:14 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/src.h"
+#include "../includes/cub3d.h"
 
 int	get_texture_info(int file_fd, char *card, t_data *data, int index_tab)
 {

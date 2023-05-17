@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:34:11 by jduval            #+#    #+#             */
-/*   Updated: 2023/05/17 15:33:09 by jduval           ###   ########.fr       */
+/*   Updated: 2023/05/17 18:02:44 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,27 @@ static void	escape_hook(void *param)
 	return ;
 }
 
+static int	init_image(t_data *data)
+{
+	data->img[BACKSCREEN] = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+	if (data->img[BACKSCREEN] == NULL)
+		return (printf("%s", mlx_strerror(mlx_errno)));
+	data->img[WALL] = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+	if (data->img[WALL] == NULL)
+		return (printf("%s", mlx_strerror(mlx_errno)));
+	data->img[MAP] = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+	if (data->img[MAP] == NULL)
+		return (printf("%s", mlx_strerror(mlx_errno)));
+	data->img[PLAYER] = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+	if (data->img[PLAYER] == NULL)
+		return (printf("%s", mlx_strerror(mlx_errno)));
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_data		data;
-	char	*txt = "1111111111,1000000001,10000P0001,1000000001,1101111001,1101001001,1000001001,1000001001,1111111111";
+	char	*txt = "1111111111,1000000001,10000N0001,1000000001,1101111001,1101001001,1000001001,1000001001,1111111111";
 	(void) argc;
 	(void) argv;
 	data.map = ft_split_str(txt, ",");
@@ -41,16 +58,15 @@ int	main(int argc, char **argv)
 		printf("%s", mlx_strerror(mlx_errno));
 		return (1);
 	}
-	data.img = mlx_new_image(data.mlx, WIDTH, HEIGHT);
-	if (data.img == NULL)
+	if (init_image(&data) != 0)
 	{
-		mlx_close_window(data.mlx);
-		printf("%s", mlx_strerror(mlx_errno));
+		mlx_terminate(data.mlx);
 		return (1);
 	}
 	init_player(&data.player, &data);
 	display_infos(&data, true);
 	draw_map(&data);
+	draw_player(&data, &data.player);
 	if (mlx_image_to_window(data.mlx, data.img, 0, 0) == -1)
 	{
 		mlx_close_window(data.mlx);
@@ -72,6 +88,7 @@ static void	display_infos(t_data *data, bool yes)
 		printf("%s\n", data->map[i]);
 	printf("player : \n");
 	printf("pos[X] = %f\tpos[Y] = %f\n", data->player.pos[X], data->player.pos[Y]);
+	printf("index[X] = %i\tindex[Y] = %i\n", data->player.indexs[X], data->player.indexs[Y]);
 	printf("Setup : \n");
 	printf("focal[X] = %f\tfocal[Y] = %f\t len_focal = %f\n", data->player.setup.focal[X], data->player.setup.focal[Y], data->player.setup.len_focal);
 	printf("cam[X] = %f\tcam[Y] = %f\n", data->player.setup.cam[X], data->player.setup.cam[Y]);

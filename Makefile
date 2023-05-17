@@ -6,7 +6,7 @@
 #    By: vviovi <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/02 13:27:39 by jduval            #+#    #+#              #
-#    Updated: 2023/05/17 15:43:39 by jduval           ###   ########.fr        #
+#    Updated: 2023/05/17 16:25:10 by jduval           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,14 +31,11 @@ BUILD_DIR 	= 	.obj
 
 SRC_DIR		=	sources
 
-SRCS 		=	main.c	\
+SRCS 		=	test_map.c	\
 				parsing/load_map.c \
 				parsing/utils_map.c \
 				parsing/map_verif.c \
 				parsing/map_get_info.c \
-				test_map.c	\
-				draw_map.c
-				test_map.c	\
 				draw_map.c	\
 				raycasting/init_setup.c	\
 
@@ -86,7 +83,7 @@ $(BUILD_DIR)/%.o : %.c
 clean:
 	@${MAKE} -C libft/ clean
 	@${MAKE} -C MLX42/build/ clean
-	rm -rf .build
+	rm -rf .obj
 .PHONY:clean
 
 fclean: clean

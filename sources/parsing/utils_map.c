@@ -6,11 +6,11 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 11:32:35 by vviovi            #+#    #+#             */
-/*   Updated: 2023/05/17 15:17:38 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/05/17 16:19:42 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/src.h"
+#include "../includes/cub3d.h"
 
 char	*gnl_skip_void(int fd_file)
 {

@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 13:30:26 by jduval            #+#    #+#             */
-/*   Updated: 2023/05/17 15:33:06 by jduval           ###   ########.fr       */
+/*   Updated: 2023/05/17 18:02:38 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@
 static void	set_focal_start(t_setup *setup, t_player *player);
 static void	set_cam_start(t_setup *setup, t_player *player);
 static int	find_unit(char **map);
+static void	find_player_pos(t_player *player, char **map);
 
 void	init_player(t_player *player, t_data *data)
 {
 	int	unit;
 
 	unit = find_unit(data->map);
+	find_player_pos(player, data->map);
 	player->setup.nbr_of_ray = WIDTH;
 	player->pos[X] = ((float)player->indexs[X] * unit) + (unit / 2);
 	player->pos[Y] = ((float)player->indexs[Y] * unit) + (unit / 2);
@@ -108,4 +110,33 @@ static int	find_unit(char **map)
 			i--;
 	}
 	return (i);
+}
+
+
+static void	find_player_pos(t_player *player, char **map)
+{
+	int	i;
+	int	find;
+	int	len;
+
+	i = 0;
+	while (map[i])
+	{
+		len = ft_strlen(map[i]);
+		find = ft_strcspn(map[i], "NSEW");
+		if (find < len)
+			break ;
+		i++;
+	}
+	if ( map[i] && map[i][find] == 'N')
+		player->start_view = NO;
+	else if (map[i] && map[i][find] == 'S')
+		player->start_view = SO;
+	else if (map[i] && map[i][find] == 'E')
+		player->start_view = EA;
+	else
+		player->start_view = WE;
+	player->indexs[X] = find;
+	player->indexs[Y] = i;
+	map[i][find] = 'P';
 }

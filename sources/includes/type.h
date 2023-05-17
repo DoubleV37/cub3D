@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:43:28 by jduval            #+#    #+#             */
-/*   Updated: 2023/05/17 15:33:02 by jduval           ###   ########.fr       */
+/*   Updated: 2023/05/17 18:02:41 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # define HEIGHT 1080
 
 # include "MLX42.h"
-//# define UNIT 50
 # define CAM 1
 # define FOV 90
 
@@ -28,7 +27,7 @@
 typedef enum e_coord
 {
 	X,
-	Y
+	Y,
 }	t_coord;
 
 typedef enum e_card
@@ -72,14 +71,13 @@ typedef struct s_player
 typedef struct s_texture
 {
 	mlx_texture_t	*texture[4];
-	int				unit[2];
 	int				color_floor[3];
 	int				color_ceil[3];
 }	t_texture;
 
 typedef struct s_data
 {
-	mlx_t		*mlx;
+	mlx_t		*mlx[4];
 	mlx_image_t	*img;
 	char		**map;
 	t_player	player;

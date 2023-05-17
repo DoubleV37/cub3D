@@ -6,11 +6,11 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 10:57:22 by vviovi            #+#    #+#             */
-/*   Updated: 2023/05/17 15:28:11 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/05/17 16:19:59 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/src.h"
+#include "../includes/cub3d.h"
 
 int	valid_extension(char *path, char *extension)
 {
