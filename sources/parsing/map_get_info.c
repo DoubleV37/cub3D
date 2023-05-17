@@ -6,12 +6,11 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 14:02:26 by vviovi            #+#    #+#             */
-/*   Updated: 2023/05/16 18:11:18 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/05/17 15:27:36 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "type.h"
+#include "../includes/src.h"
 
 int	get_texture_info(int file_fd, char *card, t_data *data, int index_tab)
 {
@@ -21,7 +20,8 @@ int	get_texture_info(int file_fd, char *card, t_data *data, int index_tab)
 	line = gnl_skip_void(file_fd);
 	if (!line)
 		return (print_error_map(1));
-	dataline = ft_split(line, ' ');
+	dataline = ft_split_char(line, ' ');
+	free(line);
 	if (dataline && ft_strncmp(dataline[0], card, ft_strlen(dataline[0])) == 0
 		&& ft_strlen(dataline[0]) == ft_strlen(card))
 	{
@@ -29,7 +29,7 @@ int	get_texture_info(int file_fd, char *card, t_data *data, int index_tab)
 		{
 			data->textures.texture[index_tab] = mlx_load_png(dataline[1]);
 			if (data->textures.texture[index_tab] == NULL)
-				return (0);
+				return (print_error_map(1));
 			ft_free_array(dataline);
 			return (1);
 		}
@@ -48,33 +48,29 @@ static int	save_color_data(char **data_color, t_data *data, char place)
 		data->textures.color_ceil[0] = ft_atoi(data_color[0]);
 		data->textures.color_ceil[1] = ft_atoi(data_color[1]);
 		data->textures.color_ceil[2] = ft_atoi(data_color[2]);
+		return (valid_color(data->textures.color_ceil[0],
+			data->textures.color_ceil[1], data->textures.color_ceil[2]));
 	}
-	else
-	{
-		data->textures.color_floor[0] = ft_atoi(data_color[0]);
-		data->textures.color_floor[1] = ft_atoi(data_color[1]);
-		data->textures.color_floor[2] = ft_atoi(data_color[2]);
-	}
-	return (valid_color(data->textures.color_ceil[0],
-			data->textures.color_ceil[1], data->textures.color_ceil[3]));
+	data->textures.color_floor[0] = ft_atoi(data_color[0]);
+	data->textures.color_floor[1] = ft_atoi(data_color[1]);
+	data->textures.color_floor[2] = ft_atoi(data_color[2]);
+	return (valid_color(data->textures.color_floor[0],
+			data->textures.color_floor[1], data->textures.color_floor[2]));
 }
 
 static int	verif_place_and_separe(char place, char *place_and_color)
 {
-	char	**p_and_c_sep;
+	char	placedata;
+	int		i;
 
-	p_and_c_sep = split(place_and_color, ' ');
-	if (!p_and_c_sep || len_dbl_tab(p_and_c_sep) != 2)
+	i = 0;
+	while (place_and_color[i] && place_and_color[i] != place)
+		i++;
+	placedata = place_and_color[i];
+	if (placedata != place)
 		return (0);
-	free(place_and_color);
-	place_and_color = ft_strdup(p_and_c_sep[1]);
-	if (p_and_c_sep && place == p_and_c_sep[0][0])
-	{
-		ft_free_array(p_and_c_sep);
-		return (1);
-	}
-	ft_free_array(p_and_c_sep);
-	return (0);
+	place_and_color[i] = ' ';
+	return (1);
 }
 
 int	get_color_info(int file_fd, char place, t_data *data)
@@ -85,7 +81,8 @@ int	get_color_info(int file_fd, char place, t_data *data)
 	line = gnl_skip_void(file_fd);
 	if (!line)
 		return (0);
-	dataline = ft_split(line, ',');
+	dataline = ft_split_char(line, ',');
+	free(line);
 	if (!dataline || !verif_place_and_separe(place, dataline[0]))
 	{
 		if (dataline)

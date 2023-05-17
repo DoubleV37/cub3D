@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 08:50:20 by vviovi            #+#    #+#             */
-/*   Updated: 2023/05/17 15:33:04 by jduval           ###   ########.fr       */
+/*   Updated: 2023/05/17 15:40:40 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int		valid_color(int red, int green, int blue);
 int		valid_texture(char *path_texture);
 
 //utils_map	-PARSING
+void	clean_texture_nb(t_texture *textures, int nb_textures);
 char	*gnl_skip_void(int fd_file);
 int		len_dbl_tab(char **tab);
 int		print_error_map(int type_error);
