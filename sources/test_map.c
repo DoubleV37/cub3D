@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   test_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:34:11 by jduval            #+#    #+#             */
-/*   Updated: 2023/05/17 11:29:21 by jduval           ###   ########.fr       */
+/*   Updated: 2023/05/17 14:34:50 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MLX42.h"
+#include "includes/type.h"
+#include "libft.h"
 #include <stdio.h>
 #include <stdlib.h>
-
-#define WIDTH 500
-#define HEIGHT 500
 
 static void	escape_hook(void *param)
 {
@@ -26,61 +25,38 @@ static void	escape_hook(void *param)
 	return ;
 }
 
-static int32_t	color_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
-{
-	return (r << 24 | g << 16 | b << 8 | a);
-}
-
-static void	trace_test(void *param)
-{
-	mlx_image_t	*img = param;
-	uint32_t color;
-
-	for (int i = 0; i < img->width; i++)
-	{
-		for (int y = 0; y < img->height; y++)
-		{
-			color = color_pixel(0, 100, 255, 255);
-			mlx_put_pixel(img, i, y, color);
-
-		}
-	}
-}
-
 int	main(int argc, char **argv)
 {
 	mlx_t		*mlx;
 	mlx_image_t	*img;
-	mlx_image_t	*img2;
-
+	t_data		data;
+	char	*txt = "1111111111,1000000001,1000000001,1000000001,1101111001,1101001001,1000001001,1000001001,1111111111";
 	(void) argc;
 	(void) argv;
-	mlx = mlx_init(WIDTH, HEIGHT, "Cub3D", true);
-	if (mlx == NULL)
+	data.map = ft_split_str(txt, ",");
+	data.mlx = mlx_init(WIDTH, HEIGHT, "Cub3D", true);
+	if (data.mlx == NULL)
 	{
 		printf("%s", mlx_strerror(mlx_errno));
 		return (1);
 	}
-	img = mlx_new_image(mlx, WIDTH, HEIGHT);
-	img2 = mlx_new_image(mlx, WIDTH, HEIGHT);
-	if (mlx == NULL)
+	data.img = mlx_new_image(data.mlx, WIDTH, HEIGHT);
+	if (data.img == NULL)
 	{
-		mlx_close_window(mlx);
+		mlx_close_window(data.mlx);
 		printf("%s", mlx_strerror(mlx_errno));
 		return (1);
 	}
-	if (mlx_image_to_window(mlx, img, 0, 0) == -1)
+	make_setup(&data.player, &data);
+	draw_map(&data);
+	if (mlx_image_to_window(data.mlx, &data.img, 0, 0) == -1)
 	{
-		mlx_close_window(mlx);
+		mlx_close_window(data.mlx);
 		printf("%s", mlx_strerror(mlx_errno));
 		return (1);
 	}
-	mlx_image_to_window(mlx, img2, 200, 200);
-	trace_test(img);
-	trace_test(img2);
-	//img->enabled = false;
-	img2->enabled = false;
 	mlx_loop_hook(mlx, escape_hook, mlx);
-	mlx_loop(mlx);
-	mlx_terminate(mlx);
+	mlx_loop(data.mlx);
+	mlx_terminate(data.mlx);
+	ft_free_array(data.map);
 }

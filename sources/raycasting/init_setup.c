@@ -6,21 +6,25 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 13:30:26 by jduval            #+#    #+#             */
-/*   Updated: 2023/05/16 17:07:30 by jduval           ###   ########.fr       */
+/*   Updated: 2023/05/17 14:34:48 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "type.h"
 
-void	set_focal_start(t_setup *setup, t_player *player);
-void	set_cam_start(t_setup *setup, player);
+static void	set_focal_start(t_setup *setup, t_player *player);
+static void	set_cam_start(t_setup *setup, player);
+static int	find_unit(char **map);
 
-void	make_setup(t_player *player)
+void	make_setup(t_player *player, t_data *data)
 {
+	int	unit;
+
+	unit = find_unit(data->map);
 	player->setup.nbr_of_ray = WIDTH;
-	player->pos[X] = ((float)player->indexs[X] * UNIT) + (UNIT / 2);
-	player->pos[Y] = ((float)player->indexs[Y] * UNIT) + (UNIT / 2);
+	player->pos[X] = ((float)player->indexs[X] * unit) + (unit / 2);
+	player->pos[Y] = ((float)player->indexs[Y] * unit) + (unit / 2);
 	set_focal_start(player->setup, player);
 	set_cam_start(player->setup, player);
 	player->setup.step = CAM / player->setup.nbr_of_ray;
@@ -76,4 +80,32 @@ void	set_cam_start(t_setup *setup, player)
 		setup->cam[X] = player->pos[X];
 		setup->cam[Y] = player->pos[Y] + (CAM / 2);	
 	}
+}
+
+static int	find_unit(char **map)
+{
+	int	len_x;
+	int	len_y;
+	int	i;
+
+	len_y = ft_array_lengh(map);
+	i = -1;
+	while (map[++i])
+	{
+		len_x = (int)ft_strlen(map[i]);
+		if (map[i + 1] && len_x < ft_strlen(map[i + 1]))
+			len_x = (int)ft_strlen(map[i + 1]);
+	}
+	if (len_x > len_y)
+		i = WIDTH / len_x;
+	else
+		i = WIDTH / len_y;
+	while (1)
+	{
+		if (i * len_x + i < WIDTH && i * len_y + i < HEIGHT)
+			break ;
+		else
+			tmp--;
+	}
+	return (tmp);
 }

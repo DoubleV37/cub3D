@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:43:28 by jduval            #+#    #+#             */
-/*   Updated: 2023/05/16 17:15:37 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/05/17 14:34:46 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # define HEIGHT 1080
 
 # include "MLX42.h"
-# define UNIT 10
+//# define UNIT 50
 # define CAM 1
 # define FOV 90
 
@@ -58,6 +58,7 @@ typedef struct s_setup
 	float	delta_angle;
 	float	cos_x;
 	float	cos_y;
+	int		unit;
 }	t_setup;
 
 typedef struct s_player
@@ -79,7 +80,7 @@ typedef struct s_texture
 typedef struct s_data
 {
 	mlx_t		*mlx;
-	mlx_image_t	*images;
+	mlx_image_t	*img;
 	char		**map;
 	t_player	player;
 	t_texture	textures;

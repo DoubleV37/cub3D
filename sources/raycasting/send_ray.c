@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:12:16 by jduval            #+#    #+#             */
-/*   Updated: 2023/05/16 17:07:28 by jduval           ###   ########.fr       */
+/*   Updated: 2023/05/17 11:06:50 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	send_ray(t_data *data, t_player *player, t_setup *setup)
 	angle = -FOV / 2;
 	while (i < nbr_of_ray)
 	{
-		find_collide(ref, angle, i, player);
+		find_collid(ref, angle, i, player);
 		angle += setup->delta_angle;
 		i++;
 	}

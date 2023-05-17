@@ -6,7 +6,7 @@
 #    By: vviovi <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/02 13:27:39 by jduval            #+#    #+#              #
-#    Updated: 2023/05/16 13:38:06 by vviovi           ###   ########.fr        #
+#    Updated: 2023/05/17 13:17:39 by jduval           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,10 +31,11 @@ BUILD_DIR 	= 	.obj
 
 SRC_DIR		=	sources
 
-SRCS 		=	main.c	\
-				parsing/load_map.c \
-				parsing/utils_map.c \
-				parsing/map_verif.c
+SRCS 		=	test_map.c	\
+				draw_map.c	\
+				#parsing/load_map.c \
+				#parsing/utils_map.c \
+				#parsing/map_verif.c
 
 SRCS		:=	$(SRCS:%=$(SRC_DIR)/%)
 
