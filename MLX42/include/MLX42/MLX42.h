@@ -6,7 +6,7 @@
 /*   By: W2Wizard <main@w2wizard.dev>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/28 02:29:06 by W2Wizard      #+#    #+#                 */
-/*   Updated: 2023/05/16 17:07:32 by jduval           ###   ########.fr       */
+/*   Updated: 2023/05/17 12:24:37 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -618,7 +618,7 @@ void mlx_put_pixel(mlx_image_t* image, uint32_t x, uint32_t y, uint32_t color);
 
 /**
  * Creates and allocates a new image buffer.
- * 
+  
  * @param[in] mlx The MLX instance handle.
  * @param[in] width The desired width of the image.
  * @param[in] height The desired height of the image.

@@ -6,7 +6,7 @@
 #    By: vviovi <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/02 13:27:39 by jduval            #+#    #+#              #
-#    Updated: 2023/05/17 09:06:50 by vviovi           ###   ########.fr        #
+#    Updated: 2023/05/17 15:38:22 by vviovi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,10 @@ SRCS 		=	main.c	\
 				parsing/load_map.c \
 				parsing/utils_map.c \
 				parsing/map_verif.c \
-				parsing/map_get_info.c
+				parsing/map_get_info.c \
+				test_map.c	\
+				draw_map.c
+
 
 SRCS		:=	$(SRCS:%=$(SRC_DIR)/%)
 
