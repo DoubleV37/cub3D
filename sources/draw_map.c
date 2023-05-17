@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:05:05 by jduval            #+#    #+#             */
-/*   Updated: 2023/05/17 14:34:45 by jduval           ###   ########.fr       */
+/*   Updated: 2023/05/17 15:33:07 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,27 @@ static void	fill_wall(mlx_image_t *img, int i, int j, int unit)
 	}
 }
 
+static void	fill_player_square(mlx_image_t *img, int i, int j, int unit)
+{
+	int x;
+	int y;
+	int limit;
+
+	y = i * unit + unit / 3;
+	i = y + (unit / 3);
+	limit = j * unit + 2 * (unit / 3);
+	while (y < i)
+	{
+		x = limit - (unit / 3);
+		while (x < limit)
+		{
+			mlx_put_pixel(img, x, y, color_pixel(0, 150, 0, 255));
+			x++;
+		}
+		y++;
+	}
+}
+
 void	draw_map(t_data *data)
 {
 	int	i;
@@ -76,6 +97,11 @@ void	draw_map(t_data *data)
 				fill_space(data->img, i, j, data->player.setup.unit);
 			else if (data->map[i][j] && data->map[i][j] == '1')
 				fill_wall(data->img, i, j, data->player.setup.unit);
+			else if (data->map[i][j] && data->map[i][j] == 'P')
+			{
+				fill_space(data->img, i, j, data->player.setup.unit);
+				fill_player_square(data->img, i, j, data->player.setup.unit);
+			}
 			j++;
 		}
 		i++;
