@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 10:15:52 by vviovi            #+#    #+#             */
-/*   Updated: 2023/05/17 16:19:29 by jduval           ###   ########.fr       */
+/*   Updated: 2023/05/18 11:26:40 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,18 @@ static int	load_colors(int file_fd, t_data *data)
 	return (0);
 }
 
-//static int	load_map(int file_fd, t_data *data);
+static int	load_map(int file_fd, t_data *data)
+{
+	if (!get_map(file_fd, data))
+		return (0);
+	if (!simple_verify_map(data->map) || !is_wall_surround(data->map))
+		return (0);
+	return (1);
+}
 
 int	load_file(char **argv, t_data *data)
 {
-	int		fd;
+	int	fd;
 
 	if (!valid_extension(argv[1], ".cub"))
 		return (print_error_map(0));
@@ -58,7 +65,7 @@ int	load_file(char **argv, t_data *data)
 	}
 	if (!load_textures_info(fd, data)
 		|| !load_colors(fd, data)
-		/*|| !load_map(fd, data)*/)
+		|| !load_map(fd, data))
 	{
 		close(fd);
 		return (0);

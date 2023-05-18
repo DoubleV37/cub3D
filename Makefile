@@ -6,7 +6,7 @@
 #    By: vviovi <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/02 13:27:39 by jduval            #+#    #+#              #
-#    Updated: 2023/05/17 16:25:10 by jduval           ###   ########.fr        #
+#    Updated: 2023/05/18 10:20:23 by vviovi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRCS 		=	test_map.c	\
 				parsing/load_map.c \
 				parsing/utils_map.c \
 				parsing/map_verif.c \
+				parsing/content_verif.c \
 				parsing/map_get_info.c \
 				draw_map.c	\
 				raycasting/init_setup.c	\

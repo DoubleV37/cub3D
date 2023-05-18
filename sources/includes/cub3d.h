@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 08:50:20 by vviovi            #+#    #+#             */
-/*   Updated: 2023/05/17 15:40:40 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/05/18 11:06:40 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,16 @@
 //map_get_info	-PARSING
 int		get_texture_info(int file_fd, char *card, t_data *data, int index_tab);
 int		get_color_info(int file_fd, char place, t_data *data);
+int		get_map(int file_fd, t_data *data);
 
-//map_verif	-PARSING
+//content_verif	-PARSING
 int		valid_extension(char *path, char *extension);
 int		valid_color(int red, int green, int blue);
 int		valid_texture(char *path_texture);
+
+//map_verif	-PARSING
+int		simple_verify_map(char **map);
+int		is_wall_surround(char **map);
 
 //utils_map	-PARSING
 void	clean_texture_nb(t_texture *textures, int nb_textures);
