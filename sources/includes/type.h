@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:43:28 by jduval            #+#    #+#             */
-/*   Updated: 2023/05/17 18:02:41 by jduval           ###   ########.fr       */
+/*   Updated: 2023/05/18 11:31:42 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,22 @@ typedef enum e_rgb
 	B
 }	t_rgb;
 
+typedef enum e_img
+{
+	BACKSCREEN,
+	WALL,
+	MAP,
+	PLAYER
+}	t_img;
+
+typedef enum e_dir
+{
+	FORWARD,
+	BACKWARD,
+	LEFTWARD,
+	RIGHTWARD
+}	t_dir;
+
 //------STRUCT------//
 
 typedef struct s_setup
@@ -58,6 +74,7 @@ typedef struct s_setup
 	float	cos_x;
 	float	cos_y;
 	int		unit;
+	int		pace;
 }	t_setup;
 
 typedef struct s_player
@@ -77,8 +94,8 @@ typedef struct s_texture
 
 typedef struct s_data
 {
-	mlx_t		*mlx[4];
-	mlx_image_t	*img;
+	mlx_t		*mlx;
+	mlx_image_t	*img[4];
 	char		**map;
 	t_player	player;
 	t_texture	textures;

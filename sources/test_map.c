@@ -6,25 +6,25 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:34:11 by jduval            #+#    #+#             */
-/*   Updated: 2023/05/17 18:02:44 by jduval           ###   ########.fr       */
+/*   Updated: 2023/05/18 12:05:10 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "MLX42.h"
-#include "includes/type.h"
-#include "libft.h"
-#include "includes/cub3d.h"
+#include "cub3d.h"
 #include <stdio.h>
 #include <stdlib.h>
 
 static void	display_infos(t_data *data, bool yes);
 
-static void	escape_hook(void *param)
+static void	key_input(void *param)
 {
-	mlx_t	*mlx = param;
+	t_data	*data = param;
 
-	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(mlx);
+	printf("fuck it1\n");
+	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
+		mlx_close_window(data->mlx);
+	else if (movement_key(data) == 0)
+		return ;
 	return ;
 }
 
@@ -66,14 +66,19 @@ int	main(int argc, char **argv)
 	init_player(&data.player, &data);
 	display_infos(&data, true);
 	draw_map(&data);
-	draw_player(&data, &data.player);
-	if (mlx_image_to_window(data.mlx, data.img, 0, 0) == -1)
+//	if (mlx_image_to_window(data.mlx, data.img[MAP], 0, 0) == -1)
+//	{
+//		mlx_close_window(data.mlx);
+//		printf("%s", mlx_strerror(mlx_errno));
+//		return (1);
+//	}
+	if (mlx_image_to_window(data.mlx, data.img[PLAYER], 0, 0) == -1)
 	{
 		mlx_close_window(data.mlx);
 		printf("%s", mlx_strerror(mlx_errno));
 		return (1);
 	}
-	mlx_loop_hook(data.mlx, escape_hook, data.mlx);
+	mlx_loop_hook(data.mlx, key_input, &data);
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);
 	ft_free_array(data.map);

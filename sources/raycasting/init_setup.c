@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 13:30:26 by jduval            #+#    #+#             */
-/*   Updated: 2023/05/17 18:02:38 by jduval           ###   ########.fr       */
+/*   Updated: 2023/05/18 10:38:45 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	init_player(t_player *player, t_data *data)
 	player->setup.step = CAM / player->setup.nbr_of_ray;
 	player->setup.delta_angle = atanf(player->setup.step / player->setup.len_focal);
 	player->setup.unit = unit;
+	player->setup.pace = 2;
 }
 
 static void	set_focal_start(t_setup *setup, t_player *player)
@@ -138,5 +139,5 @@ static void	find_player_pos(t_player *player, char **map)
 		player->start_view = WE;
 	player->indexs[X] = find;
 	player->indexs[Y] = i;
-	map[i][find] = 'P';
+	map[i][find] = '0';
 }

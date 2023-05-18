@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 08:50:20 by vviovi            #+#    #+#             */
-/*   Updated: 2023/05/17 15:40:40 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/05/18 12:05:11 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define SRC_H
 
 # include "type.h"
-# include "../../libft/include/libft.h"
+# include "libft.h"
 
 # include <fcntl.h>
 # include <stdlib.h>
@@ -43,5 +43,17 @@ void	init_player(t_player *player, t_data *data);
 
 //draw_map		-DRAW
 void	draw_map(t_data *data);
+
+//draw_player	-DRAW
+void	draw_player(mlx_image_t *img, int *pos, int unit, int flag);
+
+//draw_utils	-DRAW
+int32_t	color_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
+
+//move_player	-MOVEMENTS
+int		move_player(t_data *data, t_player *player, t_dir dir);
+
+//key_functions	-INPUT
+int		movement_key(t_data *data);
 
 #endif
