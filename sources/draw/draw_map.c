@@ -6,50 +6,31 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:05:05 by jduval            #+#    #+#             */
-/*   Updated: 2023/05/18 11:47:30 by jduval           ###   ########.fr       */
+/*   Updated: 2023/05/18 17:25:43 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MLX42.h"
 #include "cub3d.h"
-#include "stddef.h"
 
-static void	fill_space(mlx_image_t *img, int i, int j, int unit)
+static void	fill_square(mlx_image_t *img, int x, int y, int unit, int flag)
 {
-	int x;
-	int y;
-	int limit;
+	int x2;
+	int y2;
 
-	y = i * unit;
-	i = y + unit;
-	limit = j * unit + unit;
-	while (y < i)
+	y *= unit;
+	x *= unit;
+	x2 = x + unit;
+	y2 = y + unit;
+	while (y < y2)
 	{
-		x = limit - unit;
-		while (x < limit)
+		x = x2 - unit;
+		while (x < x2)
 		{
-			mlx_put_pixel(img, x, y, color_pixel(128, 128, 128, 255));
-			x++;
-		}
-		y++;
-	}
-}
-
-static void	fill_wall(mlx_image_t *img, int i, int j, int unit)
-{
-	int x;
-	int y;
-	int limit;
-
-	y = i * unit;
-	i = y + unit;
-	limit = j * unit + unit;
-	while (y < i)
-	{
-		x = limit - unit;
-		while (x < limit)
-		{
-			mlx_put_pixel(img, x, y, color_pixel(0, 0, 0, 255));
+			if (flag == 1)
+				mlx_put_pixel(img, x, y, color_pixel(0, 0, 0, 255));
+			else
+				mlx_put_pixel(img, x, y, color_pixel(128, 128, 128, 255));
 			x++;
 		}
 		y++;
@@ -68,9 +49,9 @@ void	draw_map(t_data *data)
 		while (data->map[i][j] != '\0')
 		{
 			if (data->map[i][j] && data->map[i][j] == '0')
-				fill_space(data->img[MAP], i, j, data->player.setup.unit);
+				fill_square(data->img[MAP], j, i, data->setup.unit, 0);
 			else if (data->map[i][j] && data->map[i][j] == '1')
-				fill_wall(data->img[MAP], i, j, data->player.setup.unit);
+				fill_square(data->img[MAP], j, i, data->setup.unit, 1);
 			j++;
 		}
 		i++;

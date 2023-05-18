@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 10:55:29 by jduval            #+#    #+#             */
-/*   Updated: 2023/05/18 11:48:39 by jduval           ###   ########.fr       */
+/*   Updated: 2023/05/18 18:21:51 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,25 @@
 
 void	draw_player(mlx_image_t *img, int *pos, int unit, int flag)
 {
-	int x;
-	int y;
-	int end_x;
-	int	end_y;
+	int	x1;
+	int	x2;
+	int	y1;
+	int	y2;
 
-	y = pos[Y] * unit + unit / 3;
-	end_y = y + (unit / 3);
-	end_x = pos[X] * unit + 2 * (unit / 3);
-	while (y < end_y)
+	x2 = pos[X] + unit / 10;
+	y1 = pos[Y] - unit / 10;
+	y2 = pos[Y] + unit / 10;
+	while (y1 < y2)
 	{
-		x = end_x - (unit / 3);
-		while (x < end_x)
+		x1 = pos[X] - unit / 10;
+		while (x1 < x2)
 		{
 			if (flag == 1)
-				mlx_put_pixel(img, x, y, color_pixel(0, 0, 250, 255));
+				mlx_put_pixel(img, x1, y1, color_pixel(255, 0, 0, 255));
 			else
-				mlx_put_pixel(img, x, y, color_pixel(0, 0, 0, 0));
-			x++;
+				mlx_put_pixel(img, x1, y1, color_pixel(0, 0, 0, 0));
+			x1++;
 		}
-		y++;
+		y1++;
 	}
 }

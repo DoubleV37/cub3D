@@ -6,13 +6,13 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 13:30:26 by jduval            #+#    #+#             */
-/*   Updated: 2023/05/18 10:38:45 by jduval           ###   ########.fr       */
+/*   Updated: 2023/05/18 18:22:11 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
-#include "../includes/type.h"
-#include "../../libft/include/libft.h"
+#include "cub3d.h"
+#include "libft.h"
 
 static void	set_focal_start(t_setup *setup, t_player *player);
 static void	set_cam_start(t_setup *setup, t_player *player);
@@ -25,15 +25,15 @@ void	init_player(t_player *player, t_data *data)
 
 	unit = find_unit(data->map);
 	find_player_pos(player, data->map);
-	player->setup.nbr_of_ray = WIDTH;
-	player->pos[X] = ((float)player->indexs[X] * unit) + (unit / 2);
-	player->pos[Y] = ((float)player->indexs[Y] * unit) + (unit / 2);
-	set_focal_start(&player->setup, player);
-	set_cam_start(&player->setup, player);
-	player->setup.step = CAM / player->setup.nbr_of_ray;
-	player->setup.delta_angle = atanf(player->setup.step / player->setup.len_focal);
-	player->setup.unit = unit;
-	player->setup.pace = 2;
+	data->setup.nbr_of_ray = WIDTH;
+	player->pos[X] = (player->indexs[X] * unit + unit / 3);
+	player->pos[Y] = (player->indexs[Y] * unit + unit / 3);
+	set_focal_start(&data->setup, player);
+	set_cam_start(&data->setup, player);
+	data->setup.step = CAM / data->setup.nbr_of_ray;
+	data->setup.delta_angle = atanf(data->setup.step / data->setup.len_focal);
+	data->setup.unit = unit;
+	player->pace = 3;
 }
 
 static void	set_focal_start(t_setup *setup, t_player *player)
