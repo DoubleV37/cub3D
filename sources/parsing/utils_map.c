@@ -6,11 +6,11 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 11:32:35 by vviovi            #+#    #+#             */
-/*   Updated: 2023/05/17 16:19:42 by jduval           ###   ########.fr       */
+/*   Updated: 2023/05/19 14:56:23 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "cub3d.h"
 
 char	*gnl_skip_void(int fd_file)
 {
@@ -41,6 +41,16 @@ int	len_dbl_tab(char **tab)
 
 	i = 0;
 	while (tab && tab[i])
+		i++;
+	return (i);
+}
+
+int	len_string(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str && str[i])
 		i++;
 	return (i);
 }

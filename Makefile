@@ -6,7 +6,7 @@
 #    By: vviovi <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/02 13:27:39 by jduval            #+#    #+#              #
-#    Updated: 2023/05/19 13:35:42 by vviovi           ###   ########.fr        #
+#    Updated: 2023/05/19 14:55:22 by vviovi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,8 +32,8 @@ BUILD_DIR 	= 	.obj
 
 SRC_DIR		=	sources
 
-SRCS 		=	test_map.c	\
-				#main.c
+SRCS 		=	main.c#test_map.c
+
 
 SRCS		+=	parsing/load_map.c \
 				parsing/utils_map.c \

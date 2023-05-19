@@ -6,11 +6,11 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 10:57:22 by vviovi            #+#    #+#             */
-/*   Updated: 2023/05/19 13:32:34 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/05/19 18:16:52 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "cub3d.h"
 
 int	simple_verify_map(char **map)
 {
@@ -26,12 +26,13 @@ int	simple_verify_map(char **map)
 		while (map[i][j])
 		{
 			if ((i == 0 || i == ft_array_len(map) - 1
-				|| j == 0 || j == ft_strlen(map[i]) - 1) && map[i][j] != '1')
+				|| j == 0 || j == len_string(map[i]) - 1) && (map[i][j] != '1' && map[i][j] != ' '))
 				return (print_error_map(3));
 			if ((map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'W'
 				|| map[i][j] == 'E') && is_player == 0)
 				is_player = 1;
-			else
+			else if ((map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'W'
+				|| map[i][j] == 'E') && is_player != 0)
 				return (print_error_map(3));
 			j++;
 		}
@@ -53,17 +54,17 @@ int	is_wall_surround(char **map)
 		{
 			if (i > 0 && i < (ft_array_len(map) - 1) && map[i][j] == '0')
 			{
-				if (ft_strlen(map[i - 1]) < (j + 1)
-					|| ft_strlen(map[i + 1]) < (j + 1))
-					return (0);
+				if (len_string(map[i - 1]) < (j + 1)
+					|| len_string(map[i + 1]) < (j + 1))
+					return (print_error_map(3));
 				if ((j - 1 > -1 && map[i - 1][j - 1] == ' ')
-					|| (j + 1 < ft_strlen(map[i - 1])
+					|| (j + 1 < len_string(map[i - 1])
 					&& map[i - 1][j + 1] == ' ') || (map[i - 1][j] == ' '))
-					return (0);
+					return (print_error_map(3));
 				if ((j - 1 > -1 && map[i + 1][j - 1] == ' ')
-					|| (j + 1 < ft_strlen(map[i + 1]) && map[i + 1][j + 1] == ' ')
+					|| (j + 1 < len_string(map[i + 1]) && map[i + 1][j + 1] == ' ')
 					|| (map[i + 1][j] == ' '))
-					return (0);
+					return (print_error_map(3));
 			}
 			j++;
 		}

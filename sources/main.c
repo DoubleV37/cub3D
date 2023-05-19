@@ -6,15 +6,15 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:34:11 by jduval            #+#    #+#             */
-/*   Updated: 2023/05/18 12:04:53 by jduval           ###   ########.fr       */
+/*   Updated: 2023/05/19 18:17:44 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MLX42.h"
-#include "includes/src.h"
+#include "cub3d.h"
 #include <stdio.h>
 #include <stdlib.h>
-
+/*
 #define WIDTH 500
 #define HEIGHT 500
 
@@ -46,7 +46,7 @@ static void	trace_test(void *param)
 
 		}
 	}
-}
+}*/
 
 int	main(int argc, char **argv)
 {
@@ -58,8 +58,13 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	if (!load_file(argv, &data))
+	{
+		clean_texture_nb(&data.textures, 4);
+		ft_free_array(data.map);
 		return (1);
+	}
 	clean_texture_nb(&data.textures, 4);
+	ft_free_array(data.map);
 	return (0);
 	/*mlx_t		*mlx;
 	mlx_image_t	*img;

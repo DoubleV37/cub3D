@@ -6,29 +6,29 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 14:02:26 by vviovi            #+#    #+#             */
-/*   Updated: 2023/05/18 10:06:59 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/05/19 17:22:13 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "cub3d.h"
 
 int	get_map(int file_fd, t_data *data)
 {
 	char	*line;
 	char	*map_one_line;
 
-	line = gnl_skip_void(file_fd);
-	if (!line)
+	map_one_line = gnl_skip_void(file_fd);
+	if (!map_one_line)
 		return (print_error_map(3));
-	map_one_line = ft_strjoin_free(map_one_line, line);
-	free(line);
 	line = ft_gnl(file_fd);
 	while (line)
 	{
 		map_one_line = ft_strjoin_free(map_one_line, line);
 		free(line);
+		line = ft_gnl(file_fd);
 	}
 	data->map = ft_split_char(map_one_line, '\n');
+	free(map_one_line);
 	return (1);
 }
 
