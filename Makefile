@@ -6,7 +6,7 @@
 #    By: vviovi <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/02 13:27:39 by jduval            #+#    #+#              #
-#    Updated: 2023/05/19 14:55:22 by vviovi           ###   ########.fr        #
+#    Updated: 2023/05/19 18:20:36 by vviovi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,12 +44,17 @@ SRCS		+=	parsing/load_map.c \
 SRCS		+=	input/key_functions.c	\
 
 SRCS		+=	movements/move_player.c	\
+				movements/rotate_player.c	\
+				movements/wall_collision.c	\
 
 SRCS		+=	draw/draw_map.c	\
 				draw/draw_player.c	\
 				draw/draw_utils.c	\
+				draw/draw_line.c	\
 
 SRCS		+=	raycasting/init_setup.c	\
+				raycasting/calculate_rotation.c	\
+				raycasting/calculate_incr.c	\
 
 SRCS		:=	$(SRCS:%=$(SRC_DIR)/%)
 
