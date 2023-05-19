@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 10:57:22 by vviovi            #+#    #+#             */
-/*   Updated: 2023/05/18 11:37:10 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/05/19 13:32:34 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,38 @@ int	simple_verify_map(char **map)
 				is_player = 1;
 			else
 				return (print_error_map(3));
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
+
+int	is_wall_surround(char **map)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	while (map && map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (i > 0 && i < (ft_array_len(map) - 1) && map[i][j] == '0')
+			{
+				if (ft_strlen(map[i - 1]) < (j + 1)
+					|| ft_strlen(map[i + 1]) < (j + 1))
+					return (0);
+				if ((j - 1 > -1 && map[i - 1][j - 1] == ' ')
+					|| (j + 1 < ft_strlen(map[i - 1])
+					&& map[i - 1][j + 1] == ' ') || (map[i - 1][j] == ' '))
+					return (0);
+				if ((j - 1 > -1 && map[i + 1][j - 1] == ' ')
+					|| (j + 1 < ft_strlen(map[i + 1]) && map[i + 1][j + 1] == ' ')
+					|| (map[i + 1][j] == ' '))
+					return (0);
+			}
 			j++;
 		}
 		i++;
