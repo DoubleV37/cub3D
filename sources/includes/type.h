@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:43:28 by jduval            #+#    #+#             */
-/*   Updated: 2023/05/18 18:22:14 by jduval           ###   ########.fr       */
+/*   Updated: 2023/05/19 16:38:07 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@
 # define HEIGHT 1080
 
 # include "MLX42.h"
+
 # define CAM 1
 # define FOV 90
+# define RAD_CONV 0.01745
 
 //------ENUM------//
 
@@ -50,7 +52,7 @@ typedef enum e_img
 	BACKSCREEN,
 	WALL,
 	MAP,
-	PLAYER
+	PLAYER,
 }	t_img;
 
 typedef enum e_dir
@@ -62,6 +64,16 @@ typedef enum e_dir
 }	t_dir;
 
 //------STRUCT------//
+
+typedef struct s_rot
+{
+	float	angle;
+	float	cos_ang;
+	float	sin_ang;
+	float	cos_inv;
+	float	sin_inv;
+
+}	t_rot;
 
 typedef struct s_setup
 {
@@ -79,8 +91,11 @@ typedef struct s_setup
 typedef struct s_player
 {
 	int		pos[2];
+	float	view[4];
 	int		indexs[2];
-	int		pace;
+	float	angle;
+	float	pace;
+	t_rot	rotate;
 	t_card	start_view;
 }	t_player;
 

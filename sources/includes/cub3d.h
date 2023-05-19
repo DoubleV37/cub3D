@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 08:50:20 by vviovi            #+#    #+#             */
-/*   Updated: 2023/05/18 17:55:08 by jduval           ###   ########.fr       */
+/*   Updated: 2023/05/19 16:49:15 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,32 @@ int		load_file(char **argv, t_data *data);
 //init_setup	-RAYCASTING
 void	init_player(t_player *player, t_data *data);
 
+//calculate_rotation	-RAYCASTING
+void	calc_rotation(float *view, t_rot *rot, int flag);
+
+//calculate_incr	-RAYCASTING
+float	calculate_incr_x(t_player *player);
+float	calculate_incr_y(t_player *player);
+
 //draw_map		-DRAW
 void	draw_map(t_data *data);
 
 //draw_player	-DRAW
-void	draw_player(mlx_image_t *img, int *pos, int unit, int flag);
+void	draw_player(mlx_image_t *img, t_player *player, int unit, int flag);
+
+//draw_line	-DRAW
+void	draw_line(mlx_image_t *img, float *pos, int32_t color);
 
 //draw_utils	-DRAW
 int32_t	color_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 
 //move_player	-MOVEMENTS
-int		move_player(t_data *data, t_player *player, t_dir dir);
+int		move_backward_forward(t_data *data, t_player *player, t_dir dir);
+
+bool	check_collide(t_player *player, float *inc, int unit, char **map);
+
+//rotate_player	-MOVEMENTS
+int		rotate_player(t_data *data, t_player *player, t_dir dir);
 
 //key_functions	-INPUT
 int		movement_key(t_data *data);
