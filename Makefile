@@ -6,7 +6,7 @@
 #    By: vviovi <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/02 13:27:39 by jduval            #+#    #+#              #
-#    Updated: 2023/05/18 10:20:23 by vviovi           ###   ########.fr        #
+#    Updated: 2023/05/19 13:35:42 by vviovi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ LIBS_TARGET =	libft/libft.a			\
 
 INCLUDES	=	libft/include 			\
 				MLX42/include/MLX42		\
+				sources/includes		\
 				/usr/lib				\
 
 ###############################################################################
@@ -32,13 +33,23 @@ BUILD_DIR 	= 	.obj
 SRC_DIR		=	sources
 
 SRCS 		=	test_map.c	\
-				parsing/load_map.c \
+				#main.c
+
+SRCS		+=	parsing/load_map.c \
 				parsing/utils_map.c \
 				parsing/map_verif.c \
 				parsing/content_verif.c \
 				parsing/map_get_info.c \
-				draw_map.c	\
-				raycasting/init_setup.c	\
+
+SRCS		+=	input/key_functions.c	\
+
+SRCS		+=	movements/move_player.c	\
+
+SRCS		+=	draw/draw_map.c	\
+				draw/draw_player.c	\
+				draw/draw_utils.c	\
+
+SRCS		+=	raycasting/init_setup.c	\
 
 SRCS		:=	$(SRCS:%=$(SRC_DIR)/%)
 

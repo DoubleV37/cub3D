@@ -1,0 +1,39 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_player.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/18 10:55:29 by jduval            #+#    #+#             */
+/*   Updated: 2023/05/18 18:21:51 by jduval           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "MLX42.h"
+#include "cub3d.h"
+
+void	draw_player(mlx_image_t *img, int *pos, int unit, int flag)
+{
+	int	x1;
+	int	x2;
+	int	y1;
+	int	y2;
+
+	x2 = pos[X] + unit / 10;
+	y1 = pos[Y] - unit / 10;
+	y2 = pos[Y] + unit / 10;
+	while (y1 < y2)
+	{
+		x1 = pos[X] - unit / 10;
+		while (x1 < x2)
+		{
+			if (flag == 1)
+				mlx_put_pixel(img, x1, y1, color_pixel(255, 0, 0, 255));
+			else
+				mlx_put_pixel(img, x1, y1, color_pixel(0, 0, 0, 0));
+			x1++;
+		}
+		y1++;
+	}
+}
