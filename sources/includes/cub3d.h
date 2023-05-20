@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 08:50:20 by vviovi            #+#    #+#             */
-/*   Updated: 2023/05/19 18:20:46 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/05/20 17:28:47 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,61 +20,51 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-//map_get_info	-PARSING
+//-------------PARSING---------------//
+//map_get_info
 int		get_texture_info(int file_fd, char *card, t_data *data, int index_tab);
 int		get_color_info(int file_fd, char place, t_data *data);
 int		get_map(int file_fd, t_data *data);
-
-//content_verif	-PARSING
+//file : content_verif.c
 int		valid_extension(char *path, char *extension);
 int		valid_color(int red, int green, int blue);
 int		valid_texture(char *path_texture);
-
-//map_verif	-PARSING
+//file : map_verif.c
 int		simple_verify_map(char **map);
 int		is_wall_surround(char **map);
-
-//utils_map	-PARSING
+//file : utils_map.c
 void	clean_texture_nb(t_texture *textures, int nb_textures);
 char	*gnl_skip_void(int fd_file);
 int		len_dbl_tab(char **tab);
 int		len_string(char *str);
 int		print_error_map(int type_error);
-
-//load_map	-PARSING
+//file : load_map.c
 int		load_file(char **argv, t_data *data);
 
-//init_setup	-RAYCASTING
+//-------------RAYCASTING---------------//
+//file : init_setup.c
 void	init_player(t_player *player, t_data *data);
 
-//calculate_rotation	-RAYCASTING
-void	calc_rotation(float *view, t_rot *rot, int flag);
-
-//calculate_incr	-RAYCASTING
-float	calculate_incr_x(t_player *player);
-float	calculate_incr_y(t_player *player);
-
-//draw_map		-DRAW
+//-------------DRAW---------------//
+//file : draw_map.c
 void	draw_map(t_data *data);
-
-//draw_player	-DRAW
+//file : draw_player.c
 void	draw_player(mlx_image_t *img, t_player *player, int unit, int flag);
-
-//draw_line	-DRAW
+//file : draw_line.c
 void	draw_line(mlx_image_t *img, float *pos, int32_t color);
-
-//draw_utils	-DRAW
+//file : draw_utils.c
 int32_t	color_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 
-//move_player	-MOVEMENTS
+//-------------MOVEMENTS---------------//
+//file : move_player.c
 int		move_backward_forward(t_data *data, t_player *player, t_dir dir);
-
+//file : wall_collision.c
 bool	check_collide(t_player *player, float *inc, int unit, char **map);
-
-//rotate_player	-MOVEMENTS
+//file : rotate_player.c
 int		rotate_player(t_data *data, t_player *player, t_dir dir);
 
-//key_functions	-INPUT
+//-------------INPUT---------------//
+//file : key_functions.c
 int		movement_key(t_data *data);
 
 #endif

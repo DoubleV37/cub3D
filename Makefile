@@ -6,7 +6,7 @@
 #    By: vviovi <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/02 13:27:39 by jduval            #+#    #+#              #
-#    Updated: 2023/05/19 18:20:36 by vviovi           ###   ########.fr        #
+#    Updated: 2023/05/20 17:29:18 by jduval           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ BUILD_DIR 	= 	.obj
 
 SRC_DIR		=	sources
 
-SRCS 		=	main.c#test_map.c
+SRCS 		=	main.c
 
 
 SRCS		+=	parsing/load_map.c \
@@ -53,8 +53,6 @@ SRCS		+=	draw/draw_map.c	\
 				draw/draw_line.c	\
 
 SRCS		+=	raycasting/init_setup.c	\
-				raycasting/calculate_rotation.c	\
-				raycasting/calculate_incr.c	\
 
 SRCS		:=	$(SRCS:%=$(SRC_DIR)/%)
 
