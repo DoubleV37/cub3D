@@ -1,0 +1,13 @@
+NO textures/amethyst_block.png
+SO textures/blackstone_top.png
+WE textures/bookshelf.png
+EA textures/gray_glazed_terracotta.png
+
+F 220,100,0
+C 225,30,0
+
+111111111111111
+100000000000001
+100000000000000
+10N000000001001
+111111111111111
