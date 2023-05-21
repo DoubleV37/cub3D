@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 14:02:26 by vviovi            #+#    #+#             */
-/*   Updated: 2023/05/21 10:44:52 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/05/21 13:20:01 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ int	get_texture_info(int file_fd, char *card, t_data *data, int index_tab)
 		if (valid_texture(dataline[1]))
 		{
 			data->textures.texture[index_tab] = mlx_load_png(dataline[1]);
+			ft_free_array(dataline);
 			if (data->textures.texture[index_tab] == NULL)
 				return (print_error_map(1));
-			ft_free_array(dataline);
 			return (1);
 		}
 	}

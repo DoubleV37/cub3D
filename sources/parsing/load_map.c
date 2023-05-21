@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 10:15:52 by vviovi            #+#    #+#             */
-/*   Updated: 2023/05/21 10:44:30 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/05/21 13:12:26 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,16 @@ static int	load_colors(int file_fd, t_data *data)
 static int	load_map(int file_fd, t_data *data)
 {
 	if (!get_map(file_fd, data))
+	{
+		clean_texture_nb(&data->textures, 4);
 		return (0);
+	}
 	if (!simple_verify_map(data->map) || !is_wall_surround(data->map))
+	{
+		ft_free_array(data->map);
+		clean_texture_nb(&data->textures, 4);
 		return (0);
+	}
 	return (1);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:34:11 by jduval            #+#    #+#             */
-/*   Updated: 2023/05/20 17:11:00 by jduval           ###   ########.fr       */
+/*   Updated: 2023/05/21 14:47:57 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,7 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	if (!load_file(argv, &data))
-	{
-		clean_texture_nb(&data.textures, 4);
-		ft_free_array(data.map);
 		return (1);
-	}
 	data.mlx = mlx_init(WIDTH, HEIGHT, "Cub3D", true);
 	if (data.mlx == NULL)
 	{
@@ -88,6 +84,7 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(data.mlx, key_input, &data);
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);
+	clean_texture_nb(&data.textures, 4);
 	ft_free_array(data.map);
 }
 
