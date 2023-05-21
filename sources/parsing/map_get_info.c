@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 14:02:26 by vviovi            #+#    #+#             */
-/*   Updated: 2023/05/19 17:22:13 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/05/21 10:44:52 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static int	save_color_data(char **data_color, t_data *data, char place)
 		data->textures.color_ceil[1] = ft_atoi(data_color[1]);
 		data->textures.color_ceil[2] = ft_atoi(data_color[2]);
 		return (valid_color(data->textures.color_ceil[0],
-			data->textures.color_ceil[1], data->textures.color_ceil[2]));
+				data->textures.color_ceil[1], data->textures.color_ceil[2]));
 	}
 	data->textures.color_floor[0] = ft_atoi(data_color[0]);
 	data->textures.color_floor[1] = ft_atoi(data_color[1]);

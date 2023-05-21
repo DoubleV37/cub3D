@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 10:15:52 by vviovi            #+#    #+#             */
-/*   Updated: 2023/05/19 17:17:07 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/05/21 10:44:30 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ static int	load_textures_info(int file_fd, t_data *data)
 
 static int	load_colors(int file_fd, t_data *data)
 {
-	if (get_color_info(file_fd, 'F', data) && get_color_info(file_fd, 'C', data))
+	if (get_color_info(file_fd, 'F', data)
+		&& get_color_info(file_fd, 'C', data))
 		return (1);
 	clean_texture_nb(&data->textures, 4);
 	return (0);
