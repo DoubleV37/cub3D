@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 13:30:26 by jduval            #+#    #+#             */
-/*   Updated: 2023/05/19 17:20:50 by jduval           ###   ########.fr       */
+/*   Updated: 2023/05/22 17:21:13 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,64 +18,62 @@ static void	set_focal_start(t_setup *setup, t_player *player);
 static void	set_cam_start(t_setup *setup, t_player *player);
 static int	find_unit(char **map);
 static void	find_player_pos(t_player *player, char **map);
-static void	set_view(t_player *player);
+static void	set_vector(t_player *player);
 
 void	init_player(t_player *player, t_data *data)
 {
-	int	unit;
+	float	unit;
 
 	unit = find_unit(data->map);
 	find_player_pos(player, data->map);
 	data->setup.nbr_of_ray = WIDTH;
-	player->pos[X] = (player->indexs[X] * unit + unit / 3);
-	player->pos[Y] = (player->indexs[Y] * unit + unit / 3);
+	player->pos[X] = (player->indexs[X] * unit + unit / 3.0f);
+	player->pos[Y] = (player->indexs[Y] * unit + unit / 3.0f);
 	set_focal_start(&data->setup, player);
 	set_cam_start(&data->setup, player);
 	data->setup.step = CAM / data->setup.nbr_of_ray;
 	data->setup.delta_angle = atanf(data->setup.step / data->setup.len_focal);
 	data->setup.unit = unit;
-	set_view(player);
-	player->rotate.angle = 2;
+	set_vector(player);
+	player->rotate.angle = 2.0f;
 	player->rotate.cos_ang = cosf(player->rotate.angle * RAD_CONV);
 	player->rotate.sin_ang = sinf(player->rotate.angle * RAD_CONV);
-	player->rotate.cos_inv = cosf(player->rotate.angle * RAD_CONV * (-1.0));
-	player->rotate.sin_inv = sinf(player->rotate.angle * RAD_CONV * (-1.0));
-	player->pace = 3.0;
+	player->rotate.cos_inv = cosf(player->rotate.angle * RAD_CONV * (-1.0f));
+	player->rotate.sin_inv = sinf(player->rotate.angle * RAD_CONV * (-1.0f));
+	player->pace = 3.0f;
 }
 
-static void	set_view(t_player *player)
+static void	set_vector(t_player *player)
 {
-	player->view[X] = player->pos[X];
-	player->view[Y] = player->pos[Y];
 	if (player->start_view == NO)
 	{
-		player->view[X + 2] = player->pos[X];
-		player->view[Y + 2] = player->pos[Y] - 20;
-		player->angle = 90;
+		player->vector[X] = 0.0f;
+		player->vector[Y] = -1.0f;
+		player->angle = 90.0f;
 	}
 	else if (player->start_view == SO)
 	{
-		player->view[X + 2] = player->pos[X];
-		player->view[Y + 2] = player->pos[Y] + 20;
+		player->vector[X] = 0.0f;
+		player->vector[Y] = 1.0f;
 		player->angle = 270;
 	}
 	else if (player->start_view == EA)
 	{
-		player->view[X + 2] = player->pos[X] + 20;
-		player->view[Y + 2] = player->pos[Y];
-		player->angle = 0;
+		player->vector[Y] = 0.0f;
+		player->vector[X] = 1.0f;
+		player->angle = 0.0f;
 	}
 	else
 	{
-		player->view[X + 2] = player->pos[X] - 20;
-		player->view[Y + 2] = player->pos[Y];
-		player->angle = 180;
+		player->vector[Y] = 0.0f;
+		player->vector[X] = -1.0f;
+		player->angle = 180.0f;
 	}
 }
 
 static void	set_focal_start(t_setup *setup, t_player *player)
 {
-	setup->len_focal = 1 / tanf(((FOV / 2) * M_PI) / 180);
+	setup->len_focal = 1.0f / tanf(((FOV / 2.0f) * M_PI) / 180.0f);
 	if (player->start_view == NO)
 	{
 		setup->focal[X] = player->pos[X];

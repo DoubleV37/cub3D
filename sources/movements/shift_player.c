@@ -6,49 +6,32 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 17:31:35 by jduval            #+#    #+#             */
-/*   Updated: 2023/05/20 17:41:23 by jduval           ###   ########.fr       */
+/*   Updated: 2023/05/22 17:21:06 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <math.h>
 
-static float	calculate_incr_x(t_player *player);
-static float	calculate_incr_y(t_player *player);
-
-int	move_right_left(t_data *data, t_player *player, t_dir dir)
+int	move_left_right(t_data *data, t_player *player, t_dir dir)
 {
-	
-}
+	float	perp[2];
+	float	check[2];
+	float	way;
 
-static float	calculate_incr_x(t_player *player)
-{
-	float	result;
-
-	if (player->angle > 0 && player->angle <= 90)
-		result = cosf(player->angle * RAD_CONV) * player->pace;
-	else if (player->angle > 90 && player->angle <= 180)
-		result = (-1) * (cosf((180 - player->angle) * RAD_CONV) * player->pace);
-	else if (player->angle > 180 && player->angle <= 270)
-		result = (-1) * (cosf((player->angle - 180) * RAD_CONV) * player->pace);
-	else
-		result = cosf((360 - player->angle) * RAD_CONV) * player->pace;
-	result = roundf(result);
-	return (result);
-}
-
-static float	calculate_incr_y(t_player *player)
-{
-	float	result;
-
-	if (player->angle > 0 && player->angle <= 90)
-		result = (-1) * (sinf(player->angle * RAD_CONV) * player->pace);
-	else if (player->angle > 90 && player->angle <= 180)
-		result = (-1) * (sinf((180 - player->angle) * RAD_CONV) * player->pace);
-	else if (player->angle > 180 && player->angle <= 270)
-		result = sinf((player->angle - 180) * RAD_CONV) * player->pace;
-	else
-		result = sinf((360 - player->angle) * RAD_CONV) * player->pace;
-	result = roundf(result);
-	return (result);
+	way = 1.0f;
+	perp[X] = -player->vector[Y];
+	perp[Y] = +player->vector[X];
+	if (dir == LEFTWARD)
+		way = -1.0f;
+	check[X] = player->pos[X] + perp[X] * way * player->pace;
+	check[Y] = player->pos[Y] + perp[Y] * way * player->pace;
+	if (check_collide(check, data->setup.unit, data->map) == false)
+	{
+		draw_pov(data->img[PLAYER], player, 0);
+		player->pos[X] += perp[X] * way * player->pace;
+		player->pos[Y] += perp[Y] * way * player->pace;
+		draw_pov(data->img[PLAYER], player, 1);
+	}
+	return (0);
 }

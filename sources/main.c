@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:34:11 by jduval            #+#    #+#             */
-/*   Updated: 2023/05/22 13:57:15 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/05/22 17:27:11 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ static void	display_infos(t_data *data, bool yes)
 	for (int i = 0; data->map[i]; i++)
 		printf("%s\n", data->map[i]);
 	printf("player : \n");
-	printf("pos[X] = %i\tpos[Y] = %i\n", data->player.pos[X], data->player.pos[Y]);
+	printf("pos[X] = %f\tpos[Y] = %f\n", data->player.pos[X], data->player.pos[Y]);
 	printf("index[X] = %i\tindex[Y] = %i\n", data->player.indexs[X], data->player.indexs[Y]);
 	printf("Setup : \n");
 	printf("focal[X] = %f\tfocal[Y] = %f\t len_focal = %f\n", data->setup.focal[X], data->setup.focal[Y], data->setup.len_focal);
@@ -114,5 +114,5 @@ static void	display_infos(t_data *data, bool yes)
 	printf("delta_angle = %f\n", data->setup.delta_angle);
 	//printf("cos_x = %f\n", data->setup.cos_x);
 	//printf("cos_y = %f\n", data->setup.cos_y);
-	printf("unit = %i\n", data->setup.unit);
+	printf("unit = %f\n", data->setup.unit);
 }
