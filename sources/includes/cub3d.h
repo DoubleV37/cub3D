@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 08:50:20 by vviovi            #+#    #+#             */
-/*   Updated: 2023/05/20 17:28:47 by jduval           ###   ########.fr       */
+/*   Updated: 2023/05/22 16:22:21 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,17 @@ void	draw_map(t_data *data);
 void	draw_player(mlx_image_t *img, t_player *player, int unit, int flag);
 //file : draw_line.c
 void	draw_line(mlx_image_t *img, float *pos, int32_t color);
+void	draw_pov(mlx_image_t *img, t_player *player, int flag);
 //file : draw_utils.c
 int32_t	color_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 
 //-------------MOVEMENTS---------------//
 //file : move_player.c
 int		move_backward_forward(t_data *data, t_player *player, t_dir dir);
+//file : shift_player.c
+int		move_left_right(t_data *data, t_player *player, t_dir dir);
 //file : wall_collision.c
-bool	check_collide(t_player *player, float *inc, int unit, char **map);
+bool	check_collide(float *pos, int unit, char **map);
 //file : rotate_player.c
 int		rotate_player(t_data *data, t_player *player, t_dir dir);
 

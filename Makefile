@@ -6,7 +6,7 @@
 #    By: vviovi <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/02 13:27:39 by jduval            #+#    #+#              #
-#    Updated: 2023/05/20 17:29:18 by jduval           ###   ########.fr        #
+#    Updated: 2023/05/22 11:15:23 by jduval           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ SRCS		+=	parsing/load_map.c \
 SRCS		+=	input/key_functions.c	\
 
 SRCS		+=	movements/move_player.c	\
+				movements/shift_player.c	\
 				movements/rotate_player.c	\
 				movements/wall_collision.c	\
 

@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:43:28 by jduval            #+#    #+#             */
-/*   Updated: 2023/05/19 16:38:07 by jduval           ###   ########.fr       */
+/*   Updated: 2023/05/22 16:13:10 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,13 @@ typedef struct s_setup
 	float	delta_angle;
 //	float	cos_x;
 //	float	cos_y;
-	int		unit;
+	float	unit;
 }	t_setup;
 
 typedef struct s_player
 {
-	int		pos[2];
-	float	view[4];
+	float	pos[2];
+	float	vector[2];
 	int		indexs[2];
 	float	angle;
 	float	pace;

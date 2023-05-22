@@ -1,7 +1,7 @@
-NO textures/amethyst_block.png
-SO textures/blackstone_top.png
-WE textures/bookshelf.png
-EA textures/gray_glazed_terracotta.png
+NO textures/txt.png
+SO textures/txt.png
+WE textures/txt.png
+EA textures/txt.png
 
 F 220,100,0
 C 225,30,0
