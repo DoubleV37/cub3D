@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 08:50:20 by vviovi            #+#    #+#             */
-/*   Updated: 2023/05/20 17:28:47 by jduval           ###   ########.fr       */
+/*   Updated: 2023/05/22 13:54:31 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,9 @@ void	draw_player(mlx_image_t *img, t_player *player, int unit, int flag);
 void	draw_line(mlx_image_t *img, float *pos, int32_t color);
 //file : draw_utils.c
 int32_t	color_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
+//file : draw_background.c
+void	draw_background_ceiling(t_data *data);
+void	draw_background_floor(t_data *data);
 
 //-------------MOVEMENTS---------------//
 //file : move_player.c

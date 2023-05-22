@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:34:11 by jduval            #+#    #+#             */
-/*   Updated: 2023/05/21 14:47:57 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/05/22 13:57:15 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,14 @@ int	main(int argc, char **argv)
 	init_player(&data.player, &data);
 	display_infos(&data, false);
 	draw_map(&data);
+	draw_background_ceiling(&data);
+	draw_background_floor(&data);
+	if (mlx_image_to_window(data.mlx, data.img[BACKSCREEN], 0, 0) == -1)
+	{
+		mlx_close_window(data.mlx);
+		printf("%s", mlx_strerror(mlx_errno));
+		return (1);
+	}
 	if (mlx_image_to_window(data.mlx, data.img[MAP], 0, 0) == -1)
 	{
 		mlx_close_window(data.mlx);
