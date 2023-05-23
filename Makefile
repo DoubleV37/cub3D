@@ -6,7 +6,7 @@
 #    By: vviovi <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/02 13:27:39 by jduval            #+#    #+#              #
-#    Updated: 2023/05/23 17:43:39 by jduval           ###   ########.fr        #
+#    Updated: 2023/05/23 17:46:30 by jduval           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,7 @@ SRCS		+=	draw/draw_map.c	\
 				draw/draw_player.c	\
 				draw/draw_utils.c	\
 				draw/draw_line.c	\
+				draw/draw_background.c	\
 
 SRCS		+=	initialization/init_images.c	\
 				initialization/init_player.c	\
