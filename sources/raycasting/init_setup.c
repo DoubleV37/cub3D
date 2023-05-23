@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 13:30:26 by jduval            #+#    #+#             */
-/*   Updated: 2023/05/22 17:21:13 by jduval           ###   ########.fr       */
+/*   Updated: 2023/05/23 11:48:55 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	init_player(t_player *player, t_data *data)
 	data->setup.delta_angle = atanf(data->setup.step / data->setup.len_focal);
 	data->setup.unit = unit;
 	set_vector(player);
-	player->rotate.angle = 2.0f;
+	player->rotate.angle = 5.0f;
 	player->rotate.cos_ang = cosf(player->rotate.angle * RAD_CONV);
 	player->rotate.sin_ang = sinf(player->rotate.angle * RAD_CONV);
 	player->rotate.cos_inv = cosf(player->rotate.angle * RAD_CONV * (-1.0f));
