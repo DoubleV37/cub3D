@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 17:31:35 by jduval            #+#    #+#             */
-/*   Updated: 2023/05/22 17:21:06 by jduval           ###   ########.fr       */
+/*   Updated: 2023/05/23 17:29:36 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,18 @@ int	move_left_right(t_data *data, t_player *player, t_dir dir)
 	float	way;
 
 	way = 1.0f;
-	perp[X] = -player->vector[Y];
-	perp[Y] = +player->vector[X];
+	perp[X] = -data->tools.dir[Y];
+	perp[Y] = +data->tools.dir[X];
 	if (dir == LEFTWARD)
 		way = -1.0f;
-	check[X] = player->pos[X] + perp[X] * way * player->pace;
-	check[Y] = player->pos[Y] + perp[Y] * way * player->pace;
-	if (check_collide(check, data->setup.unit, data->map) == false)
+	check[X] = player->pos[X] + perp[X] * way * player->speed;
+	check[Y] = player->pos[Y] + perp[Y] * way * player->speed;
+	if (check_collide(check, data->tools.unit, data->map) == false)
 	{
-		draw_pov(data->img[PLAYER], player, 0);
-		player->pos[X] += perp[X] * way * player->pace;
-		player->pos[Y] += perp[Y] * way * player->pace;
-		draw_pov(data->img[PLAYER], player, 1);
+		draw_pov(data, player, 0);
+		player->pos[X] += perp[X] * way * player->speed;
+		player->pos[Y] += perp[Y] * way * player->speed;
+		draw_pov(data, player, 1);
 	}
 	return (0);
 }

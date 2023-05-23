@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:34:11 by jduval            #+#    #+#             */
-/*   Updated: 2023/05/22 16:14:48 by jduval           ###   ########.fr       */
+/*   Updated: 2023/05/23 17:14:02 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static void	display_infos(t_data *data, bool yes);
+//static void	display_infos(t_data *data, bool yes);
 
 static void	key_input(void *param)
 {
@@ -25,23 +25,6 @@ static void	key_input(void *param)
 	else if (movement_key(data) == 0)
 		return ;
 	return ;
-}
-
-static int	init_image(t_data *data)
-{
-	data->img[BACKSCREEN] = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-	if (data->img[BACKSCREEN] == NULL)
-		return (printf("%s", mlx_strerror(mlx_errno)));
-	data->img[WALL] = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-	if (data->img[WALL] == NULL)
-		return (printf("%s", mlx_strerror(mlx_errno)));
-	data->img[MAP] = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-	if (data->img[MAP] == NULL)
-		return (printf("%s", mlx_strerror(mlx_errno)));
-	data->img[PLAYER] = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-	if (data->img[PLAYER] == NULL)
-		return (printf("%s", mlx_strerror(mlx_errno)));
-	return (0);
 }
 
 int	main(int argc, char **argv)
@@ -61,13 +44,13 @@ int	main(int argc, char **argv)
 		printf("%s", mlx_strerror(mlx_errno));
 		return (1);
 	}
-	if (init_image(&data) != 0)
+	if (init_images(&data) != 0)
 	{
 		mlx_terminate(data.mlx);
 		return (1);
 	}
 	init_player(&data.player, &data);
-	display_infos(&data, false);
+	//display_infos(&data, false);
 	draw_map(&data);
 	if (mlx_image_to_window(data.mlx, data.img[MAP], 0, 0) == -1)
 	{
@@ -87,7 +70,7 @@ int	main(int argc, char **argv)
 	clean_texture_nb(&data.textures, 4);
 	ft_free_array(data.map);
 }
-
+/*
 static void	display_infos(t_data *data, bool yes)
 {
 	if (yes == false)
@@ -107,4 +90,4 @@ static void	display_infos(t_data *data, bool yes)
 	//printf("cos_x = %f\n", data->setup.cos_x);
 	//printf("cos_y = %f\n", data->setup.cos_y);
 	printf("unit = %f\n", data->setup.unit);
-}
+}*/

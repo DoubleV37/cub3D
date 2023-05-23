@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 08:10:32 by jduval            #+#    #+#             */
-/*   Updated: 2023/05/22 16:42:02 by jduval           ###   ########.fr       */
+/*   Updated: 2023/05/23 17:31:01 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,17 @@ void	draw_line(mlx_image_t *img, float *pos, int32_t color)
 	trace_line(img, color, pos, steps);
 }
 
-void	draw_pov(mlx_image_t *img, t_player *player, int flag)
+void	draw_pov(t_data *data, t_player *player, int flag)
 {
 	float	coordinate[4];
 
 	coordinate[X] = player->pos[X];
 	coordinate[Y] = player->pos[Y];
-	coordinate[X + 2] = (player->vector[X] * 20.0f) + player->pos[X];
-	coordinate[Y + 2] = (player->vector[Y] * 20.0f) + player->pos[Y];
+	coordinate[X + 2] = (data->tools.dir[X] * 20.0f) + player->pos[X];
+	coordinate[Y + 2] = (data->tools.dir[Y] * 20.0f) + player->pos[Y];
 	if (flag == 1)
-		draw_line(img, coordinate, color_pixel(255, 255, 255, 255));
+		draw_line(data->img[PLAYER], coordinate, color_pixel(255, 255, 255, 255));
 	else
-		draw_line(img, coordinate, color_pixel(255, 255, 255, 0));
+		draw_line(data->img[PLAYER], coordinate, color_pixel(255, 255, 255, 0));
 	return ;
 }
