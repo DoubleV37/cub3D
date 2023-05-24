@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:43:28 by jduval            #+#    #+#             */
-/*   Updated: 2023/05/23 17:44:07 by jduval           ###   ########.fr       */
+/*   Updated: 2023/05/24 13:41:27 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef enum e_rgb
 
 typedef enum e_img
 {
-	BACKSCREEN,
+	BACKGROUND,
 	WALL,
 	MAP,
 	PLAYER,
@@ -76,7 +76,6 @@ typedef struct s_rot
 typedef struct s_tool
 {
 	float	unit;
-	float	focal[2];
 	float	plane[2];
 	float	dir[2];
 	float	step;

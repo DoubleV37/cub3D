@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 13:30:26 by jduval            #+#    #+#             */
-/*   Updated: 2023/05/23 17:45:02 by jduval           ###   ########.fr       */
+/*   Updated: 2023/05/24 15:52:59 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 static int		find_unit(char **map);
 static t_card	find_player_pos(t_player *player, char **map);
-static void		set_direction(t_player *player, t_tool *tools, t_card view);
+static void		set_vdirection(t_player *player, t_tool *tools, t_card view);
 
 void	init_player(t_player *player, t_data *data)
 {
@@ -28,44 +28,34 @@ void	init_player(t_player *player, t_data *data)
 	data->tools.unit = unit;
 	start_view = find_player_pos(player, data->map);
 	data->map[player->indexs[X]][player->indexs[Y]] = '0';
-	printf("--> %i\n", start_view);
 	player->pos[X] = (player->indexs[X] * unit + unit / 3.0f);
 	player->pos[Y] = (player->indexs[Y] * unit + unit / 3.0f);
-	set_direction(player, &data->tools, start_view);
+	set_vdirection(player, &data->tools, start_view);
 	player->speed = 3.0f;
-	data->tools.rotate.angle = 4.0f;
-	data->tools.rotate.cos_ang = cosf(data->tools.rotate.angle * RAD_CONV);
-	data->tools.rotate.sin_ang = sinf(data->tools.rotate.angle * RAD_CONV);
-	data->tools.rotate.cos_inv = cosf(data->tools.rotate.angle * RAD_CONV * (-1.0f));
-	data->tools.rotate.sin_inv = sinf(data->tools.rotate.angle * RAD_CONV * (-1.0f));
 }
 
-static void	set_direction(t_player *player, t_tool *tools, t_card start)
+static void	set_vdirection(t_player *player, t_tool *tools, t_card start)
 {
 	if (start == NO)
 	{
-		printf("1\n");
 		tools->dir[X] = 0.0f;
 		tools->dir[Y] = -FOV;
 		player->angle = 90.0f;
 	}
 	else if (start == SO)
 	{
-		printf("2\n");
 		tools->dir[X] = 0.0f;
 		tools->dir[Y] = FOV;
 		player->angle = 270;
 	}
 	else if (start == EA)
 	{
-		printf("3\n");
 		tools->dir[Y] = 0.0f;
 		tools->dir[X] = FOV;
 		player->angle = 0.0f;
 	}
 	else
 	{
-		printf("4\n");
 		tools->dir[Y] = 0.0f;
 		tools->dir[X] = -FOV;
 		player->angle = 180.0f;
@@ -99,7 +89,6 @@ static int	find_unit(char **map)
 	}
 	return (i);
 }
-
 
 static t_card	find_player_pos(t_player *player, char **map)
 {

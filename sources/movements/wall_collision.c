@@ -6,14 +6,14 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 16:18:47 by jduval            #+#    #+#             */
-/*   Updated: 2023/05/23 17:06:04 by jduval           ###   ########.fr       */
+/*   Updated: 2023/05/24 16:32:10 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "type.h"
 #include <stdbool.h>
+#include "type.h"
 
-bool check_collide(float *pos, int unit, char **map)
+bool	check_collide(float *pos, int unit, char **map)
 {
 	int	index[2];
 
