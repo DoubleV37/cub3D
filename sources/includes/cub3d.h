@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 08:50:20 by vviovi            #+#    #+#             */
-/*   Updated: 2023/05/24 15:52:38 by jduval           ###   ########.fr       */
+/*   Updated: 2023/05/29 14:00:49 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ int		render_start(t_data *data);
 int		render_player(t_data *data);
 int		render_background(t_data *data);
 int		render_map(t_data *data);
+//file : draw_texture.c
+int		*get_line_texture(int pos, mlx_texture_t texture);
 
 //-------------MOVEMENTS---------------//
 //file : move_player.c
