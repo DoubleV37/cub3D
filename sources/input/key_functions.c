@@ -6,12 +6,24 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 08:44:08 by jduval            #+#    #+#             */
-/*   Updated: 2023/05/22 17:04:16 by jduval           ###   ########.fr       */
+/*   Updated: 2023/05/24 15:53:20 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "MLX42.h"
+
+void	key_input(void *param)
+{
+	t_data	*data;
+
+	data = param;
+	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
+		mlx_close_window(data->mlx);
+	else if (movement_key(data) == 0)
+		return ;
+	return ;
+}
 
 int	movement_key(t_data *data)
 {

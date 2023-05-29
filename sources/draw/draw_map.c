@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:05:05 by jduval            #+#    #+#             */
-/*   Updated: 2023/05/22 16:14:52 by jduval           ###   ########.fr       */
+/*   Updated: 2023/05/24 15:56:09 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ void	draw_map(t_data *data)
 		while (data->map[i][j] != '\0')
 		{
 			if (data->map[i][j] && data->map[i][j] == '0')
-				fill_square(data->img[MAP], j, i, data->setup.unit, 0);
+				fill_square(data->img[MAP], j, i, data->tools.unit, 0);
 			else if (data->map[i][j] && data->map[i][j] == '1')
-				fill_square(data->img[MAP], j, i, data->setup.unit, 1);
+				fill_square(data->img[MAP], j, i, data->tools.unit, 1);
 			j++;
 		}
 		i++;
