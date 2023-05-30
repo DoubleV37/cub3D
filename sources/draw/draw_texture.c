@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 13:44:26 by vviovi            #+#    #+#             */
-/*   Updated: 2023/05/29 14:41:27 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/05/30 09:48:50 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,18 @@ int	*get_line_texture(int pos, mlx_texture_t texture)
 	return (line);
 }
 
-//void	resize_texture(int *line_texture, int dist)
-//{
+void	resize_texture(int *line_texture, int size, int scale_size)
+{
+	int	*resized_line;
+	int	i;
 
-//}
+	resized_line = malloc(sizeof(int) * scale_size);
+	i = 0;
+	while (i < scale_size)
+	{
+		resized_line[i] = line_texture[i * size / scale_size];
+		i++;
+	}
+	free(line_texture);
+	line_texture = resized_line;
+}
