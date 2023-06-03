@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:43:28 by jduval            #+#    #+#             */
-/*   Updated: 2023/05/24 13:41:27 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/03 16:49:12 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 
 # include "MLX42.h"
 
-# define FOV 1
 # define RAD_CONV 0.01745
 
 //------ENUM------//
@@ -76,9 +75,10 @@ typedef struct s_rot
 typedef struct s_tool
 {
 	float	unit;
-	float	plane[2];
+	float	fov;
 	float	dir[2];
-	float	step;
+	float	dist;
+	float	delta_angle;
 	t_rot	rotate;
 }	t_tool;
 
@@ -88,6 +88,7 @@ typedef struct s_player
 	int		indexs[2];
 	float	angle;
 	float	speed;
+	float	height;
 }	t_player;
 
 typedef struct s_texture

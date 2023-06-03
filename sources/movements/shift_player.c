@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 17:31:35 by jduval            #+#    #+#             */
-/*   Updated: 2023/05/23 17:29:36 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/03 16:34:46 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	move_left_right(t_data *data, t_player *player, t_dir dir)
 		way = -1.0f;
 	check[X] = player->pos[X] + perp[X] * way * player->speed;
 	check[Y] = player->pos[Y] + perp[Y] * way * player->speed;
-	if (check_collide(check, data->tools.unit, data->map) == false)
+	if (check_collide(data, check[X], check[Y]) == false)
 	{
 		draw_pov(data, player, 0);
 		player->pos[X] += perp[X] * way * player->speed;
