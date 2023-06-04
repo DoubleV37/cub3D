@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:05:05 by jduval            #+#    #+#             */
-/*   Updated: 2023/05/24 15:56:09 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/04 16:15:38 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,29 @@ static void	fill_square(mlx_image_t *img, int x, int y, int unit, int flag)
 		while (x < x2)
 		{
 			if (flag == 1)
-				mlx_put_pixel(img, x, y, color_pixel(0, 0, 0, 255));
+				mlx_put_pixel(img, x, y, color_pixel(0, 0, 255, 255));
 			else
 				mlx_put_pixel(img, x, y, color_pixel(128, 128, 128, 255));
+			x++;
+		}
+		y++;
+	}
+}
+
+static void	fill_border(mlx_image_t *img, int unit)
+{
+	int	x = 0;
+	int	y = 0;
+
+	while (y < HEIGHT)
+	{
+		x = 0;
+		while (x < WIDTH)
+		{
+			if (x % unit == 0)
+				mlx_put_pixel(img, x, y, color_pixel(0, 0, 0, 255));
+			if (y % unit == 0)
+				mlx_put_pixel(img, x, y, color_pixel(0, 0, 0, 255));
 			x++;
 		}
 		y++;
@@ -56,4 +76,5 @@ void	draw_map(t_data *data)
 		}
 		i++;
 	}
+	fill_border(data->img[MAP], data->tools.unit);
 }

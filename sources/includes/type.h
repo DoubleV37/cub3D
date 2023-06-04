@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:43:28 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/03 16:49:12 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/04 16:29:27 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,15 @@ typedef enum e_dir
 }	t_dir;
 
 //------STRUCT------//
+
+typedef struct s_ray
+{
+	float	s_coord[2];
+	float	e_coord[2];
+	float	norm[2];
+	float	dist;
+	int		texture;
+}	t_ray;
 
 typedef struct s_rot
 {
