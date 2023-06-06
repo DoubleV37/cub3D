@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 08:10:32 by jduval            #+#    #+#             */
-/*   Updated: 2023/05/24 15:55:48 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/06 10:43:58 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static void	trace_line(mlx_image_t *img, int32_t color, float *pos, float steps)
 	yinc = (pos[Y + 2] - pos[Y]) / steps;
 	while (steps >= 0)
 	{
+		if (x0 < 0 || x0 > WIDTH - 1 || y0 < 0 || y0 > HEIGHT - 1)
+			break ;
 		mlx_put_pixel(img, ceilf(x0), ceilf(y0), color);
 		x0 += xinc;
 		y0 += yinc;
@@ -55,10 +57,10 @@ void	draw_pov(t_data *data, t_player *player, int flag)
 
 	coord[X] = player->pos[X];
 	coord[Y] = player->pos[Y];
-	coord[X + 2] = (data->tools.dir[X] * 20.0f) + player->pos[X];
-	coord[Y + 2] = (data->tools.dir[Y] * 20.0f) + player->pos[Y];
+	coord[X + 2] = (data->tools.dir[X] * 10.0f) + player->pos[X];
+	coord[Y + 2] = (data->tools.dir[Y] * 10.0f) + player->pos[Y];
 	if (flag == 1)
-		draw_line(data->img[PLAYER], coord, color_pixel(255, 255, 255, 255));
+		draw_line(data->img[PLAYER], coord, color_pixel(0, 0, 0, 255));
 	else
 		draw_line(data->img[PLAYER], coord, color_pixel(255, 255, 255, 0));
 	return ;

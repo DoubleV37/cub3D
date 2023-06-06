@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:05:05 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/04 16:15:38 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/06 20:29:32 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ static void	fill_border(mlx_image_t *img, int unit)
 		x = 0;
 		while (x < WIDTH)
 		{
-			if (x % unit == 0)
+			if (x % (int)unit == 0)
 				mlx_put_pixel(img, x, y, color_pixel(0, 0, 0, 255));
-			if (y % unit == 0)
+			if (y % (int)unit == 0)
 				mlx_put_pixel(img, x, y, color_pixel(0, 0, 0, 255));
 			x++;
 		}

@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 13:30:26 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/03 18:24:06 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/06 20:34:35 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@ void	init_player(t_player *player, t_data *data)
 	float	unit;
 	t_card	start_view;
 
-	unit = find_unit(data->map);
-	data->tools.unit = unit;
+	//unit = find_unit(data->map);
+	data->tools.unit = 30.0f;
+	unit = data->tools.unit;
 	start_view = find_player_pos(player, data->map);
 	data->map[player->indexs[Y]][player->indexs[X]] = '0';
 	player->pos[X] = (player->indexs[X] * unit + unit / 3.0f);

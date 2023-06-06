@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 13:20:15 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/03 16:55:43 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/06 10:46:51 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ static int	particular_dir(float *vector, t_player *player)
 	}
 	else if (player->angle == 180.0f)
 	{
-		vector[X] = 1.0f;
+		vector[X] = -1.0f;
 		vector[Y] = 0.0f;
 		return (0);
 	}
