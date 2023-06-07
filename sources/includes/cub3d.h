@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 08:50:20 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/06 11:45:20 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/07 10:13:24 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,13 @@ int		*get_line_texture(int pos, mlx_texture_t texture);
 //-------------MOVEMENTS---------------//
 //file : raycasting.c
 void	raycasting(t_data *data, t_player *player);
-//file : raycasting_utils.c
+//file : find_wall.c
 void	find_h_wall(t_data *data, t_ray *ray, float alpha);
 void	find_v_wall(t_data *data, t_ray *ray, float alpha);
+//file : find_wall_utils.c
+void	increment_coord(t_ray *ray, float *step, t_data *data);
+void	infinite_dist(int type, t_ray *ray, float alpha);
+bool	is_in_screen(int x, int y, char **map, t_ray *ray);
 
 //-------------MOVEMENTS---------------//
 //file : move_player.c

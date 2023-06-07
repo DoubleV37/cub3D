@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:43:28 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/06 20:29:03 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/07 11:59:32 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include "MLX42.h"
 
 # define RAD_CONV 0.0174532925
+# define FOV 30 
 
 //------ENUM------//
 
@@ -84,7 +85,6 @@ typedef struct s_rot
 typedef struct s_tool
 {
 	float	unit;
-	float	fov;
 	float	dir[2];
 	float	dist;
 	float	delta_angle;

@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 13:30:26 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/06 20:34:35 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/07 11:16:59 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,14 @@ void	init_player(t_player *player, t_data *data)
 	float	unit;
 	t_card	start_view;
 
-	//unit = find_unit(data->map);
-	data->tools.unit = 30.0f;
+	data->tools.unit = 50.0f;
 	unit = data->tools.unit;
 	start_view = find_player_pos(player, data->map);
 	data->map[player->indexs[Y]][player->indexs[X]] = '0';
 	player->pos[X] = (player->indexs[X] * unit + unit / 3.0f);
 	player->pos[Y] = (player->indexs[Y] * unit + unit / 3.0f);
 	set_vdirection(player, &data->tools, start_view);
-	player->speed = 3.0f;
+	player->speed = 2.0f;
 	player->height = HEIGHT / 2;
 }
 
@@ -62,34 +61,6 @@ static void	set_vdirection(t_player *player, t_tool *tools, t_card start)
 		tools->dir[X] = -1.0f;
 		player->angle = 180.0f;
 	}
-}
-
-static int	find_unit(char **map)
-{
-	int	len_x;
-	int	len_y;
-	int	i;
-
-	len_y = ft_array_len(map);
-	i = -1;
-	while (map[++i])
-	{
-		len_x = (int)ft_strlen(map[i]);
-		if (map[i + 1] && len_x < (int)ft_strlen(map[i + 1]))
-			len_x = (int)ft_strlen(map[i + 1]);
-	}
-	if (len_x > len_y)
-		i = WIDTH / len_x;
-	else
-		i = WIDTH / len_y;
-	while (1)
-	{
-		if (i * len_x + i < WIDTH && i * len_y + i < HEIGHT)
-			break ;
-		else
-			i--;
-	}
-	return (i);
 }
 
 static t_card	find_player_pos(t_player *player, char **map)
