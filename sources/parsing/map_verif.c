@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 10:57:22 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/07 09:56:26 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/06/07 10:19:05 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,12 @@ int	simple_verify_map(char **map)
 			if (!is_wall_simple_verif(i, j, map)
 				|| !verif_player(i, j, map, &is_player))
 				return (0);
-			if (is_player == 0)
-				return (print_error_map(4));
 			j++;
 		}
 		i++;
 	}
+	if (is_player == 0)
+		return (print_error_map(4));
 	return (1);
 }
 
