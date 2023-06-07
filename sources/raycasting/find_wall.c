@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 09:59:39 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/07 19:33:38 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/07 21:49:16 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	find_h_wall(t_data *data, t_ray *ray, float alpha)
 		return ;
 	while (is_in_screen(x, y, data->map, ray) == true && data->map[y][x] == '0')
 	{
+		if (check_first_point(ray, data, alpha) == true)
+			return ;
 		increment_coord(ray, step, data);
 		x = ray->e_coord[X] / data->tools.unit;
 		y = ray->e_coord[Y] / data->tools.unit;
@@ -60,6 +62,8 @@ void	find_v_wall(t_data *data, t_ray *ray, float alpha)
 		return ;
 	while (is_in_screen(x, y, data->map, ray) == true && data->map[y][x] == '0')
 	{
+		if (check_first_point(ray, data, alpha) == true)
+			return ;
 		increment_coord(ray, step, data);
 		x = ray->e_coord[X] / data->tools.unit;
 		y = ray->e_coord[Y] / data->tools.unit;
@@ -126,7 +130,7 @@ static bool	check_first_point(t_ray *ray, t_data *data, float alpha)
 	x = ray->e_coord[X] / data->tools.unit;
 	y = ray->e_coord[Y] / data->tools.unit;
 	if (is_in_screen(x, y, data->map, ray) == false)
-		return ;
+		return (false);
 	if (alpha > 0.0f && alpha < 90.0f)
 	{
 		if (data->map[y][x] == '0' && data->map[y][x - 1] == '1' && data->map[y + 1][x] == '1')
