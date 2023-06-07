@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 09:45:12 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/07 10:44:41 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/07 14:58:04 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ int	move_backward_forward(t_data *data, t_player *player, t_dir dir)
 	if (dir == BACKWARD)
 		way = -1.0f;
 	x = player->pos[X] + data->tools.dir[X] * way * player->speed;
-	if (check_collide(data, x, player->pos[Y]) == false)
+	if (check_collide(data, player->pos, x, player->pos[Y]) == false)
 		collide[X] = true;
 	y = player->pos[Y] + data->tools.dir[Y] * way * player->speed;
-	if (check_collide(data, player->pos[X], y) == false)
+	if (check_collide(data, player->pos, player->pos[X], y) == false)
 		collide[Y] = true;
 	if (collide[X] == true)
 		player->pos[X] = x;
