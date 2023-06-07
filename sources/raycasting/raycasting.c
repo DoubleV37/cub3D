@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 14:21:03 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/07 11:59:39 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/07 19:33:35 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 #include <math.h>
 #include <stdio.h>
 
-static void	reset_map(t_data *data);
-static void	send_ray(t_ray *ray, float alpha, t_data *data);
+static void		reset_map(t_data *data);
+static void		send_ray(t_ray *ray, float alpha, t_data *data);
 static float	make_alpha(float p_angle, float delta, float ray);
 
 void	raycasting(t_data *data, t_player *player)
@@ -35,6 +35,7 @@ void	raycasting(t_data *data, t_player *player)
 	{
 		alpha = make_alpha(player->angle, data->tools.delta_angle, i);
 		send_ray(&ray, alpha, data);
+		//send_ray(&ray, player->angle, data);
 		draw[X + 2] = ray.e_coord[X];
 		draw[Y + 2] = ray.e_coord[Y];
 		draw_line(data->img[PLAYER], draw, color_pixel(255, 255, 255, 255));
@@ -96,15 +97,17 @@ static int	put_info_ray(t_ray *ray_v, t_ray *ray_h, t_ray *ray, float alpha)
 
 static void	send_ray(t_ray *ray, float alpha, t_data *data)
 {
-	t_ray	*ray_v = malloc(sizeof(t_ray));
-	t_ray	*ray_h = malloc(sizeof(t_ray));
+	t_ray	ray_v;
+	t_ray	ray_h;
 
-	init_both_ray(ray, ray_v, ray_h, alpha);
-	find_h_wall(data, ray_h, alpha);
-	find_v_wall(data, ray_v, alpha);
-	ray->texture = put_info_ray(ray_v, ray_h, ray, alpha);
-	free(ray_v);
-	free(ray_h);
+	init_both_ray(ray, &ray_v, &ray_h, alpha);
+	find_h_wall(data, &ray_h, alpha);
+	find_v_wall(data, &ray_v, alpha);
+	ray_v.dist = sqrtf(powf(ray_v.e_coord[X] - ray_v.s_coord[X], 2.0f)
+			+ powf(ray_v.e_coord[Y] - ray_v.s_coord[Y], 2.0f));
+	ray_h.dist = sqrtf(powf(ray_h.e_coord[X] - ray_h.s_coord[X], 2.0f)
+			+ powf(ray_h.e_coord[Y] - ray_h.s_coord[Y], 2.0f));
+	ray->texture = put_info_ray(&ray_v, &ray_h, ray, alpha);
 	return ;
 }
 
