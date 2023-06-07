@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 11:32:35 by vviovi            #+#    #+#             */
-/*   Updated: 2023/05/24 13:50:47 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/07 09:55:59 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,7 @@ int	print_error_map(int type_error)
 		ft_putstr_fd(2, "Error\nWrong color\n");
 	else if (type_error == 3)
 		ft_putstr_fd(2, "Error\nMap incorrect\n");
+	else if (type_error == 4)
+		ft_putstr_fd(2, "Error\nMissing player in map\n");
 	return (0);
 }
