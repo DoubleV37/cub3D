@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 08:50:20 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/07 10:13:24 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/07 14:57:15 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int		move_backward_forward(t_data *data, t_player *player, t_dir dir);
 //file : shift_player.c
 int		move_left_right(t_data *data, t_player *player, t_dir dir);
 //file : wall_collision.c
-bool	check_collide(t_data *data, float x, float y);
+bool	check_collide(t_data *data, float pos[2], float x, float y);
 //file : rotate_player.c
 int		rotate_player(t_data *data, t_player *player, t_dir dir);
 
