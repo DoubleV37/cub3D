@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 14:21:03 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/07 19:33:35 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/08 12:09:21 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 #include <stdio.h>
 
 static void		reset_map(t_data *data);
-static void		send_ray(t_ray *ray, float alpha, t_data *data);
+static void		send_ray(t_ray *ray, float alpha, t_data *data, float n_ray);
 static float	make_alpha(float p_angle, float delta, float ray);
 
 void	raycasting(t_data *data, t_player *player)
 {
 	float	draw[4];
 	t_ray	ray;
-	int		i;
+	float	i;
 	float	alpha;
 
 	reset_map(data);
@@ -34,12 +34,13 @@ void	raycasting(t_data *data, t_player *player)
 	while (i < WIDTH)
 	{
 		alpha = make_alpha(player->angle, data->tools.delta_angle, i);
-		send_ray(&ray, alpha, data);
+		send_ray(&ray, alpha, data, i);
 		//send_ray(&ray, player->angle, data);
 		draw[X + 2] = ray.e_coord[X];
 		draw[Y + 2] = ray.e_coord[Y];
 		draw_line(data->img[PLAYER], draw, color_pixel(255, 255, 255, 255));
 		draw_pov(data, player, 1);
+		printf("i = %f\tdist = %f\n", i, ray.dist);
 		i += 1.0f;
 	}
 }
@@ -78,6 +79,7 @@ static int	put_info_ray(t_ray *ray_v, t_ray *ray_h, t_ray *ray, float alpha)
 	{
 		ray->e_coord[X] = ray_h->e_coord[X];
 		ray->e_coord[Y] = ray_h->e_coord[Y];
+		ray->dist = ray_h->dist;
 		if (alpha >= 0.0f && alpha <= 180.0f)
 			return (NO);
 		else
@@ -87,6 +89,7 @@ static int	put_info_ray(t_ray *ray_v, t_ray *ray_h, t_ray *ray, float alpha)
 	{
 		ray->e_coord[X] = ray_v->e_coord[X];
 		ray->e_coord[Y] = ray_v->e_coord[Y];
+		ray->dist = ray_v->dist;
 		if ((alpha > 0.0f && alpha < 90.0f)
 			|| (alpha > 270.0f && alpha < 360.0f))
 			return (EA);
@@ -95,7 +98,21 @@ static int	put_info_ray(t_ray *ray_v, t_ray *ray_h, t_ray *ray, float alpha)
 	}
 }
 
-static void	send_ray(t_ray *ray, float alpha, t_data *data)
+static float	calc_dist(t_ray *ray, float n_ray, float d_angle)
+{
+	float	dist;
+	float	angle;
+
+	if (n_ray < WIDTH / 2)
+		angle = (FOV / 2) - (n_ray * d_angle);
+	else
+		angle = n_ray * d_angle - (FOV / 2);
+	//printf("dist = %f\tn = %f\tangle = %f\n", ray->dist, n_ray, angle);
+	dist = floorf(ray->dist * cosf(angle * RAD_CONV));
+	return (dist);
+}
+
+static void	send_ray(t_ray *ray, float alpha, t_data *data, float n_ray)
 {
 	t_ray	ray_v;
 	t_ray	ray_h;
@@ -108,6 +125,7 @@ static void	send_ray(t_ray *ray, float alpha, t_data *data)
 	ray_h.dist = sqrtf(powf(ray_h.e_coord[X] - ray_h.s_coord[X], 2.0f)
 			+ powf(ray_h.e_coord[Y] - ray_h.s_coord[Y], 2.0f));
 	ray->texture = put_info_ray(&ray_v, &ray_h, ray, alpha);
+	ray->dist = calc_dist(ray, n_ray, data->tools.delta_angle);
 	return ;
 }
 

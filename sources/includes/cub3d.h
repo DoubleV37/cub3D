@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 08:50:20 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/07 14:57:15 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/06/08 09:35:29 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,9 @@ void	find_v_wall(t_data *data, t_ray *ray, float alpha);
 void	increment_coord(t_ray *ray, float *step, t_data *data);
 void	infinite_dist(int type, t_ray *ray, float alpha);
 bool	is_in_screen(int x, int y, char **map, t_ray *ray);
+bool	is_in_screen(int x, int y, char **map, t_ray *ray);
+//file : find_collide.c
+bool	ray_in_angle(t_ray *ray, t_data *data, float alpha);
 
 //-------------MOVEMENTS---------------//
 //file : move_player.c

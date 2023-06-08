@@ -6,7 +6,7 @@
 #    By: vviovi <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/02 13:27:39 by jduval            #+#    #+#              #
-#    Updated: 2023/06/07 10:09:21 by jduval           ###   ########.fr        #
+#    Updated: 2023/06/08 09:37:40 by jduval           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,6 +63,7 @@ SRCS		+=	initialization/init_images.c	\
 SRCS		+=	raycasting/raycasting.c	\
 				raycasting/find_wall.c	\
 				raycasting/find_wall_utils.c	\
+				raycasting/find_collide.c	\
 
 SRCS		:=	$(SRCS:%=$(SRC_DIR)/%)
 

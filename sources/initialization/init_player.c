@@ -6,16 +6,14 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 13:30:26 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/07 18:38:37 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/08 09:36:34 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
-#include <stdio.h>
 #include "cub3d.h"
 #include "libft.h"
 
-static int		find_unit(char **map);
 static t_card	find_player_pos(t_player *player, char **map);
 static void		set_vdirection(t_player *player, t_tool *tools, t_card view);
 
