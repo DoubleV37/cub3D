@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 14:21:03 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/08 12:09:21 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/08 17:20:34 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,11 @@ void	raycasting(t_data *data, t_player *player)
 	{
 		alpha = make_alpha(player->angle, data->tools.delta_angle, i);
 		send_ray(&ray, alpha, data, i);
-		//send_ray(&ray, player->angle, data);
+		render_wall(data, ray);
 		draw[X + 2] = ray.e_coord[X];
 		draw[Y + 2] = ray.e_coord[Y];
 		draw_line(data->img[PLAYER], draw, color_pixel(255, 255, 255, 255));
 		draw_pov(data, player, 1);
-		printf("i = %f\tdist = %f\n", i, ray.dist);
 		i += 1.0f;
 	}
 }
@@ -77,8 +76,8 @@ static int	put_info_ray(t_ray *ray_v, t_ray *ray_h, t_ray *ray, float alpha)
 {
 	if (ray_v->dist > ray_h->dist)
 	{
-		ray->e_coord[X] = ray_h->e_coord[X];
-		ray->e_coord[Y] = ray_h->e_coord[Y];
+		ray->e_coord[X] = floorf(ray_h->e_coord[X]);
+		ray->e_coord[Y] = floorf(ray_h->e_coord[Y]);
 		ray->dist = ray_h->dist;
 		if (alpha >= 0.0f && alpha <= 180.0f)
 			return (NO);
@@ -87,8 +86,8 @@ static int	put_info_ray(t_ray *ray_v, t_ray *ray_h, t_ray *ray, float alpha)
 	}
 	else
 	{
-		ray->e_coord[X] = ray_v->e_coord[X];
-		ray->e_coord[Y] = ray_v->e_coord[Y];
+		ray->e_coord[X] = floorf(ray_v->e_coord[X]);
+		ray->e_coord[Y] = floorf(ray_v->e_coord[Y]);
 		ray->dist = ray_v->dist;
 		if ((alpha > 0.0f && alpha < 90.0f)
 			|| (alpha > 270.0f && alpha < 360.0f))
@@ -107,7 +106,6 @@ static float	calc_dist(t_ray *ray, float n_ray, float d_angle)
 		angle = (FOV / 2) - (n_ray * d_angle);
 	else
 		angle = n_ray * d_angle - (FOV / 2);
-	//printf("dist = %f\tn = %f\tangle = %f\n", ray->dist, n_ray, angle);
 	dist = floorf(ray->dist * cosf(angle * RAD_CONV));
 	return (dist);
 }

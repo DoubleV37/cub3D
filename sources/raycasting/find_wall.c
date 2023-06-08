@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 09:59:39 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/08 11:12:37 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/08 13:26:39 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 static void	first_horizontal(t_ray *ray, float alpha, float *step, float unit);
 static void	first_vertical(t_ray *ray, float alpha, float *step, float unit);
+
 void	find_h_wall(t_data *data, t_ray *ray, float alpha)
 {
 	float	step[2];
@@ -31,12 +32,8 @@ void	find_h_wall(t_data *data, t_ray *ray, float alpha)
 	y = ray->e_coord[Y] / data->tools.unit;
 	if (ray_in_angle(ray, data, alpha) == true)
 		return ;
-	//printf("horizontal x = %i\ty = %i\n", x, y);
-	//printf("1horizontal posx = %f\tposy = %f\n", ray->e_coord[X], ray->e_coord[Y]);
 	while (is_in_screen(x, y, data->map, ray) == true && data->map[y][x] == '0')
 	{
-	//	printf("horizontal x = %i\ty = %i\n", x, y);
-	//	printf("horizontal posx = %f\tposy = %f\n", ray->e_coord[X], ray->e_coord[Y]);
 		increment_coord(ray, step, data);
 		x = ray->e_coord[X] / data->tools.unit;
 		y = ray->e_coord[Y] / data->tools.unit;
@@ -62,12 +59,8 @@ void	find_v_wall(t_data *data, t_ray *ray, float alpha)
 	y = ray->e_coord[Y] / data->tools.unit;
 	if (ray_in_angle(ray, data, alpha) == true)
 		return ;
-	//printf("vertical x = %i\ty = %i\n", x, y);
-	//printf("1vertical posx = %f\tposy = %f\n", ray->e_coord[X], ray->e_coord[Y]);
 	while (is_in_screen(x, y, data->map, ray) == true && data->map[y][x] == '0')
 	{
-	//	printf("vertical x = %i\ty = %i\n", x, y);
-	//	printf("vertical posx = %f\tposy = %f\n", ray->e_coord[X], ray->e_coord[Y]);
 		increment_coord(ray, step, data);
 		x = ray->e_coord[X] / data->tools.unit;
 		y = ray->e_coord[Y] / data->tools.unit;
@@ -88,14 +81,11 @@ static void	first_horizontal(t_ray *ray, float alpha, float *step, float unit)
 	}
 	else
 	{
-		y = floorf(ray->s_coord[Y] / unit) * unit + unit;
+		y = floorf(ray->s_coord[Y] / unit) * unit + unit + 1.0f;
 		step[Y] = unit;
 	}
 	ray->e_coord[Y] = y;
-//	if (alpha > 180.0f && alpha < 360.0f)
-//		x = (y - ray->s_coord[Y]) / (ray->tan_alpha * (-1.0f));
-//	else
-		x = (ray->s_coord[Y] - y) / ray->tan_alpha;
+	x = (ray->s_coord[Y] - y) / ray->tan_alpha;
 	ray->e_coord[X] = floorf(ray->s_coord[X] + x);
 	step[X] = unit / ray->tan_alpha;
 	if ((alpha >= 180.0f && alpha <= 270.0f && step[X] > 0.0f)
@@ -116,7 +106,7 @@ static void	first_vertical(t_ray *ray, float alpha, float *step, float unit)
 	}
 	else
 	{
-		ray->e_coord[X] = floorf(ray->s_coord[X] / unit) * unit + unit;
+		ray->e_coord[X] = floorf(ray->s_coord[X] / unit) * unit + unit + 1.0f;
 		step[X] = unit;
 	}
 	x = ray->s_coord[X] - ray->e_coord[X];

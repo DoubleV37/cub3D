@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 13:44:26 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/01 10:50:59 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/06/08 19:37:25 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,11 @@ void	resize_texture(int *line_texture, int size, int scale_size)
 	line_texture = resized_line;
 }
 
-int	scale_calculate(int dist, int size_texture)
+float	scale_calculate(float dist, float size_texture)
 {
-	int	scale;
+	float	scale;
 
-	scale = size_texture / (dist / 10); //temporaire à voir qd on aura la 3d
+	scale = size_texture / dist;
 	if (scale > size_texture)
 		scale = size_texture;
 	return (scale);
