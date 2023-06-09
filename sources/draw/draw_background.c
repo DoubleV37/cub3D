@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 10:22:27 by vviovi            #+#    #+#             */
-/*   Updated: 2023/05/24 16:20:37 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/09 17:21:18 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	draw_background_ceiling(t_data *data)
 		w = 0;
 		while (w < WIDTH)
 		{
-			mlx_put_pixel(data->img[BACKGROUND], w, h, color);
+			mlx_put_pixel(data->img[WALL], w, h, color);
 			w++;
 		}
 		h++;
@@ -47,7 +47,7 @@ void	draw_background_floor(t_data *data)
 		w = 0;
 		while (w < WIDTH)
 		{
-			mlx_put_pixel(data->img[BACKGROUND], w, h, color);
+			mlx_put_pixel(data->img[WALL], w, h, color);
 			w++;
 		}
 		h++;

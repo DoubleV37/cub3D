@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 14:21:03 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/09 10:02:13 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/06/09 17:20:36 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,13 @@ void	raycasting(t_data *data, t_player *player)
 	draw[X] = ray.s_coord[X];
 	draw[Y] = ray.s_coord[Y];
 	i = 0.0f;
+	draw_background_ceiling(data);
+	draw_background_floor(data);
 	while (i < WIDTH)
 	{
 		alpha = make_alpha(player->angle, data->tools.delta_angle, i);
 		send_ray(&ray, alpha, data, i);
-		render_wall(data, &ray, i);
+		draw_wall(data, &ray, i);
 		draw[X + 2] = ray.e_coord[X];
 		draw[Y + 2] = ray.e_coord[Y];
 		draw_line(data->img[PLAYER], draw, color_pixel(255, 255, 255, 255));

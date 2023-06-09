@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 08:50:20 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/09 11:07:21 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/06/09 17:14:58 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,9 @@ void	draw_background_ceiling(t_data *data);
 void	draw_background_floor(t_data *data);
 //file : render_image.c
 int		render_start(t_data *data);
-int		render_player(t_data *data);
-int		render_background(t_data *data);
-int		render_map(t_data *data);
 //file : draw_texture.c
 int		*get_line_texture(int pos, mlx_texture_t texture);
-void	draw_wall(t_data *data, int *line_texture, int x, int y);
+void	draw_texture_line(t_data *data, int *line_texture, int x, int y, int legth);
 void	resize_texture(int *line_texture, int size, int scale_size);
 float	scale_calculate(float dist, float size_texture);
 
@@ -88,7 +85,7 @@ bool	is_in_screen(int x, int y, char **map, t_ray *ray);
 //file : find_collide.c
 bool	ray_in_angle(t_ray *ray, t_data *data, float alpha);
 //file : texturing.c
-void	render_wall(t_data *data, t_ray *ray, int n_ray);
+void	draw_wall(t_data *data, t_ray *ray, int n_ray);
 
 //-------------MOVEMENTS---------------//
 //file : move_player.c
