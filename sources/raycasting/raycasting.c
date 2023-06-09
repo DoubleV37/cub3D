@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 14:21:03 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/08 17:20:34 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/09 10:02:13 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	raycasting(t_data *data, t_player *player)
 	{
 		alpha = make_alpha(player->angle, data->tools.delta_angle, i);
 		send_ray(&ray, alpha, data, i);
-		render_wall(data, ray);
+		render_wall(data, &ray, i);
 		draw[X + 2] = ray.e_coord[X];
 		draw[Y + 2] = ray.e_coord[Y];
 		draw_line(data->img[PLAYER], draw, color_pixel(255, 255, 255, 255));
@@ -54,7 +54,7 @@ static float	make_alpha(float p_angle, float delta, float ray)
 	else if (alpha > 360.0f)
 		alpha = alpha - 360.0f;
 	return (alpha);
-	
+
 }
 
 static void	init_both_ray(t_ray *ray, t_ray *ray_v, t_ray *ray_h, float angle)

@@ -6,11 +6,23 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 13:44:26 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/08 19:37:25 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/09 11:06:13 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	draw_wall(t_data *data, int *line_texture, int x, int y)
+{
+	int	i;
+
+	while (line_texture[i] != '\0')
+	{
+		mlx_put_pixel(data->img[WALL], x, y, line_texture[i]);
+		x++;
+		i++;
+	}
+}
 
 int	*get_line_texture(int pos, mlx_texture_t texture)
 {
