@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 09:45:12 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/07 19:34:29 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/12 13:57:11 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	move_backward_forward(t_data *data, t_player *player, t_dir dir)
 	collide[X] = false;
 	collide[Y] = false;
 	way = 1.0f;
-	draw_pov(data, player, 0);
+	//draw_pov(data, player, 0);
 	if (dir == BACKWARD)
 		way = -1.0f;
 	x = player->pos[X] + data->tools.dir[X] * way * player->speed;
@@ -37,6 +37,6 @@ int	move_backward_forward(t_data *data, t_player *player, t_dir dir)
 		player->pos[X] = x;
 	if (collide[Y] == true)
 		player->pos[Y] = y;
-	draw_pov(data, player, 1);
+	//draw_pov(data, player, 1);
 	return (0);
 }

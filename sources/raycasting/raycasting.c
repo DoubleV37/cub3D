@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 14:21:03 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/09 17:20:36 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/06/12 14:27:28 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	raycasting(t_data *data, t_player *player)
 	draw[X] = ray.s_coord[X];
 	draw[Y] = ray.s_coord[Y];
 	i = 0.0f;
-	draw_background_ceiling(data);
-	draw_background_floor(data);
+	//draw_background_ceiling(data);
+	//draw_background_floor(data);
 	while (i < WIDTH)
 	{
 		alpha = make_alpha(player->angle, data->tools.delta_angle, i);
@@ -40,8 +40,8 @@ void	raycasting(t_data *data, t_player *player)
 		draw_wall(data, &ray, i);
 		draw[X + 2] = ray.e_coord[X];
 		draw[Y + 2] = ray.e_coord[Y];
-		draw_line(data->img[PLAYER], draw, color_pixel(255, 255, 255, 255));
-		draw_pov(data, player, 1);
+		//draw_line(data->img[PLAYER], draw, color_pixel(255, 255, 255, 255));
+		//draw_pov(data, player, 1);
 		i += 1.0f;
 	}
 }
@@ -81,7 +81,7 @@ static int	put_info_ray(t_ray *ray_v, t_ray *ray_h, t_ray *ray, float alpha)
 		ray->e_coord[X] = floorf(ray_h->e_coord[X]);
 		ray->e_coord[Y] = floorf(ray_h->e_coord[Y]);
 		ray->dist = ray_h->dist;
-		if (alpha >= 0.0f && alpha <= 180.0f)
+		if (alpha > 0.0f && alpha < 180.0f)
 			return (NO);
 		else
 			return (SO);
@@ -91,8 +91,8 @@ static int	put_info_ray(t_ray *ray_v, t_ray *ray_h, t_ray *ray, float alpha)
 		ray->e_coord[X] = floorf(ray_v->e_coord[X]);
 		ray->e_coord[Y] = floorf(ray_v->e_coord[Y]);
 		ray->dist = ray_v->dist;
-		if ((alpha > 0.0f && alpha < 90.0f)
-			|| (alpha > 270.0f && alpha < 360.0f))
+		if ((alpha > 0.0f && alpha <= 90.0f)
+			|| (alpha >= 270.0f && alpha < 360.0f))
 			return (EA);
 		else
 			return (WE);
@@ -134,6 +134,6 @@ static void	reset_map(t_data *data)
 	for (int i = 0; i < HEIGHT; i++)
 	{
 		for (int j = 0; j < WIDTH; j++)
-			mlx_put_pixel(data->img[PLAYER], j, i, color_pixel(0, 0, 0, 0));
+			mlx_put_pixel(data->img[WALL], j, i, color_pixel(0, 0, 0, 0));
 	}
 }

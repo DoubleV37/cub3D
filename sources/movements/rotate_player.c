@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate_player.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 13:20:15 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/06 10:46:51 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/12 13:59:33 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	rotate_player(t_data *data, t_player *player, t_dir dir)
 	t_tool	*tmp;
 
 	tmp = &data->tools;
-	draw_pov(data, player, 0);
+	//draw_pov(data, player, 0);
 	incr_angle(player, &data->tools.rotate, dir);
 	if (player->angle == 0.0f || player->angle == 360.0f
 		|| player->angle == 90.0f || player->angle == 180.0f
@@ -32,7 +32,7 @@ int	rotate_player(t_data *data, t_player *player, t_dir dir)
 	}
 	else
 		calc_rotation(tmp->dir, &data->tools.rotate, dir);
-	draw_pov(data, player, 1);
+	//draw_pov(data, player, 1);
 	return (0);
 }
 
