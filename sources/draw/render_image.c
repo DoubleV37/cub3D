@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:07:22 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/09 16:01:12 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/06/13 15:59:09 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ static int	render_background(t_data *data)
 		printf("%s", mlx_strerror(mlx_errno));
 		return (1);
 	}
-
 	return (0);
 }
 

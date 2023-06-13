@@ -6,19 +6,19 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 13:44:26 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/12 14:25:11 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/06/13 15:58:32 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include <math.h>
 
-void	draw_texture_line(t_data *data, int *line_texture, int x, int length, int typ)
+void	draw_texture_line(t_data *data, int *line_texture, int x, int length)
 {
-	int	i;
-	int	y;
-	int	finish;
+	int		i;
+	int		y;
+	int		finish;
 	int32_t	color;
-
 
 	i = 0;
 	if (length > HEIGHT)
@@ -27,25 +27,45 @@ void	draw_texture_line(t_data *data, int *line_texture, int x, int length, int t
 	finish = y + length;
 	while (y < finish)
 	{
-		//color = color_pixel(line_texture[i], line_texture[i + 1],
-		//		line_texture[i + 2], line_texture[i + 3]);
-		if (typ == 0)
-			color = color_pixel(30, 30, 120, 255);
-		else if (typ == 1)
-			color = color_pixel(120, 30, 30, 255);
-		else if (typ == 2)
-			color = color_pixel(30, 120, 30, 255);
-		else
-			color = color_pixel(120, 120, 120, 255);
+		color = color_pixel(line_texture[i], line_texture[i + 1],
+				line_texture[i + 2], line_texture[i + 3]);
 		mlx_put_pixel(data->img[WALL], x, y, color);
 		y++;
 		i += 4;
 	}
+	if (line_texture != NULL)
+		free(line_texture);
+	line_texture = NULL;
 }
 
-int	*get_line_texture(int pos, mlx_texture_t texture)
+static int	*resize_texture(int *line_texture, float size, float scale_size)
+{
+	int	i;
+	int	ratio;
+	int	*new_line;
+
+	new_line = malloc(sizeof(int) * ((int)ceilf(scale_size) * 4 + 1));
+	if (new_line == NULL)
+		return (NULL);
+	ratio = (int)ceilf(scale_size / size);
+	i = 0;
+	while (i < (int)ceilf(scale_size))
+	{
+		if (i / ratio >= size)
+			printf("i = %d\n", i / ratio);
+		new_line[i * 4] = line_texture[(i / ratio) * 4];
+		new_line[i * 4 + 1] = line_texture[(i / ratio) * 4 + 1];
+		new_line[i * 4 + 2] = line_texture[(i / ratio) * 4 + 2];
+		new_line[i * 4 + 3] = line_texture[(i / ratio) * 4 + 3];
+		i++;
+	}
+	return (new_line);
+}
+
+int	*get_line_texture(int pos, mlx_texture_t texture, float scale_size)
 {
 	int				*line;
+	int				*reline;
 	unsigned int	i;
 	unsigned int	j;
 
@@ -65,27 +85,9 @@ int	*get_line_texture(int pos, mlx_texture_t texture)
 		i += texture.bytes_per_pixel;
 		pos += texture.width * texture.bytes_per_pixel;
 	}
-	return (line);
-}
-
-void	resize_texture(int *line_texture, int size, int scale_size)
-{
-	int	*resized_line;
-	int	i;
-
-	resized_line = malloc(sizeof(int) * scale_size);
-	if (resized_line == NULL)
-		return ;
-	i = 0;
-	while (i < scale_size)
-	{
-		if (i * size / scale_size > size)
-			resized_line[i] = line_texture[size - 1];
-		else
-			resized_line[i] = line_texture[i * scale_size / size];
-		i++;
-	}
-	free(line_texture);
+	reline = resize_texture(line, texture.width, scale_size);
+	free(line);
+	return (reline);
 }
 
 float	scale_calculate(float dist_foc, float dist, float size_texture)

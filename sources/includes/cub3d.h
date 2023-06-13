@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 08:50:20 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/12 14:19:06 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/06/13 14:07:40 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,8 @@ void	draw_background_floor(t_data *data);
 //file : render_image.c
 int		render_start(t_data *data);
 //file : draw_texture.c
-int		*get_line_texture(int pos, mlx_texture_t texture);
-void	draw_texture_line(t_data *data, int *line_texture, int x, int length, int typ);
-void	resize_texture(int *line_texture, int size, int scale_size);
+int		*get_line_texture(int pos, mlx_texture_t texture, float scale_size);
+void	draw_texture_line(t_data *data, int *line_texture, int x, int length);
 float	scale_calculate(float dist_foc, float dist, float size_texture);
 
 //-------------RAYCASTING---------------//
