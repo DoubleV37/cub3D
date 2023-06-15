@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 08:50:20 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/15 18:24:12 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/15 22:20:01 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,8 @@ int		movement_key(t_data *data);
 
 void	end_coordinate(float *pos, float dist, float alpha, float *coord);
 void	define_step(float *u_vector, int *step);
-void	process_ndist(float *n_dist, float *u_vector);
-void	first_intersection(float *dist, float *n_dist, float *pos, float *u_vector, float unit);
+void	process_ndist(float *n_dist, float *u_vector, float unit);
+void	first_intersection(float *dist, float *n_dist, float *pos, float *u_vector, float unit, float alpha);
 void	process_uvector(float alpha, float *u_vector);
 bool	special_angle_uvector(float alpha, float *u_vector);
 #endif

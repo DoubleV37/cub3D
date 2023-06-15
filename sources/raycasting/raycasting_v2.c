@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 11:37:15 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/15 18:24:24 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/15 22:41:26 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	raycasting(t_data *data, t_player *player)
 	//while (i < WIDTH)
 	//{
 		alpha = make_alpha(alpha);
-		send_ray(data, &ray, player->angle);
+		send_ray(data, &ray, 45.0f);
 		//draw_wall(data, &ray, i);
 		//draw_line(data->img[PLAYER], draw, color_pixel(255, 255, 255, 255));
 		alpha += data->tools.delta_angle; 
@@ -74,9 +74,13 @@ static void	send_ray(t_data *data, t_ray *ray, float alpha)
 	int		hit = 0;
 
 	process_uvector(alpha, u_vector);
+	printf("-------------------------\n");
 	//printf("alpha = %f\nuvec x = %f\ty = %f\n", alpha, u_vector[X], u_vector[Y]);
-	process_ndist(n_dist, u_vector);
-	first_intersection(dist, n_dist, data->player.pos, u_vector, data->tools.unit);
+	process_ndist(n_dist, u_vector, data->tools.unit);
+	//printf("alpha = %f\npos x = %f\ty = %f\n", alpha, data->player.pos[X], data->player.pos[Y]);
+	printf("ndist v = %f\th = %f\n", n_dist[V], n_dist[H]);
+	first_intersection(dist, n_dist, data->player.pos, u_vector, data->tools.unit, alpha);
+	printf("dist V = %f\tH = %f\n", dist[V], dist[H]);
 	define_step(u_vector, step);
 	while (hit == 0)
 	{
@@ -95,6 +99,7 @@ static void	send_ray(t_data *data, t_ray *ray, float alpha)
 		if (data->map[y][x] != '0')
 			hit = 1;
 	}
+	printf("side %i\nindex x = %i\ty = %i\n", side, x, y);
 	if (side == 0)
 		end_coordinate(data->player.pos, dist[V], alpha, e_coord);
 	else

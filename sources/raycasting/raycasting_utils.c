@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 14:30:43 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/15 18:25:35 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/15 22:25:38 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,28 +45,40 @@ void	define_step(float *u_vector, int *step)
 		step[Y] = 1;
 }
 
-void	process_ndist(float *n_dist, float *u_vector)
+void	process_ndist(float *n_dist, float *u_vector, float unit)
 {
 	if (u_vector[X] == 0.0f)
 		n_dist[V] = 1e30;
 	if (u_vector[Y] == 0.0f)
 		n_dist[H] = 1e30;
 	if (u_vector[X] != 0.0f)
-		n_dist[V] = sqrtf(1.0f + powf(u_vector[Y], 2.0f) / powf(u_vector[X], 2.0f));
+		n_dist[V] = sqrtf(1.0f + powf(u_vector[Y], 2.0f) / powf(u_vector[X], 2.0f)) * unit;
 	if (u_vector[Y] != 0.0f)
-		n_dist[H] = sqrtf(1.0f + powf(u_vector[X], 2.0f) / powf(u_vector[Y], 2.0f));
+		n_dist[H] = sqrtf(1.0f + powf(u_vector[X], 2.0f) / powf(u_vector[Y], 2.0f)) * unit;
 }
 
-void	first_intersection(float *dist, float *n_dist, float *pos, float *u_vector, float unit)
+void	first_intersection(float *dist, float *n_dist, float *pos, float *u_vector, float unit, float alpha)
 {
 	if (u_vector[X] < 0.0f)
-		dist[V] = (pos[X] - (floorf(pos[X] / unit) * unit)) * n_dist[V];
+	{
+		dist[V] = pos[X] - (floorf(pos[X] / unit) * unit);
+		dist[V] = fabs(dist[V] * cosf(alpha * RAD_CONV));
+	}
 	else
-		dist[V] = (ceilf(pos[X] / unit) * unit - pos[X]) * n_dist[V];
+	{
+		dist[V] = (ceilf(pos[X] / unit) * unit) - pos[X];
+		dist[V] = fabs(dist[V] * cosf(alpha * RAD_CONV));
+	}
 	if (u_vector[Y] < 0.0f)
-		dist[H] = (pos[Y] - (floorf(pos[Y] / unit) * unit)) * n_dist[H];
+	{
+		dist[H] = pos[Y] - (floorf(pos[Y] / unit) * unit);
+		dist[H] *= fabs(dist[H] * sinf(alpha * RAD_CONV));
+	}
 	else
-		dist[H] = (ceilf(pos[Y] / unit) * unit - pos[Y]) * n_dist[H];
+	{
+		dist[H] = (ceilf(pos[Y] / unit) * unit) - pos[Y];
+		dist[H] *= fabs(dist[H] * sinf(alpha * RAD_CONV));
+	}
 }
 
 void	process_uvector(float alpha, float *u_vector) //find unitary vector of the ray
