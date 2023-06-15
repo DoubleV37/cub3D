@@ -6,12 +6,13 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 13:44:26 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/13 15:58:32 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/06/15 16:46:46 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <math.h>
+#include <stdio.h>
 
 void	draw_texture_line(t_data *data, int *line_texture, int x, int length)
 {
