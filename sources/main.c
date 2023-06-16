@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:34:11 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/15 16:54:20 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/16 17:17:50 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	init_start(t_data *data, char **argv)
 	}
 	init_player(&data->player, data);
 	init_tools(&data->tools);
-	draw_map(data);
+	//draw_map(data);
 	draw_background_ceiling(data);
 	draw_background_floor(data);
 	if (render_start(data) == 1)

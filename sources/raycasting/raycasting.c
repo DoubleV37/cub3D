@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/04 14:21:03 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/14 19:37:13 by jduval           ###   ########.fr       */
+/*   Created: 2023/06/15 11:37:15 by jduval            #+#    #+#             */
+/*   Updated: 2023/06/16 17:26:04 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,124 +14,107 @@
 #include <math.h>
 #include <stdio.h>
 
-static void		reset_map(t_data *data);
-static void		send_ray(t_ray *ray, float alpha, t_data *data, float n_ray);
-static float	make_alpha(float p_angle, float delta, float ray);
+static void		reset_map(mlx_image_t *img);
+static void		init_rtool(t_raytool *rtool, t_data *data,
+					float alpha, float id);
+static void		send_ray(t_data *data, t_ray *ray, float alpha, float id);
+static float	make_alpha(float alpha);
 
 void	raycasting(t_data *data, t_player *player)
 {
-	float	draw[4];
 	t_ray	ray;
 	float	i;
 	float	alpha;
 
-	reset_map(data);
-	ray.s_coord[X] = player->pos[X];
-	ray.s_coord[Y] = player->pos[Y];
-	draw[X] = ray.s_coord[X];
-	draw[Y] = ray.s_coord[Y];
+	reset_map(data->img[WALL]);
 	i = 0.0f;
+	alpha = player->angle - (FOV / 2);
 	while (i < WIDTH)
 	{
-		alpha = make_alpha(player->angle, data->tools.delta_angle, i);
-		send_ray(&ray, alpha, data, i);
+		alpha = make_alpha(alpha);
+		send_ray(data, &ray, alpha, i);
 		draw_wall(data, &ray, i);
-		draw[X + 2] = ray.e_coord[X];
-		draw[Y + 2] = ray.e_coord[Y];
-		//draw_line(data->img[PLAYER], draw, color_pixel(255, 255, 255, 255));
+		alpha += data->tools.delta_angle;
 		i += 1.0f;
 	}
 	//draw_pov(data, player, 1);
 }
 
-static float	make_alpha(float p_angle, float delta, float ray)
+static float	make_alpha(float alpha)
 {
-	float	alpha;
+	float	value;
 
-	alpha  = (p_angle - (FOV / 2)) + (delta * ray);
+	value = alpha;
 	if (alpha < 0.0f)
-		alpha = 360.0f + alpha;
+		value = 360.0f + alpha;
 	else if (alpha > 360.0f)
-		alpha = alpha - 360.0f;
-	return (alpha);
-
+		value = alpha - 360.0f;
+	return (value);
 }
 
-static void	init_both_ray(t_ray *ray, t_ray *ray_v, t_ray *ray_h, float angle)
+static void	send_ray(t_data *data, t_ray *ray, float alpha, float id)
 {
-	float	alpha;
+	t_raytool	rtool;
+	float		e_coord[2];
 
-	alpha = tanf(angle * RAD_CONV);
-	ray_v->s_coord[X] = ray->s_coord[X];
-	ray_v->s_coord[Y] = ray->s_coord[Y];
-	ray_h->s_coord[X] = ray->s_coord[X];
-	ray_h->s_coord[Y] = ray->s_coord[Y];
-	ray_h->e_coord[X] = ray->s_coord[X];
-	ray_h->e_coord[Y] = ray->s_coord[Y];
-	ray_v->tan_alpha = alpha;
-	ray_h->tan_alpha = alpha;
-}
-
-static int	put_info_ray(t_ray *ray_v, t_ray *ray_h, t_ray *ray, float alpha)
-{
-	if (ray_v->dist > ray_h->dist)
+	init_rtool(&rtool, data, alpha, id);
+	while (data->map[rtool.ind[Y]][rtool.ind[X]] == '0')
 	{
-		ray->e_coord[X] = floorf(ray_h->e_coord[X]);
-		ray->e_coord[Y] = floorf(ray_h->e_coord[Y]);
-		ray->dist = ray_h->dist;
-		if (alpha > 0.0f && alpha < 180.0f)
-			return (NO);
+		if (rtool.dist[H] < rtool.dist[V])
+		{
+			rtool.ind[Y] += rtool.step[Y];
+			rtool.dist[H] += rtool.ndist[H];
+			rtool.side = H;
+		}
 		else
-			return (SO);
+		{
+			rtool.ind[X] += rtool.step[X];
+			rtool.dist[V] += rtool.ndist[V];
+			rtool.side = V;
+		}
 	}
+	set_texture(ray, rtool.side, rtool.u_vector);
+	ray->dist_perp = set_perpdist(data, &rtool);
+	set_coord(ray, &rtool, data->player.pos, alpha);
+	/*if (rtool.side == V)
+		end_coordinate(data->player.pos, rtool.dist[V] - rtool.ndist[V], alpha, e_coord);
 	else
-	{
-		ray->e_coord[X] = floorf(ray_v->e_coord[X]);
-		ray->e_coord[Y] = floorf(ray_v->e_coord[Y]);
-		ray->dist = ray_v->dist;
-		if ((alpha > 0.0f && alpha <= 90.0f)
-			|| (alpha >= 270.0f && alpha < 360.0f))
-			return (EA);
-		else
-			return (WE);
-	}
-}
-
-static float	calc_dist(t_ray *ray, float n_ray, float d_angle)
-{
-	float	dist;
-	float	angle;
-
-	if (n_ray < WIDTH / 2)
-		angle = (FOV / 2) - (n_ray * d_angle);
-	else
-		angle = n_ray * d_angle - (FOV / 2);
-	dist = floorf(ray->dist * cosf(angle * RAD_CONV));
-	return (dist);
-}
-
-static void	send_ray(t_ray *ray, float alpha, t_data *data, float n_ray)
-{
-	t_ray	ray_v;
-	t_ray	ray_h;
-
-	init_both_ray(ray, &ray_v, &ray_h, alpha);
-	find_h_wall(data, &ray_h, alpha);
-	find_v_wall(data, &ray_v, alpha);
-	ray_v.dist = sqrtf(powf(ray_v.e_coord[X] - ray_v.s_coord[X], 2.0f)
-			+ powf(ray_v.e_coord[Y] - ray_v.s_coord[Y], 2.0f));
-	ray_h.dist = sqrtf(powf(ray_h.e_coord[X] - ray_h.s_coord[X], 2.0f)
-			+ powf(ray_h.e_coord[Y] - ray_h.s_coord[Y], 2.0f));
-	ray->texture = put_info_ray(&ray_v, &ray_h, ray, alpha);
-	ray->dist = calc_dist(ray, n_ray, data->tools.delta_angle);
+		end_coordinate(data->player.pos, rtool.dist[H] - rtool.ndist[H], alpha, e_coord);
+	float	draw[4] = {data->player.pos[X], data->player.pos[Y], e_coord[X], e_coord[Y]};
+	draw_line(data->img[PLAYER], draw, color_pixel(255, 255, 255, 255));*/
 	return ;
 }
 
-static void	reset_map(t_data *data)
+static void	init_rtool(t_raytool *rtool, t_data *data, float alpha, float id)
 {
-	for (int i = 0; i < HEIGHT; i++)
+	rtool->id = id;
+	process_uvector(alpha, rtool->u_vector);
+	process_ndist(rtool->ndist, rtool->u_vector, data->tools.unit);
+	first_dist(rtool, data->player.pos, data->tools.unit, alpha);
+	rtool->ind[X] = data->player.pos[X] / data->tools.unit;
+	rtool->ind[Y] = data->player.pos[Y] / data->tools.unit;
+	rtool->step[X] = 1;
+	rtool->step[Y] = 1;
+	if (rtool->u_vector[X] < 0.0f)
+		rtool->step[X] = -1;
+	if (rtool->u_vector[Y] < 0.0f)
+		rtool->step[Y] = -1;
+}
+
+static void	reset_map(mlx_image_t *img)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < HEIGHT)
 	{
-		for (int j = 0; j < WIDTH; j++)
-			mlx_put_pixel(data->img[WALL], j, i, color_pixel(0, 0, 0, 0));
+		j = 0;
+		while (j < WIDTH)
+		{
+			mlx_put_pixel(img, j, i, color_pixel(0, 0, 0, 0));
+			j++;
+		}
+		i++;
 	}
 }

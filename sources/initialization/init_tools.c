@@ -6,12 +6,12 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:25:24 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/08 10:59:05 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/16 16:06:23 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
-#include "cub3d.h"
+#include "type.h"
 
 void	init_tools(t_tool *tools)
 {
