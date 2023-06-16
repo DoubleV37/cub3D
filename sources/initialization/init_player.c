@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 13:30:26 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/14 16:19:37 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/06/16 17:32:30 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	init_player(t_player *player, t_data *data)
 	unit = data->tools.unit;
 	start_view = find_player_pos(player, data->map);
 	data->map[player->indexs[Y]][player->indexs[X]] = '0';
-	player->pos[X] = (player->indexs[X] * unit + unit / 3.0f);
-	player->pos[Y] = (player->indexs[Y] * unit + unit / 3.0f);
+	player->pos[X] = (player->indexs[X] * unit + unit / 2.0f);
+	player->pos[Y] = (player->indexs[Y] * unit + unit / 2.0f);
 	set_vdirection(player, &data->tools, start_view);
 	player->speed = 2.0f;
 	player->height = HEIGHT / 2;

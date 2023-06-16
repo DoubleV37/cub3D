@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 08:50:20 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/15 17:18:54 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/06/16 17:32:18 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,16 +73,16 @@ float	scale_calculate(float dist_foc, float dist, float size_texture);
 //-------------RAYCASTING---------------//
 //file : raycasting.c
 void	raycasting(t_data *data, t_player *player);
-//file : find_wall.c
-void	find_h_wall(t_data *data, t_ray *ray, float alpha);
-void	find_v_wall(t_data *data, t_ray *ray, float alpha);
-//file : find_wall_utils.c
-void	increment_coord(t_ray *ray, float *step, t_data *data);
-void	infinite_dist(int type, t_ray *ray, float alpha);
-bool	is_in_screen(int x, int y, char **map, t_ray *ray);
-bool	is_in_screen(int x, int y, char **map, t_ray *ray);
-//file : find_collide.c
-bool	ray_in_angle(t_ray *ray, t_data *data, float alpha);
+//file : raycasting_utils.c
+void	end_coordinate(float *pos, float dist, float alpha, float *coord);
+void	process_ndist(float *n_dist, float *u_vector, float unit);
+void	first_dist(t_raytool *rtool, float *pos, float unit, float alpha);
+void	process_uvector(float alpha, float *u_vector);
+bool	special_angle_uvector(float alpha, float *u_vector);
+//file : result_ray.c
+void	set_texture(t_ray *ray, int side, float *u_vector);
+float	set_perpdist(t_data *data, t_raytool *rtool);
+void	set_coord(t_ray *ray, t_raytool *rtool, float *pos, float alpha);
 //file : texturing.c
 void	draw_wall(t_data *data, t_ray *ray, int n_ray);
 

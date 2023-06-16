@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:43:28 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/08 19:37:22 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/16 17:24:22 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 //------DEFINE------//
 
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 400
+# define HEIGHT 300
 
 # include "MLX42.h"
 
@@ -24,6 +24,12 @@
 # define FOV 60 
 
 //------ENUM------//
+
+typedef enum e_line
+{
+	H,
+	V
+}	t_line;
 
 typedef enum e_coord
 {
@@ -64,12 +70,21 @@ typedef enum e_dir
 
 //------STRUCT------//
 
+typedef struct s_raytool
+{
+	int		id;
+	float	dist[2];
+	float	u_vector[2];
+	float	ndist[2];
+	int		step[2];
+	int		ind[2];
+	int		side;
+}	t_raytool;
+
 typedef struct s_ray
 {
-	float	s_coord[2];
-	float	e_coord[2];
-	float	dist;
-	float	tan_alpha;
+	float	pos[2];
+	float	dist_perp;
 	int		texture;
 }	t_ray;
 
