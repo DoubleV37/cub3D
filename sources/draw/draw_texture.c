@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 13:44:26 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/13 15:58:32 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/06/16 15:59:06 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,21 @@ void	draw_texture_line(t_data *data, int *line_texture, int x, int length)
 {
 	int		i;
 	int		y;
-	int		finish;
 	int32_t	color;
 
-	i = 0;
-	if (length > HEIGHT)
-		length = HEIGHT - 2;
-	y = HEIGHT / 2 - length / 2;
-	finish = y + length;
-	while (y < finish)
+	i = length / 2 * 4;
+	y = HEIGHT / 2;
+	while (i != 0 && y != 0)
+	{
+		color = color_pixel(line_texture[i], line_texture[i + 1],
+				line_texture[i + 2], line_texture[i + 3]);
+		mlx_put_pixel(data->img[WALL], x, y, color);
+		i -= 4;
+		y--;
+	}
+	i = length / 2 * 4;
+	y = HEIGHT / 2;
+	while (i < length * 4 && y < HEIGHT)
 	{
 		color = color_pixel(line_texture[i], line_texture[i + 1],
 				line_texture[i + 2], line_texture[i + 3]);
@@ -33,8 +39,7 @@ void	draw_texture_line(t_data *data, int *line_texture, int x, int length)
 		y++;
 		i += 4;
 	}
-	if (line_texture != NULL)
-		free(line_texture);
+	free(line_texture);
 	line_texture = NULL;
 }
 
@@ -44,15 +49,13 @@ static int	*resize_texture(int *line_texture, float size, float scale_size)
 	int	ratio;
 	int	*new_line;
 
-	new_line = malloc(sizeof(int) * ((int)ceilf(scale_size) * 4 + 1));
+	new_line = malloc(sizeof(int) * ((int)ceilf(scale_size) * 4));
 	if (new_line == NULL)
 		return (NULL);
 	ratio = (int)ceilf(scale_size / size);
 	i = 0;
 	while (i < (int)ceilf(scale_size))
 	{
-		if (i / ratio >= size)
-			printf("i = %d\n", i / ratio);
 		new_line[i * 4] = line_texture[(i / ratio) * 4];
 		new_line[i * 4 + 1] = line_texture[(i / ratio) * 4 + 1];
 		new_line[i * 4 + 2] = line_texture[(i / ratio) * 4 + 2];
