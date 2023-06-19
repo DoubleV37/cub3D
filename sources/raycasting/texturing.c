@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 13:42:48 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/19 09:09:16 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/06/19 09:23:33 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ static void	wall_calculate(t_data *data, t_ray *ray, int n_ray, char side)
 	scale = modff(scale, &nothing);
 	width_tex = data->textures.texture[ray->texture]->width;
 	pos_tex = roundf(width_tex * scale);
+	if (data->player.pos[Y] < ray->pos[Y] && side == 'H')
+		pos_tex = width_tex - pos_tex;
+	if (data->player.pos[X] > ray->pos[X] && side == 'V')
+		pos_tex = width_tex - pos_tex;
 	scale = scale_calculate(data->tools.dist, ray->dist_perp, width_tex);
 	line_texture = get_line_texture(pos_tex,
 			*(data->textures.texture[ray->texture]));
