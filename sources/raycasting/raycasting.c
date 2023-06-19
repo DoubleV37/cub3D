@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 11:37:15 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/16 17:26:04 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/19 11:29:06 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	raycasting(t_data *data, t_player *player)
 		alpha += data->tools.delta_angle;
 		i += 1.0f;
 	}
-	//draw_pov(data, player, 1);
 }
 
 static float	make_alpha(float alpha)
@@ -76,12 +75,6 @@ static void	send_ray(t_data *data, t_ray *ray, float alpha, float id)
 	set_texture(ray, rtool.side, rtool.u_vector);
 	ray->dist_perp = set_perpdist(data, &rtool);
 	set_coord(ray, &rtool, data->player.pos, alpha);
-	/*if (rtool.side == V)
-		end_coordinate(data->player.pos, rtool.dist[V] - rtool.ndist[V], alpha, e_coord);
-	else
-		end_coordinate(data->player.pos, rtool.dist[H] - rtool.ndist[H], alpha, e_coord);
-	float	draw[4] = {data->player.pos[X], data->player.pos[Y], e_coord[X], e_coord[Y]};
-	draw_line(data->img[PLAYER], draw, color_pixel(255, 255, 255, 255));*/
 	return ;
 }
 
