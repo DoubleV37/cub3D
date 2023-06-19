@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 13:20:15 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/12 13:59:33 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/06/19 15:26:33 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,15 @@ static void	calc_rotation(float *dir, t_rot *rot, t_dir flag);
 int	rotate_player(t_data *data, t_player *player, t_dir dir)
 {
 	t_tool	*tmp;
+	float	norm;
 
 	tmp = &data->tools;
 	//draw_pov(data, player, 0);
+	calc_rotation(tmp->dir, &data->tools.rotate, dir);
 	incr_angle(player, &data->tools.rotate, dir);
-	if (player->angle == 0.0f || player->angle == 360.0f
-		|| player->angle == 90.0f || player->angle == 180.0f
-		|| player->angle == 270.0f)
-	{
-		particular_dir(data->tools.dir, player);
-	}
-	else
-		calc_rotation(tmp->dir, &data->tools.rotate, dir);
+	norm = sqrtf(powf(tmp->dir[X], 2) + powf(tmp->dir[Y], 2));
+	tmp->dir[X] /= norm;
+	tmp->dir[Y] /= norm;
 	//draw_pov(data, player, 1);
 	return (0);
 }
