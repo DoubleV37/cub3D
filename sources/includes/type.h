@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:43:28 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/16 17:34:08 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/06/19 09:40:41 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ typedef struct s_player
 	float	angle;
 	float	speed;
 	float	height;
+	int32_t	mouse_x;
 }	t_player;
 
 typedef struct s_texture

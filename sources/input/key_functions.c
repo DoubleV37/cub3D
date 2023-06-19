@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_functions.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 08:44:08 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/05 11:53:43 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/19 10:03:20 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,25 @@ void	key_input(void *param)
 	else if (movement_key(data) == 0)
 		return ;
 	return ;
+}
+
+static void	mouse_control(t_data *data)
+{
+	int32_t	x;
+	int32_t	y;
+
+	mlx_get_mouse_pos(data->mlx, &x, &y);
+	mlx_set_mouse_pos(data->mlx, WIDTH / 2 , data->player.height);
+	if (x > data->player.mouse_x)
+	{
+		rotate_player(data, &data->player, RIGHTWARD);
+		raycasting(data, &data->player);
+	}
+	else if (x < data->player.mouse_x)
+	{
+		rotate_player(data, &data->player, LEFTWARD);
+		raycasting(data, &data->player);
+	}
 }
 
 int	movement_key(t_data *data)
@@ -60,5 +79,6 @@ int	movement_key(t_data *data)
 		flag = rotate_player(data, &data->player, LEFTWARD);
 		raycasting(data, &data->player);
 	}
+	mouse_control(data);
 	return (flag);
 }

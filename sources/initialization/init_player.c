@@ -6,13 +6,14 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 13:30:26 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/16 17:32:30 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/06/19 10:05:11 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "cub3d.h"
 #include "libft.h"
+#include "MLX42.h"
 
 static t_card	find_player_pos(t_player *player, char **map);
 static void		set_vdirection(t_player *player, t_tool *tools, t_card view);
@@ -31,6 +32,8 @@ void	init_player(t_player *player, t_data *data)
 	set_vdirection(player, &data->tools, start_view);
 	player->speed = 2.0f;
 	player->height = HEIGHT / 2;
+	player->mouse_x = WIDTH / 2;
+	mlx_set_mouse_pos(data->mlx, player->mouse_x, player->height);
 }
 
 static void	set_vdirection(t_player *player, t_tool *tools, t_card start)
