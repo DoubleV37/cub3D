@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 11:37:15 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/19 11:29:06 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/19 18:32:01 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ void	raycasting(t_data *data, t_player *player)
 	{
 		alpha = make_alpha(alpha);
 		send_ray(data, &ray, alpha, i);
-		draw_wall(data, &ray, i);
+		ray.num_ray = i;
+		draw_wall(data, &ray);
 		alpha += data->tools.delta_angle;
 		i += 1.0f;
 	}

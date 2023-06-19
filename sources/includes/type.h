@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:43:28 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/19 09:40:41 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/06/19 18:24:38 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ typedef struct s_ray
 	float	pos[2];
 	float	dist_perp;
 	int		texture;
+	int		texture_size;
+	int		num_ray;
 }	t_ray;
 
 typedef struct s_rot

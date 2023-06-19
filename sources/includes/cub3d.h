@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 08:50:20 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/19 06:57:55 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/06/19 18:43:12 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ void	draw_background_floor(t_data *data);
 //file : render_image.c
 int		render_start(t_data *data);
 //file : draw_texture.c
-int		*get_line_texture(int pos, mlx_texture_t texture);
-void	draw_texture_line(t_data *data, int *line_texture, int x, int length);
+void	get_line_texture(int pos, mlx_texture_t texture, int *line);
+void	draw_texture_line(t_data *data, int *line_texture, t_ray *ray, int length);
 float	scale_calculate(float dist_foc, float dist, float size_texture);
 
 //-------------RAYCASTING---------------//
@@ -84,7 +84,7 @@ void	set_texture(t_ray *ray, int side, float *u_vector);
 float	set_perpdist(t_data *data, t_raytool *rtool);
 void	set_coord(t_ray *ray, t_raytool *rtool, float *pos, float alpha);
 //file : texturing.c
-void	draw_wall(t_data *data, t_ray *ray, int n_ray);
+void	draw_wall(t_data *data, t_ray *ray);
 
 //-------------MOVEMENTS---------------//
 //file : move_player.c
