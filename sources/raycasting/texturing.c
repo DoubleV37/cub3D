@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 13:42:48 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/16 17:32:41 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/06/17 21:03:39 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,33 +15,49 @@
 
 #include <stdio.h>
 
-static void	wall_calculate(t_data *data, t_ray *ray, int n_ray, char side)
+static int	pos_in_texture(t_ray *ray, t_data *data)
 {
-	float	scale;
-	int		pos_tex;
-	float	width_tex;
-	int		*line_texture;
-	float	nothing;
+	float	percent;
+	float	pos;
+	int		coord;
+	int		i = ray->texture;
 
-	scale = ray->pos[X] / data->tools.unit;
-	if (side == 'V')
-		scale = ray->pos[Y] / data->tools.unit;
-	scale = modff(scale, &nothing);
-	width_tex = data->textures.texture[ray->texture]->width;
-	pos_tex = roundf(width_tex * scale);
-	scale = scale_calculate(data->tools.dist, ray->dist_perp, width_tex);
-	line_texture = get_line_texture(pos_tex,
-			*(data->textures.texture[ray->texture]), scale);
-	draw_texture_line(data, line_texture, n_ray, scale);
+	if (ray->texture == NO || ray->texture == SO)
+		pos = ray->pos[X];
+	else
+		pos = ray->pos[Y];
+	percent = modff(pos / data->tools.unit, &pos);
+	coord = roundf(data->textures.texture[i]->width * percent);
+	return (coord);
 }
 
 void	draw_wall(t_data *data, t_ray *ray, int n_ray)
 {
-	int	x;
+	int		x;
+	int		pos_text;
+	float	height;
+	float	scalefactor;
+	int		start;
+	int32_t	color;	
 
-	x = 1919 - n_ray;
-	if (ray->texture == NO || ray->texture == SO)
-		wall_calculate(data, ray, x, 'H');
-	else
-		wall_calculate(data, ray, x, 'V');
+	x = (WIDTH - 1) - n_ray;
+	pos_text = pos_in_texture(ray, data);
+	scalefactor = (data->textures.texture[ray->texture]->height * data->tools.unit) / HEIGHT;
+	height = ray->dist_perp * scalefactor;
+	start = (HEIGHT / 2) - (ray->dist_perp / 2);
+	x = start;
+	while (start < x + ray->dist_perp)
+	{
+		if (ray->texture == NO)
+			color = color_pixel(255, 0, 0, 255);
+		else if (ray->texture == SO)
+			color = color_pixel(0, 255, 0, 255);
+		else if (ray->texture == EA)
+			color = color_pixel(0, 0, 255, 255);
+		else 
+			color = color_pixel(20, 150, 150, 255);
+		if (start >= 0 && start < HEIGHT)
+			mlx_put_pixel(data->img[WALL], WIDTH - 1 - n_ray, start, color);
+		start++;
+	}
 }
