@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 13:44:26 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/19 08:53:07 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/06/19 18:59:30 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <math.h>
 #include <stdio.h>
 
-void	draw_texture_line(t_data *data, int *line_texture, int x, int length)
+void	draw_texture_line(t_data *data, int *line_texture, t_ray *ray, int length)
 {
 	int		i;
 	int		y;
@@ -29,26 +29,20 @@ void	draw_texture_line(t_data *data, int *line_texture, int x, int length)
 		end = HEIGHT - 1;
 	while (y <= end)
 	{
-		i = (y * 2 - HEIGHT + length) * (64 / 2) / length;
-		i *= 4;
+		i = (y * 2 - HEIGHT + length) * (ray->texture_size / 2) / length;
+		i *= data->textures.texture[ray->texture]->bytes_per_pixel;
 		color = color_pixel(line_texture[i], line_texture[i + 1],
 				line_texture[i + 2], line_texture[i + 3]);
-		mlx_put_pixel(data->img[WALL], x, y, color);
+		mlx_put_pixel(data->img[WALL], ray->num_ray, y, color);
 		y++;
 	}
-	free(line_texture);
-	line_texture = NULL;
 }
 
-int	*get_line_texture(int pos, mlx_texture_t texture)
+void	get_line_texture(int pos, mlx_texture_t texture, int *line)
 {
-	int				*line;
 	unsigned int	i;
 	unsigned int	j;
 
-	line = malloc(sizeof(int) * (texture.width + 1) * texture.bytes_per_pixel);
-	if (line == NULL)
-		return (NULL);
 	i = 0;
 	pos = pos * texture.bytes_per_pixel;
 	while (i < texture.width * texture.bytes_per_pixel)
@@ -62,7 +56,6 @@ int	*get_line_texture(int pos, mlx_texture_t texture)
 		i += texture.bytes_per_pixel;
 		pos += texture.width * texture.bytes_per_pixel;
 	}
-	return (line);
 }
 
 float	scale_calculate(float dist_foc, float dist, float size_texture)
