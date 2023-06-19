@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 08:50:20 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/19 06:57:55 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/06/19 18:29:10 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,17 +88,17 @@ void	draw_wall(t_data *data, t_ray *ray, int n_ray);
 
 //-------------MOVEMENTS---------------//
 //file : move_player.c
-int		move_backward_forward(t_data *data, t_player *player, t_dir dir);
+void	move_backward_forward(t_data *data, t_player *player, t_dir dir);
 //file : shift_player.c
-int		move_left_right(t_data *data, t_player *player, t_dir dir);
+void	move_left_right(t_data *data, t_player *player, t_dir dir);
 //file : wall_collision.c
 bool	check_collide(t_data *data, float pos[2], float x, float y);
 //file : rotate_player.c
-int		rotate_player(t_data *data, t_player *player, t_dir dir);
+void	rotate_player(t_data *data, t_player *player, t_dir dir);
 
 //-------------INPUT---------------//
 //file : key_functions.c
-void	key_input(void *param);
-int		movement_key(t_data *data);
+void	esc_input(void *param);
+void	movement_key(t_data *data);
 
 #endif

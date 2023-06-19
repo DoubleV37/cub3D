@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:34:11 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/19 12:00:42 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/19 19:01:29 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ int	main(int argc, char **argv)
 		ft_free_array(data.map);
 	if (flag > 0)
 		return (1);
-	mlx_loop_hook(data.mlx, key_input, &data);
+	mlx_set_cursor_mode(data.mlx, 0x00034002);
+	mlx_loop_hook(data.mlx, esc_input, &data);
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);
 	clean_texture_nb(&data.textures, 4);

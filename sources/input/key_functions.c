@@ -6,22 +6,21 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 08:44:08 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/19 12:00:39 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/19 18:34:04 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "MLX42.h"
 
-void	key_input(void *param)
+void	esc_input(void *param)
 {
 	t_data	*data;
 
 	data = param;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(data->mlx);
-	else if (movement_key(data) == 0)
-		return ;
+	movement_key(data);
 	return ;
 }
 
@@ -38,24 +37,21 @@ static void	mouse_control(t_data *data)
 		rotate_player(data, &data->player, LEFTWARD);
 }
 
-int	movement_key(t_data *data)
+void	movement_key(t_data *data)
 {
-	int	flag;
-
-	flag = 1;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_W) == true)
-		flag = move_backward_forward(data, &data->player, FORWARD);
+		move_backward_forward(data, &data->player, FORWARD);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_S) == true)
-		flag = move_backward_forward(data, &data->player, BACKWARD);
+		move_backward_forward(data, &data->player, BACKWARD);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_A) == true)
-		flag = move_left_right(data, &data->player, LEFTWARD);
+		move_left_right(data, &data->player, LEFTWARD);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_D) == true)
-		flag = move_left_right(data, &data->player, RIGHTWARD);
+		move_left_right(data, &data->player, RIGHTWARD);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT) == true)
-		flag = rotate_player(data, &data->player, RIGHTWARD);
+		rotate_player(data, &data->player, RIGHTWARD);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT) == true)
-		flag = rotate_player(data, &data->player, LEFTWARD);
+		rotate_player(data, &data->player, LEFTWARD);
 	mouse_control(data);
 	raycasting(data, &data->player);
-	return (flag);
+	return ;
 }

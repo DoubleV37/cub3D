@@ -6,13 +6,12 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 11:37:15 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/19 11:29:06 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/19 16:07:51 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <math.h>
-#include <stdio.h>
 
 static void		reset_map(mlx_image_t *img);
 static void		init_rtool(t_raytool *rtool, t_data *data,
