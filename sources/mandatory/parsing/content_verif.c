@@ -6,11 +6,14 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 10:57:22 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/20 10:48:33 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/20 14:24:05 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "cub3d.h"
+#include "libft.h"
+#include <fcntl.h>
+#include <unistd.h>
 
 int	valid_extension(char *path, char *extension)
 {

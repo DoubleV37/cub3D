@@ -6,11 +6,12 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 10:57:22 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/07 10:19:05 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/06/20 14:22:18 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "libft.h"
 
 static int	is_wall_simple_verif(int i, int j, char **map)
 {

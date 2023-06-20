@@ -6,11 +6,12 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:34:11 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/20 12:07:22 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/20 14:19:29 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "libft.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -29,7 +30,7 @@ int	main(int argc, char **argv)
 	if (flag > 0)
 		return (1);
 	mlx_set_cursor_mode(data.mlx, 0x00034002);
-	mlx_loop_hook(data.mlx, esc_input, &data);
+	mlx_loop_hook(data.mlx, user_inputs, &data);
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);
 	clean_texture_nb(&data.textures, 4);

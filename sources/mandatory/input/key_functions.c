@@ -6,14 +6,17 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 08:44:08 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/20 13:15:46 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/20 14:19:09 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "MLX42.h"
 
-void	esc_input(void *param)
+static void	mouse_control(t_data *data);
+static void	movement_key(t_data *data);
+
+void	user_inputs(void *param)
 {
 	t_data	*data;
 
@@ -21,6 +24,9 @@ void	esc_input(void *param)
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(data->mlx);
 	movement_key(data);
+	mouse_control(data);
+	if (raycasting(data, &data->player) == 1)
+		mlx_close_window(data->mlx);
 	return ;
 }
 
@@ -37,7 +43,7 @@ static void	mouse_control(t_data *data)
 		rotate_player(&data->player, LEFTWARD);
 }
 
-void	movement_key(t_data *data)
+static void	movement_key(t_data *data)
 {
 	if (mlx_is_key_down(data->mlx, MLX_KEY_W) == true)
 		move_backward_forward(data, &data->player, FORWARD);
@@ -51,7 +57,4 @@ void	movement_key(t_data *data)
 		rotate_player(&data->player, RIGHTWARD);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT) == true)
 		rotate_player(&data->player, LEFTWARD);
-	mouse_control(data);
-	raycasting(data, &data->player);
-	return ;
 }

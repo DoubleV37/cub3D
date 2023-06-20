@@ -6,11 +6,14 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 10:15:52 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/20 10:48:52 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/20 14:21:04 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "libft.h"
+#include <unistd.h>
+#include <fcntl.h>
 
 static int	load_textures_info(int file_fd, t_data *data)
 {

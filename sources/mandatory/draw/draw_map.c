@@ -6,12 +6,13 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:05:05 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/20 11:08:38 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/20 14:26:07 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MLX42.h"
 #include "cub3d.h"
+#include <stdlib.h>
 
 static void	fill_floor(mlx_image_t *img, int x, int y, int unit)
 {

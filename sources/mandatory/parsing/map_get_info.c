@@ -6,11 +6,13 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 14:02:26 by vviovi            #+#    #+#             */
-/*   Updated: 2023/05/21 13:20:01 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/06/20 14:29:25 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "libft.h"
+#include <stdlib.h>
 
 int	get_map(int file_fd, t_data *data)
 {

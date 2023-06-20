@@ -6,11 +6,13 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 11:32:35 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/07 09:55:59 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/06/20 14:21:59 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "libft.h"
+#include <stdlib.h>
 
 char	*gnl_skip_void(int fd_file)
 {

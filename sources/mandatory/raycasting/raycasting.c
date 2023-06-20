@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 11:37:15 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/20 11:27:13 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/20 14:17:48 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void		init_rtool(t_raytool *rtool, t_data *data,
 static void		send_ray(t_data *data, t_ray *ray, float alpha, float id);
 static float	make_alpha(float alpha);
 
-void	raycasting(t_data *data, t_player *player)
+int	raycasting(t_data *data, t_player *player)
 {
 	t_ray	ray;
 	float	i;
@@ -33,10 +33,12 @@ void	raycasting(t_data *data, t_player *player)
 		alpha = make_alpha(alpha);
 		send_ray(data, &ray, alpha, i);
 		ray.num_ray = i;
-		draw_wall(data, &ray);
+		if (draw_wall(data, &ray) == 1)
+			return (1);
 		alpha += player->delta_angle;
 		i += 1.0f;
 	}
+	return (0);
 }
 
 static float	make_alpha(float alpha)

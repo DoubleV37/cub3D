@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 08:50:20 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/20 12:53:13 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/20 14:18:49 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 # define CUB3D_H
 
 # include "type.h"
-# include "libft.h"
+//# include "libft.h"
 
-# include <fcntl.h>
-# include <stdlib.h>
-# include <unistd.h>
+//# include <fcntl.h>
+//# include <stdlib.h>
+//# include <unistd.h>
 
 //-------------PARSING---------------//
 //map_get_info
@@ -70,7 +70,7 @@ float	scale_calculate(float dist_foc, float dist, float size_texture);
 
 //-------------RAYCASTING---------------//
 //file : raycasting.c
-void	raycasting(t_data *data, t_player *player);
+int		raycasting(t_data *data, t_player *player);
 //file : raycasting_utils.c
 void	end_coordinate(float *pos, float dist, float alpha, float *coord);
 void	process_ndist(float *n_dist, float *u_vector, float unit);
@@ -82,7 +82,7 @@ void	set_texture(t_ray *ray, int side, float *u_vector);
 float	set_perpdist(t_data *data, t_raytool *rtool);
 void	set_coord(t_ray *ray, t_raytool *rtool, float *pos, float alpha);
 //file : texturing.c
-void	draw_wall(t_data *data, t_ray *ray);
+int		draw_wall(t_data *data, t_ray *ray);
 
 //-------------MOVEMENTS---------------//
 //file : move_player.c
@@ -97,7 +97,6 @@ void	control_value(float *vector, float angle, int axe);
 
 //-------------INPUT---------------//
 //file : key_functions.c
-void	esc_input(void *param);
-void	movement_key(t_data *data);
+void	user_inputs(void *param);
 
 #endif
