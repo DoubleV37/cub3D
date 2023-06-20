@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 08:50:20 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/19 19:05:26 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/20 12:53:13 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,6 @@ int		load_file(char **argv, t_data *data);
 //-------------INITIALIZATION---------------//
 //file : init_player.c
 void	init_player(t_player *player, t_data *data);
-//file : init_tools.c
-void	init_tools(t_tool *tools);
-void	set_vplane(t_tool *tools);
 //file : init_images.c
 int		init_images(t_data *data);
 
@@ -67,7 +64,8 @@ void	draw_background_floor(t_data *data);
 int		render_start(t_data *data);
 //file : draw_texture.c
 void	get_line_texture(int pos, mlx_texture_t texture, int *line);
-void	draw_texture_line(t_data *data, int *line_texture, t_ray *ray, int length);
+void	draw_texture_line(t_data *data, int *line_texture,
+			t_ray *ray, int length);
 float	scale_calculate(float dist_foc, float dist, float size_texture);
 
 //-------------RAYCASTING---------------//
@@ -92,9 +90,10 @@ void	move_backward_forward(t_data *data, t_player *player, t_dir dir);
 //file : shift_player.c
 void	move_left_right(t_data *data, t_player *player, t_dir dir);
 //file : wall_collision.c
-bool	check_collide(t_data *data, float pos[2], float x, float y);
+bool	check_collide(t_data *data, float x, float y);
 //file : rotate_player.c
-void	rotate_player(t_data *data, t_player *player, t_dir dir);
+void	rotate_player(t_player *player, t_dir dir);
+void	control_value(float *vector, float angle, int axe);
 
 //-------------INPUT---------------//
 //file : key_functions.c

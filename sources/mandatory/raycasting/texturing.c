@@ -6,26 +6,24 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 13:42:48 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/19 18:58:22 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/06/20 13:19:33 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <math.h>
 
-#include <stdio.h>
-
-static void wall_calculate(t_data *data, t_ray *ray, char side)
+static void	wall_calculate(t_data *data, t_ray *ray, char side)
 {
-	float scale;
-	int pos_tex;
-	float width_tex;
-	int line_texture[ray->texture_size];
+	float	scale;
+	int		pos_tex;
+	float	width_tex;
+	int		line_texture[ray->texture_size];
 
 	ray->texture_size = data->textures.texture[ray->texture]->width;
-	scale = ray->pos[X] / data->tools.unit;
+	scale = ray->pos[X] / data->unit;
 	if (side == 'V')
-		scale = ray->pos[Y] / data->tools.unit;
+		scale = ray->pos[Y] / data->unit;
 	scale = modff(scale, &width_tex);
 	width_tex = data->textures.texture[ray->texture]->width;
 	pos_tex = roundf(width_tex * scale);
@@ -33,12 +31,13 @@ static void wall_calculate(t_data *data, t_ray *ray, char side)
 		pos_tex = width_tex - pos_tex - 1;
 	if (data->player.pos[X] > ray->pos[X] && side == 'V')
 		pos_tex = width_tex - pos_tex - 1;
-	scale = scale_calculate(data->tools.dist, ray->dist_perp, width_tex);
-	get_line_texture(pos_tex, *(data->textures.texture[ray->texture]), line_texture);
+	scale = scale_calculate(data->dist, ray->dist_perp, width_tex);
+	get_line_texture(pos_tex, *(data->textures.texture[ray->texture]),
+		line_texture);
 	draw_texture_line(data, line_texture, ray, scale);
 }
 
-void draw_wall(t_data *data, t_ray *ray)
+void	draw_wall(t_data *data, t_ray *ray)
 {
 	ray->texture_size = (data->textures.texture[ray->texture]->width + 1)
 		* data->textures.texture[ray->texture]->bytes_per_pixel;

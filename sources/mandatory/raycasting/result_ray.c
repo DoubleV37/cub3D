@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 15:51:40 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/16 17:01:54 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/20 11:28:03 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ float	set_perpdist(t_data *data, t_raytool *rtool)
 	else
 		dist = rtool->dist[H] - rtool->ndist[H];
 	if (rtool->id < WIDTH / 2)
-		angle = (FOV / 2) - (rtool->id * data->tools.delta_angle);
+		angle = (FOV / 2) - (rtool->id * data->player.delta_angle);
 	else
-		angle = rtool->id * data->tools.delta_angle - (FOV / 2);
+		angle = rtool->id * data->player.delta_angle - (FOV / 2);
 	dist = floorf(dist * cosf(angle * RAD_CONV));
 	return (dist);
 }

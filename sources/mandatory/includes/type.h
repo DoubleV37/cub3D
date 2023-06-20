@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:43:28 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/19 19:05:08 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/20 13:16:41 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,30 +90,15 @@ typedef struct s_ray
 	int		num_ray;
 }	t_ray;
 
-typedef struct s_rot
-{
-	float	angle;
-	float	cos_ang;
-	float	sin_ang;
-	float	cos_inv;
-	float	sin_inv;
-}	t_rot;
-
-typedef struct s_tool
-{
-	float	unit;
-	float	dir[2];
-	float	dist;
-	float	delta_angle;
-	t_rot	rotate;
-}	t_tool;
-
 typedef struct s_player
 {
 	float	pos[2];
+	float	dir[2];
 	int		indexs[2];
 	float	angle;
+	float	delta_angle;
 	float	speed;
+	float	rotate;
 	float	height;
 	int32_t	mouse_x;
 }	t_player;
@@ -130,8 +115,9 @@ typedef struct s_data
 	mlx_t		*mlx;
 	mlx_image_t	*img[4];
 	char		**map;
+	float		unit;
+	float		dist;
 	t_player	player;
-	t_tool		tools;
 	t_texture	textures;
 }	t_data;
 

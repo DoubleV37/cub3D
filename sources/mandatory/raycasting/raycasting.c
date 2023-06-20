@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 11:37:15 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/19 19:04:41 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/20 11:27:13 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	raycasting(t_data *data, t_player *player)
 		send_ray(data, &ray, alpha, i);
 		ray.num_ray = i;
 		draw_wall(data, &ray);
-		alpha += data->tools.delta_angle;
+		alpha += player->delta_angle;
 		i += 1.0f;
 	}
 }
@@ -54,7 +54,6 @@ static float	make_alpha(float alpha)
 static void	send_ray(t_data *data, t_ray *ray, float alpha, float id)
 {
 	t_raytool	rtool;
-	float		e_coord[2];
 
 	init_rtool(&rtool, data, alpha, id);
 	while (data->map[rtool.ind[Y]][rtool.ind[X]] == '0')
@@ -82,10 +81,10 @@ static void	init_rtool(t_raytool *rtool, t_data *data, float alpha, float id)
 {
 	rtool->id = id;
 	process_uvector(alpha, rtool->u_vector);
-	process_ndist(rtool->ndist, rtool->u_vector, data->tools.unit);
-	first_dist(rtool, data->player.pos, data->tools.unit, alpha);
-	rtool->ind[X] = data->player.pos[X] / data->tools.unit;
-	rtool->ind[Y] = data->player.pos[Y] / data->tools.unit;
+	process_ndist(rtool->ndist, rtool->u_vector, data->unit);
+	first_dist(rtool, data->player.pos, data->unit, alpha);
+	rtool->ind[X] = data->player.pos[X] / data->unit;
+	rtool->ind[Y] = data->player.pos[Y] / data->unit;
 	rtool->step[X] = 1;
 	rtool->step[Y] = 1;
 	if (rtool->u_vector[X] < 0.0f)

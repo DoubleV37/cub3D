@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 13:44:26 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/19 18:59:30 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/06/20 13:19:36 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 #include <math.h>
 #include <stdio.h>
 
-void	draw_texture_line(t_data *data, int *line_texture, t_ray *ray, int length)
+void	draw_texture_line(t_data *data, int *line_texture,
+			t_ray *ray, int length)
 {
 	int		i;
 	int		y;
@@ -27,7 +28,7 @@ void	draw_texture_line(t_data *data, int *line_texture, t_ray *ray, int length)
 		y = 0;
 	if (end > HEIGHT)
 		end = HEIGHT - 1;
-	while (y <= end)
+	while (y < end)
 	{
 		i = (y * 2 - HEIGHT + length) * (ray->texture_size / 2) / length;
 		i *= data->textures.texture[ray->texture]->bytes_per_pixel;

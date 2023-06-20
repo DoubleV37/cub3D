@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 13:30:26 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/19 18:54:30 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/20 13:09:07 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,50 +16,52 @@
 #include "MLX42.h"
 
 static t_card	find_player_pos(t_player *player, char **map);
-static void		set_vdirection(t_player *player, t_tool *tools, t_card view);
+static void		set_vdirection(t_player *player, t_card view);
 
 void	init_player(t_player *player, t_data *data)
 {
-	float	unit;
 	t_card	start_view;
 
-	data->tools.unit = 50.0f;
-	unit = data->tools.unit;
+	data->unit = 50.0f;
+	data->dist = (WIDTH / 2) / (tanf(((float)FOV / 2) * RAD_CONV));
 	start_view = find_player_pos(player, data->map);
 	data->map[player->indexs[Y]][player->indexs[X]] = '0';
-	player->pos[X] = (player->indexs[X] * unit + unit / 2.0f);
-	player->pos[Y] = (player->indexs[Y] * unit + unit / 2.0f);
-	set_vdirection(player, &data->tools, start_view);
-	player->speed = 2.0f;
+	player->pos[X] = (player->indexs[X] * data->unit + data->unit / 2.0f);
+	player->pos[Y] = (player->indexs[Y] * data->unit + data->unit / 2.0f);
+	set_vdirection(player, start_view);
+	player->speed = 4.0f;
+	player->rotate = 4.0f;
 	player->height = HEIGHT / 2;
+	player->delta_angle = (int)FOV / (float)WIDTH;
 	player->mouse_x = WIDTH / 2;
 	mlx_set_mouse_pos(data->mlx, player->mouse_x, player->height);
+	player->delta_angle = (int)FOV / (float)WIDTH;
 }
 
-static void	set_vdirection(t_player *player, t_tool *tools, t_card start)
+static void	set_vdirection(t_player *player, t_card start)
 {
 	if (start == NO)
 	{
-		tools->dir[X] = 0.0f;
-		tools->dir[Y] = -1.0f;
+		player->dir[X] = 0.0f;
+		player->dir[Y] = -1.0f;
 		player->angle = 90.0f;
 	}
 	else if (start == SO)
 	{
-		tools->dir[X] = 0.0f;
-		tools->dir[Y] = 1.0f;
+		player->dir[X] = 0.0f;
+		player->dir[Y] = 1.0f;
 		player->angle = 270;
 	}
 	else if (start == EA)
 	{
-		tools->dir[Y] = 0.0f;
-		tools->dir[X] = 1.0f;
+		player->dir[Y] = 0.0f;
+		player->dir[X] = 1.0f;
 		player->angle = 0.0f;
 	}
 	else
 	{
-		tools->dir[Y] = 0.0f;
-		tools->dir[X] = -1.0f;
+		player->dir[Y] = 0.0f;
+		player->dir[X] = -1.0f;
 		player->angle = 180.0f;
 	}
 }

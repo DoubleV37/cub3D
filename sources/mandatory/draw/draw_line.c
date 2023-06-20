@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 08:10:32 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/06 10:43:58 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/20 11:08:02 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ void	draw_pov(t_data *data, t_player *player, int flag)
 
 	coord[X] = player->pos[X];
 	coord[Y] = player->pos[Y];
-	coord[X + 2] = (data->tools.dir[X] * 10.0f) + player->pos[X];
-	coord[Y + 2] = (data->tools.dir[Y] * 10.0f) + player->pos[Y];
+	coord[X + 2] = (player->dir[X] * 10.0f) + player->pos[X];
+	coord[Y + 2] = (player->dir[Y] * 10.0f) + player->pos[Y];
 	if (flag == 1)
 		draw_line(data->img[PLAYER], coord, color_pixel(0, 0, 0, 255));
 	else

@@ -6,7 +6,7 @@
 #    By: vviovi <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/02 13:27:39 by jduval            #+#    #+#              #
-#    Updated: 2023/06/16 17:25:45 by jduval           ###   ########.fr        #
+#    Updated: 2023/06/20 12:10:13 by jduval           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,14 +23,14 @@ LIBS_TARGET =	libft/libft.a			\
 
 INCLUDES	=	libft/include 			\
 				MLX42/include/MLX42		\
-				sources/includes		\
+				sources/mandatory/includes		\
 				/usr/lib				\
 
 ###############################################################################
 
 BUILD_DIR 	= 	.obj
 
-SRC_DIR		=	sources
+SRC_DIR		=	sources/mandatory
 
 SRCS 		=	main.c
 
@@ -58,7 +58,6 @@ SRCS		+=	draw/draw_map.c	\
 
 SRCS		+=	initialization/init_images.c	\
 				initialization/init_player.c	\
-				initialization/init_tools.c		\
 
 SRCS		+=	raycasting/raycasting.c	\
 				raycasting/raycasting_utils.c	\

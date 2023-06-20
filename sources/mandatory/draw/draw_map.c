@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:05:05 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/08 10:12:01 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/06/20 11:08:38 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,12 +89,12 @@ void	draw_map(t_data *data)
 		while (data->map[i][j] != '\0')
 		{
 			if (data->map[i][j] && data->map[i][j] == '0')
-				fill_floor(data->img[MAP], j, i, data->tools.unit);
+				fill_floor(data->img[MAP], j, i, data->unit);
 			else if (data->map[i][j] && data->map[i][j] == '1')
-				fill_wall(data->img[MAP], j, i, data->tools.unit);
+				fill_wall(data->img[MAP], j, i, data->unit);
 			j++;
 		}
 		i++;
 	}
-	fill_border(data->img[MAP], data->tools.unit);
+	fill_border(data->img[MAP], data->unit);
 }
