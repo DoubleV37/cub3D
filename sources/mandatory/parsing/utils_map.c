@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 11:32:35 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/20 14:21:59 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/22 12:46:30 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	print_error_map(int type_error)
 	else if (type_error == 0)
 		ft_putstr_fd(2, "Error\nWrong file extension\n");
 	else if (type_error == 1)
-		ft_putstr_fd(2, "Error\nWrong texture file\n");
+		ft_putstr_fd(2, "Error\nWrong map parameters\n");
 	else if (type_error == 2)
 		ft_putstr_fd(2, "Error\nWrong color\n");
 	else if (type_error == 3)

@@ -6,7 +6,7 @@
 #    By: vviovi <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/02 13:27:39 by jduval            #+#    #+#              #
-#    Updated: 2023/06/20 12:10:13 by jduval           ###   ########.fr        #
+#    Updated: 2023/06/22 12:48:07 by vviovi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ SRCS		+=	parsing/load_map.c \
 				parsing/map_verif.c \
 				parsing/content_verif.c \
 				parsing/map_get_info.c \
+				parsing/verify.c \
 
 SRCS		+=	input/key_functions.c	\
 
