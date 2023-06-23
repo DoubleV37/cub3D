@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 14:02:26 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/20 14:29:25 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/22 12:21:25 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,8 @@ int	get_map(int file_fd, t_data *data)
 	return (1);
 }
 
-int	get_texture_info(int file_fd, char *card, t_data *data, int index_tab)
+int	get_texture_info(char **dataline, char *card, t_data *data, int index_tab)
 {
-	char	*line;
-	char	**dataline;
-
-	line = gnl_skip_void(file_fd);
-	if (!line)
-		return (print_error_map(1));
-	dataline = ft_split_char(line, ' ');
-	free(line);
 	if (dataline && ft_strncmp(dataline[0], card, ft_strlen(dataline[0])) == 0
 		&& ft_strlen(dataline[0]) == ft_strlen(card))
 	{
@@ -51,71 +43,77 @@ int	get_texture_info(int file_fd, char *card, t_data *data, int index_tab)
 		{
 			data->textures.texture[index_tab] = mlx_load_png(dataline[1]);
 			ft_free_array(dataline);
+			dataline = NULL;
 			if (data->textures.texture[index_tab] == NULL)
-				return (print_error_map(1));
+				return (0);
 			return (1);
 		}
 	}
 	if (dataline)
+	{
 		ft_free_array(dataline);
-	return (print_error_map(1));
+		dataline = NULL;
+	}
+	return (0);
 }
 
-static int	save_color_data(char **data_color, t_data *data, char place)
+static int	save_color_data(char **colors, t_data *data, char place)
 {
-	if (len_dbl_tab(data_color) != 3)
-		return (0);
 	if (place == 'C')
 	{
-		data->textures.color_ceil[0] = ft_atoi(data_color[0]);
-		data->textures.color_ceil[1] = ft_atoi(data_color[1]);
-		data->textures.color_ceil[2] = ft_atoi(data_color[2]);
+		data->textures.color_ceil[0] = ft_atoi(colors[0]);
+		data->textures.color_ceil[1] = ft_atoi(colors[1]);
+		data->textures.color_ceil[2] = ft_atoi(colors[2]);
 		return (valid_color(data->textures.color_ceil[0],
 				data->textures.color_ceil[1], data->textures.color_ceil[2]));
 	}
-	data->textures.color_floor[0] = ft_atoi(data_color[0]);
-	data->textures.color_floor[1] = ft_atoi(data_color[1]);
-	data->textures.color_floor[2] = ft_atoi(data_color[2]);
+	data->textures.color_floor[0] = ft_atoi(colors[0]);
+	data->textures.color_floor[1] = ft_atoi(colors[1]);
+	data->textures.color_floor[2] = ft_atoi(colors[2]);
 	return (valid_color(data->textures.color_floor[0],
 			data->textures.color_floor[1], data->textures.color_floor[2]));
 }
 
-static int	verif_place_and_separe(char place, char *place_and_color)
+static int	color_separe(char **dataline, char ***colors)
 {
-	char	placedata;
-	int		i;
+	int	i;
 
 	i = 0;
-	while (place_and_color[i] && place_and_color[i] != place)
+	while (dataline[1][i])
+	{
+		if (dataline[1][i] == ',')
+			dataline[1][i] = ' ';
 		i++;
-	placedata = place_and_color[i];
-	if (placedata != place)
+	}
+	*colors = ft_split_char(dataline[1], ' ');
+	if (dataline)
+		ft_free_array(dataline);
+	dataline = NULL;
+	if (!*colors || len_dbl_tab(*colors) != 3)
+	{
+		ft_free_array(*colors);
 		return (0);
-	place_and_color[i] = ' ';
+	}
 	return (1);
 }
 
-int	get_color_info(int file_fd, char place, t_data *data)
+int	get_color_info(char **dataline, char place, t_data *data)
 {
-	char	*line;
-	char	**dataline;
+	char	**colors;
 
-	line = gnl_skip_void(file_fd);
-	if (!line)
-		return (0);
-	dataline = ft_split_char(line, ',');
-	free(line);
-	if (!dataline || !verif_place_and_separe(place, dataline[0]))
+	if (!dataline || !ft_strlen(dataline[0]) || dataline[0][0] != place
+		|| len_dbl_tab(dataline) != 2)
 	{
 		if (dataline)
 			ft_free_array(dataline);
-		return (print_error_map(2));
+		dataline = NULL;
+		return (0);
 	}
-	if (save_color_data(dataline, data, place))
+	colors = NULL;
+	if (color_separe(dataline, &colors) && save_color_data(colors, data, place))
 	{
-		ft_free_array(dataline);
+		ft_free_array(colors);
 		return (1);
 	}
-	ft_free_array(dataline);
-	return (print_error_map(2));
+	return (0);
 }

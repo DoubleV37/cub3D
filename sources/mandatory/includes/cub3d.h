@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 08:50:20 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/20 14:18:49 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/22 12:51:52 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@
 
 //-------------PARSING---------------//
 //map_get_info
-int		get_texture_info(int file_fd, char *card, t_data *data, int index_tab);
-int		get_color_info(int file_fd, char place, t_data *data);
+int		get_texture_info(char **dataline,
+			char *card, t_data *data, int index_tab);
+int		get_color_info(char **dataline, char place, t_data *data);
 int		get_map(int file_fd, t_data *data);
 //file : content_verif.c
 int		valid_extension(char *path, char *extension);
@@ -33,13 +34,17 @@ int		valid_texture(char *path_texture);
 int		simple_verify_map(char **map);
 int		is_wall_surround(char **map);
 //file : utils_map.c
-void	clean_texture_nb(t_texture *textures, int nb_textures);
 char	*gnl_skip_void(int fd_file);
 int		len_dbl_tab(char **tab);
 int		len_string(char *str);
 int		print_error_map(int type_error);
+void	clean_texture_nb(t_texture *textures, int nb_textures);
 //file : load_map.c
 int		load_file(char **argv, t_data *data);
+//file : verify.c
+void	verify_init(int *verify);
+void	free_textures(t_data *data, int *verify);
+int		verif_verify(t_data *data, int *verify);
 
 //-------------INITIALIZATION---------------//
 //file : init_player.c

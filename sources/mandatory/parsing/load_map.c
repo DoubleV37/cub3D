@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 10:15:52 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/20 14:21:04 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/22 12:49:36 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,58 @@
 #include "libft.h"
 #include <unistd.h>
 #include <fcntl.h>
+#include <stdlib.h>
 
-static int	load_textures_info(int file_fd, t_data *data)
+static int	get_infos(int verify[6], t_data *data, char **dataline)
 {
-	if (!get_texture_info(file_fd, "NO", data, 0))
-		return (0);
-	if (!get_texture_info(file_fd, "SO", data, 1))
+	if (dataline[0][0] == 'N' && verify[0] == 0)
+		verify[0] += get_texture_info(dataline, "NO", data, 0);
+	else if (dataline[0][0] == 'S' && verify[1] == 0)
+		verify[1] += get_texture_info(dataline, "SO", data, 1);
+	else if (dataline[0][0] == 'W' && verify[2] == 0)
+		verify[2] += get_texture_info(dataline, "WE", data, 2);
+	else if (dataline[0][0] == 'E' && verify[3] == 0)
+		verify[3] += get_texture_info(dataline, "EA", data, 3);
+	else if (dataline[0][0] == 'F' && verify[4] == 0)
+		verify[4] += get_color_info(dataline, 'F', data);
+	else if (dataline[0][0] == 'C')
+		verify[5] += get_color_info(dataline, 'C', data);
+	else
 	{
-		clean_texture_nb(&data->textures, 1);
-		return (0);
-	}
-	if (!get_texture_info(file_fd, "WE", data, 2))
-	{
-		clean_texture_nb(&data->textures, 2);
-		return (0);
-	}
-	if (!get_texture_info(file_fd, "EA", data, 3))
-	{
-		clean_texture_nb(&data->textures, 3);
-		return (0);
+		ft_free_array(dataline);
+		free_textures(data, verify);
+		return (print_error_map(1));
 	}
 	return (1);
 }
 
-static int	load_colors(int file_fd, t_data *data)
+static int	load_infos(int file_fd, t_data *data)
 {
-	if (get_color_info(file_fd, 'F', data)
-		&& get_color_info(file_fd, 'C', data))
-		return (1);
-	clean_texture_nb(&data->textures, 4);
-	return (0);
+	char	*line;
+	char	**dataline;
+	int		verify[6];
+	int		i;
+
+	line = gnl_skip_void(file_fd);
+	if (!line)
+		return (print_error_map(1));
+	dataline = ft_split_char(line, ' ');
+	free(line);
+	verify_init(verify);
+	i = 0;
+	while (dataline && dataline[0])
+	{
+		if (!get_infos(verify, data, dataline))
+			return (0);
+		if (++i == 6)
+			break ;
+		line = gnl_skip_void(file_fd);
+		dataline = ft_split_char(line, ' ');
+		free(line);
+	}
+	if (!verif_verify(data, verify))
+		return (print_error_map(1));
+	return (1);
 }
 
 static int	load_map(int file_fd, t_data *data)
@@ -74,8 +96,7 @@ int	load_file(char **argv, t_data *data)
 		print_error_map(404);
 		return (0);
 	}
-	if (!load_textures_info(fd, data)
-		|| !load_colors(fd, data)
+	if (!load_infos(fd, data)
 		|| !load_map(fd, data))
 	{
 		close(fd);
