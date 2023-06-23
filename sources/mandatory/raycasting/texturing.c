@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 13:42:48 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/23 13:07:11 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/23 17:37:16 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-static void	draw_texture(t_data *data, mlx_texture_t *tex, float posx, float lengh, int x);
+static void	draw_texture(t_data *data, uint32_t *text, float posx, float lengh, int x);
 
 static int	wall_calculate(t_data *data, t_ray *ray)
 {
@@ -36,22 +36,22 @@ static int	wall_calculate(t_data *data, t_ray *ray)
 	//printf("1pos_tex = %f\n", pos_tex);
 	pos_tex = modff(pos_tex, &width_tex);
 	//printf("2pos_tex = %f\n", pos_tex);
-	width_tex = data->textures.texture[ray->texture]->width;
+	width_tex = SIZE;
 	pos_tex = roundf(width_tex * pos_tex);
 	//(void)modff(pos_tex * width_tex, &pos_tex);
 	if (ray->texture == SO || ray->texture == WE)
 		pos_tex = width_tex - pos_tex - 1;
-	pos_tex *= data->textures.texture[ray->texture]->bytes_per_pixel;
+	//pos_tex *= data->textures.texture[ray->texture]->bytes_per_pixel;
 	//printf("3pos_tex = %f\n", pos_tex);
 	//scale = scale_calculate(data->dist, ray->dist_perp, width_tex);
 	if (ray->dist_perp <= 0.0f)
 		ray->dist_perp = 1.0f;
-	lengh = WIDTH / (ray->dist_perp / data->unit);
-	//dfoc = (WIDTH / 2.0f) / (tanf(FOV / 2.0f * RAD_CONV));
-	//lengh = (data->unit / ray->dist_perp) * dfoc;
+	//lengh = WIDTH / (ray->dist_perp / data->unit);
+	dfoc = (WIDTH / 2.0f) / (tanf(FOV / 2.0f * RAD_CONV));
+	lengh = (data->unit / ray->dist_perp) * dfoc;
 	//printf("perpdist = %f\n", ray->dist_perp);
 	//printf("lengh = %f\n", lengh);
-	draw_texture(data, data->textures.texture[ray->texture], pos_tex, lengh, ray->num_ray);
+	draw_texture(data, data->text[ray->texture], pos_tex, lengh, ray->num_ray);
 	//get_line_texture(pos_tex, *(data->textures.texture[ray->texture]),
 	//	line_texture);
 	//draw_texture_line(data, line_texture, ray, scale);
@@ -70,8 +70,9 @@ int	draw_wall(t_data *data, t_ray *ray)
 }
 
 static int32_t	get_pixel(mlx_texture_t *tex, float x, float y);
+static int32_t	get_pixel2(int32_t *text, float x, float y);
 
-static void	draw_texture(t_data *data, mlx_texture_t *tex, float posx, float lengh, int x)
+static void	draw_texture(t_data *data, uint32_t *text, float posx, float lengh, int x)
 {
 	int		y;
 	int		end;
@@ -80,9 +81,8 @@ static void	draw_texture(t_data *data, mlx_texture_t *tex, float posx, float len
 	int32_t	color;
 
 	posy = 0.0f;
-	step = tex->height / lengh;
+	step = SIZE / lengh;
 	y = HEIGHT / 2 - lengh / 2;
-	printf("width = %i\theight = %i\n", tex->width, tex->height);
 	if (y < 0)
 	{
 		posy = step * abs(y);
@@ -91,18 +91,26 @@ static void	draw_texture(t_data *data, mlx_texture_t *tex, float posx, float len
 	end = HEIGHT / 2 + lengh;
 	if (end > HEIGHT)
 		end = HEIGHT - 1;
-	//printf("step = %f\n", step);
-	//printf("end = %i\n", end);
-	//printf("y = %i\n", y);
 	while (y <= end && y < HEIGHT - 1)
 	{
-		color = get_pixel(tex, posx, floorf(posy));
+		color = get_pixel2(text, posx, posy);
 		if (color != -1)
 			mlx_put_pixel(data->img[WALL], x, y, color);
 		posy += step;
 		y++;
 	}
 	return ;
+}
+
+static int32_t	get_pixel2(int32_t *text, float x, float y)
+{
+	int index;
+
+	index = (int)x + (int)y * SIZE;
+	if (index >= SIZE * SIZE)
+		return (-1);
+	return (text[index]);
+	
 }
 
 static int32_t	get_pixel(mlx_texture_t *tex, float x, float y)
@@ -113,8 +121,8 @@ static int32_t	get_pixel(mlx_texture_t *tex, float x, float y)
 	uint8_t	b;
 
 	index = (int)x + (int)y * tex->width * tex->bytes_per_pixel;
-	if (index != 0)
-		printf("index = %i\n", index);
+	//if (index != 0)
+	//	printf("index = %i\n", index);
 	if (index != 0 && index > tex->width * tex->bytes_per_pixel * tex->height - tex->bytes_per_pixel)
 		return (-1);
 	r = tex->pixels[index];

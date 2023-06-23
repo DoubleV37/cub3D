@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 08:50:20 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/22 12:51:52 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/06/23 17:37:07 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,6 @@
 # define CUB3D_H
 
 # include "type.h"
-//# include "libft.h"
-
-//# include <fcntl.h>
-//# include <stdlib.h>
-//# include <unistd.h>
 
 //-------------PARSING---------------//
 //map_get_info
@@ -51,6 +46,8 @@ int		verif_verify(t_data *data, int *verify);
 void	init_player(t_player *player, t_data *data);
 //file : init_images.c
 int		init_images(t_data *data);
+
+int		resize_texture(t_data *data);
 
 //-------------DRAW---------------//
 //file : draw_map.c

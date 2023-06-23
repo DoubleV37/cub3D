@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:34:11 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/20 14:19:29 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/23 17:37:18 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,9 @@ static int	init_start(t_data *data, char **argv)
 		mlx_terminate(data->mlx);
 		return (2);
 	}
+	resize_texture(data);
 	init_player(&data->player, data);
+	//test_drawtext(data);
 	draw_background_ceiling(data);
 	draw_background_floor(data);
 	if (render_start(data) == 1)
