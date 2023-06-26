@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:34:11 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/23 17:37:18 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/26 08:27:01 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(data.mlx, user_inputs, &data);
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);
-	clean_texture_nb(&data.textures, 4);
+	//clean_texture_nb(&data.textures, 4);
 	ft_free_array(data.map);
+	free_textures(data.text);
 	return (0);
 }
 
@@ -53,12 +54,10 @@ static int	init_start(t_data *data, char **argv)
 		mlx_terminate(data->mlx);
 		return (2);
 	}
-	resize_texture(data);
 	init_player(&data->player, data);
-	//test_drawtext(data);
 	draw_background_ceiling(data);
 	draw_background_floor(data);
-	if (render_start(data) == 1)
+	if (render_start(data) == 1 || resize_texture(data) == 1)
 	{
 		mlx_terminate(data->mlx);
 		return (2);

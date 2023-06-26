@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 08:50:20 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/23 17:37:07 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/26 08:12:47 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	clean_texture_nb(t_texture *textures, int nb_textures);
 int		load_file(char **argv, t_data *data);
 //file : verify.c
 void	verify_init(int *verify);
-void	free_textures(t_data *data, int *verify);
+void	delete_textures(t_data *data, int *verify);
 int		verif_verify(t_data *data, int *verify);
 
 //-------------INITIALIZATION---------------//
@@ -48,6 +48,7 @@ void	init_player(t_player *player, t_data *data);
 int		init_images(t_data *data);
 
 int		resize_texture(t_data *data);
+void	free_textures(int32_t **textures);
 
 //-------------DRAW---------------//
 //file : draw_map.c

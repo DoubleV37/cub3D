@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:43:28 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/23 18:03:20 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/26 08:27:00 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 # define WIDTH 1920
 # define HEIGHT 1080
-# define SIZE 512
+# define SIZE 540
 # define LENGTH (SIZE * SIZE)
 
 # include "MLX42.h"
@@ -121,7 +121,7 @@ typedef struct s_data
 	float		dist;
 	t_player	player;
 	t_texture	textures;
-	int32_t		text[4][LENGTH];
+	int32_t		**text;
 }	t_data;
 
 #endif

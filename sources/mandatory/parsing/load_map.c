@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 10:15:52 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/22 12:49:36 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/06/26 08:07:36 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	get_infos(int verify[6], t_data *data, char **dataline)
 	else
 	{
 		ft_free_array(dataline);
-		free_textures(data, verify);
+		delete_textures(data, verify);
 		return (print_error_map(1));
 	}
 	return (1);

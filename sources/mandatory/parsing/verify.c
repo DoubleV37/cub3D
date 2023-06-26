@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 12:39:49 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/22 12:40:52 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/06/26 08:07:48 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	verify_init(int *verify)
 	}
 }
 
-void	free_textures(t_data *data, int *verify)
+void	delete_textures(t_data *data, int *verify)
 {
 	int	i;
 
@@ -46,7 +46,7 @@ int	verif_verify(t_data *data, int *verify)
 	{
 		if (verify[i] != 1)
 		{
-			free_textures(data, verify);
+			delete_textures(data, verify);
 			return (0);
 		}
 		i++;
