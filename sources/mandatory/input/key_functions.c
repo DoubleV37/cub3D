@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 08:44:08 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/20 14:19:09 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/26 11:30:56 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	mouse_control(t_data *data)
 	int32_t	y;
 
 	mlx_get_mouse_pos(data->mlx, &x, &y);
-	mlx_set_mouse_pos(data->mlx, WIDTH / 2, data->player.height);
+	mlx_set_mouse_pos(data->mlx, WIDTH / 2, HEIGHT / 2);
 	if (x > data->player.mouse_x)
 		rotate_player(&data->player, RIGHTWARD);
 	else if (x < data->player.mouse_x)

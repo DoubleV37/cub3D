@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 13:30:26 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/23 17:37:13 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/26 11:31:03 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,17 @@ void	init_player(t_player *player, t_data *data)
 	t_card	start_view;
 
 	data->unit = SIZE;
-	data->dist = (WIDTH / 2) / (tanf(((float)FOV / 2) * RAD_CONV));
+	data->dfocal = (WIDTH / 2) / (tanf((FOV / 2) * RAD_CONV));
 	start_view = find_player_pos(player, data->map);
 	data->map[player->indexs[Y]][player->indexs[X]] = '0';
 	player->pos[X] = (player->indexs[X] * data->unit + data->unit / 2.0f);
 	player->pos[Y] = (player->indexs[Y] * data->unit + data->unit / 2.0f);
 	set_vdirection(player, start_view);
-	player->speed = SIZE / 20;
-	player->rotate = 3.0f;
-	player->height = HEIGHT / 2;
+	player->speed = MOVE;
+	player->rotate = ROTATE;
 	player->delta_angle = (int)FOV / (float)WIDTH;
 	player->mouse_x = WIDTH / 2;
 	mlx_set_mouse_pos(data->mlx, player->mouse_x, player->height);
-	player->delta_angle = (int)FOV / (float)WIDTH;
 }
 
 static void	set_vdirection(t_player *player, t_card start)

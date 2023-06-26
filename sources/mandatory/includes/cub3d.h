@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 08:50:20 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/26 08:12:47 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/26 11:15:34 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ void	verify_init(int *verify);
 void	delete_textures(t_data *data, int *verify);
 int		verif_verify(t_data *data, int *verify);
 
+int		resize_texture(t_data *data);
+void	free_textures(int32_t **textures);
+
 //-------------INITIALIZATION---------------//
 //file : init_player.c
 void	init_player(t_player *player, t_data *data);
 //file : init_images.c
 int		init_images(t_data *data);
-
-int		resize_texture(t_data *data);
-void	free_textures(int32_t **textures);
 
 //-------------DRAW---------------//
 //file : draw_map.c
@@ -65,11 +65,6 @@ void	draw_background_ceiling(t_data *data);
 void	draw_background_floor(t_data *data);
 //file : render_image.c
 int		render_start(t_data *data);
-//file : draw_texture.c
-void	get_line_texture(int pos, mlx_texture_t texture, int *line);
-void	draw_texture_line(t_data *data, int *line_texture,
-			t_ray *ray, int length);
-float	scale_calculate(float dist_foc, float dist, float size_texture);
 
 //-------------RAYCASTING---------------//
 //file : raycasting.c
@@ -85,7 +80,7 @@ void	set_texture(t_ray *ray, int side, float *u_vector);
 float	set_perpdist(t_data *data, t_raytool *rtool);
 void	set_coord(t_ray *ray, t_raytool *rtool, float *pos, float alpha);
 //file : texturing.c
-int		draw_wall(t_data *data, t_ray *ray);
+void	draw_texture(t_data *data, t_ray *ray);
 
 //-------------MOVEMENTS---------------//
 //file : move_player.c

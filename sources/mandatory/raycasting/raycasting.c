@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 11:37:15 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/23 17:30:21 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/26 11:15:36 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,7 @@ int	raycasting(t_data *data, t_player *player)
 		alpha = make_alpha(alpha);
 		send_ray(data, &ray, alpha, i);
 		ray.num_ray = i;
-		if (draw_wall(data, &ray) == 1)
-			return (1);
+		draw_texture(data, &ray);
 		alpha += player->delta_angle;
 		i += 1.0f;
 	}

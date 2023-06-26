@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:43:28 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/26 08:27:00 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/26 11:30:34 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,15 @@
 
 # define WIDTH 1920
 # define HEIGHT 1080
-# define SIZE 540
+# define SIZE 2160
 # define LENGTH (SIZE * SIZE)
-
-# include "MLX42.h"
-
 # define RAD_CONV 0.0174532925
 # define FOV 60
+# define HEIGHT_PLAYER (HEIGHT / 2)
+# define ROTATE 3
+# define MOVE (SIZE / 20)
+
+# include "MLX42.h"
 
 //------ENUM------//
 
@@ -118,7 +120,7 @@ typedef struct s_data
 	mlx_image_t	*img[4];
 	char		**map;
 	float		unit;
-	float		dist;
+	float		dfocal;
 	t_player	player;
 	t_texture	textures;
 	int32_t		**text;
