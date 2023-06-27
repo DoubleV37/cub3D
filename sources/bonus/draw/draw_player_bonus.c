@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_player.c                                      :+:      :+:    :+:   */
+/*   draw_player_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 10:55:29 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/05 15:17:04 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/27 11:41:51 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MLX42.h"
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 void	draw_player(mlx_image_t *img, t_player *player, int unit, int flag)
 {

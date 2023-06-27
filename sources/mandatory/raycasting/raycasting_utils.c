@@ -6,33 +6,12 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 09:17:04 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/20 11:29:21 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/27 09:56:15 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <math.h>
-
-void	end_coordinate(float *pos, float dist, float alpha, float *coord)
-{
-	float	x;
-	float	y;
-
-	x = dist * cosf(alpha * RAD_CONV);
-	y = dist * sinf(alpha * RAD_CONV);
-	if (alpha > 90.0f && alpha < 270.0f && x > 0.0f)
-		x *= (-1.0f);
-	else if (((alpha > 0.0f && alpha < 90.0f)
-			|| (alpha > 270.0f && alpha < 360.0f)) && x < 0.0f)
-		x *= (-1.0f);
-	if (alpha > 0.0f && alpha < 180.0f && y > 0.0f)
-		y *= (-1.0f);
-	else if (alpha > 180.0f && alpha < 360.0f && y < 0.0f)
-		y *= (-1.0f);
-	coord[X] = floorf(pos[X] + x);
-	coord[Y] = floorf(pos[Y] + y);
-	return ;
-}
 
 void	process_ndist(float *n_dist, float *u_vector, float unit)
 {

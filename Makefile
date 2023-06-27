@@ -6,11 +6,15 @@
 #    By: vviovi <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/02 13:27:39 by jduval            #+#    #+#              #
-#    Updated: 2023/06/23 15:02:37 by jduval           ###   ########.fr        #
+#    Updated: 2023/06/27 11:40:04 by jduval           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+ifndef BONUS
 NAME 		=	cub3D
+else
+NAME 		=	cub3D_bonus
+endif
 
 MAKEFLAGS	+=	--no-print-directory
 
@@ -18,66 +22,84 @@ MAKEFLAGS	+=	--no-print-directory
 
 LIBS 		=	ft mlx42 dl glfw pthread m
 
-LIBS_TARGET =	libft/libft.a			\
-				MLX42/build/libmlx42.a	\
+LIBS_TARGET =	libft/libft.a				\
+				MLX42/build/libmlx42.a		\
 
-INCLUDES	=	libft/include 			\
-				MLX42/include/MLX42		\
-				sources/mandatory/includes		\
-				/usr/lib				\
+INCLUDES	=	libft/include 				\
+				MLX42/include/MLX42			\
+				/usr/lib					\
+ifndef BONUS
+INCLUDES	+=	sources/mandatory/includes	\
+else
+INCLUDES	+=	sources/bonus/includes		\
+endif
 
 ###############################################################################
 
-BUILD_DIR 	= 	.obj
-
+ifndef BONUS
 SRC_DIR		=	sources/mandatory
-
-SRCS 		=	main.c
-
-
-SRCS		+=	parsing/load_map.c \
-				parsing/utils_map.c \
-				parsing/map_verif.c \
-				parsing/content_verif.c \
-				parsing/map_get_info.c \
-				parsing/verify.c \
-				parsing/resize_texture.c
-
-SRCS		+=	input/key_functions.c	\
-
-SRCS		+=	movements/move_player.c	\
-				movements/shift_player.c	\
-				movements/rotate_player.c	\
-				movements/wall_collision.c	\
-
-SRCS		+=	draw/draw_map.c	\
-				draw/draw_player.c	\
-				draw/draw_utils.c	\
-				draw/draw_line.c	\
-				draw/draw_texture.c	\
-				draw/draw_background.c	\
-				draw/render_image.c	\
-
-SRCS		+=	initialization/init_images.c	\
+BUILD_DIR 	= 	.obj
+SRCS 		=	main.c							\
+				parsing/load_map.c 				\
+				parsing/utils_map.c 			\
+				parsing/map_verif.c				\
+				parsing/content_verif.c			\
+				parsing/map_get_info.c 			\
+				parsing/verify.c 				\
+				parsing/resize_texture.c		\
+				input/key_functions.c			\
+				movements/move_player.c			\
+				movements/shift_player.c		\
+				movements/rotate_player.c		\
+				movements/wall_collision.c		\
+				draw/draw_utils.c				\
+				draw/draw_background.c			\
+				draw/render_image.c				\
+				initialization/init_images.c	\
 				initialization/init_player.c	\
-
-SRCS		+=	raycasting/raycasting.c	\
+				raycasting/raycasting.c			\
 				raycasting/raycasting_utils.c	\
-				raycasting/result_ray.c	\
-				raycasting/texturing.c	\
+				raycasting/result_ray.c			\
+				raycasting/texturing.c
+else
+SRC_DIR		=	sources/bonus
+BUILD_DIR 	= 	.obj_bonus
+SRCS 		=	main_bonus.c							\
+				parsing/load_map_bonus.c 				\
+				parsing/utils_map_bonus.c 				\
+				parsing/map_verif_bonus.c				\
+				parsing/content_verif_bonus.c			\
+				parsing/map_get_info_bonus.c 			\
+				parsing/verify_bonus.c 					\
+				parsing/resize_texture_bonus.c			\
+				input/key_functions_bonus.c				\
+				movements/move_player_bonus.c			\
+				movements/shift_player_bonus.c			\
+				movements/rotate_player_bonus.c			\
+				movements/wall_collision_bonus.c		\
+				draw/draw_utils_bonus.c					\
+				draw/draw_background_bonus.c			\
+				draw/render_image_bonus.c				\
+				initialization/init_images_bonus.c		\
+				initialization/init_player_bonus.c		\
+				raycasting/raycasting_bonus.c			\
+				raycasting/raycasting_utils_bonus.c		\
+				raycasting/result_ray_bonus.c			\
+				raycasting/texturing_bonus.c
+endif
 
 SRCS		:=	$(SRCS:%=$(SRC_DIR)/%)
 
-OBJS 		:= $(SRCS:%.c=$(BUILD_DIR)/%.o)
+OBJS 		:=	$(SRCS:%.c=$(BUILD_DIR)/%.o)
 
-DEPS 		:= $(OBJS:.o=.d)
+DEPS 		:=	$(OBJS:.o=.d)
 
 
 ###############################################################################
 
 CC 			=	gcc
 
-CFLAGS 		=	-Wextra -Wall -ggdb3
+CFLAGS 		=	-Wextra -Wall -Werror -ggdb3 -pedantic-errors -Wunused -Wunreachable-code
 
 CPPFLAGS 	=	-MMD -MP $(addprefix -I,$(INCLUDES))
 
@@ -91,6 +113,7 @@ DIRDUP 		= 	mkdir -p $(@D)
 ###############################################################################
 
 all: $(NAME)
+.PHONY:all
 
 $(NAME): $(OBJS) $(LIBS_TARGET)
 	@$(CC) $(LDFLAGS) $(OBJS) $(LDLIBS) -o $(NAME)
@@ -103,20 +126,24 @@ $(BUILD_DIR)/%.o : %.c
 	@$(DIRDUP)
 	@$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
 
--include $(DEPS) test.mk
+-include $(DEPS)
 
 ###############################################################################
+
+bonus:
+	${MAKE} BONUS=1 all
+.PHONY:bonus
 
 clean:
 	@${MAKE} -C libft/ clean
 	@${MAKE} -C MLX42/build/ clean
-	rm -rf .obj
+	rm -rf .obj .obj_bonus
 .PHONY:clean
 
 fclean: clean
 	@${MAKE} -C libft/ fclean
 	@${MAKE} -C MLX42/build/ clean
-	rm -f ${NAME}
+	rm -f cub3d cub3d_bonus
 .PHONY: fclean
 
 re: fclean all

@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:36:04 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/26 08:17:53 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/27 09:06:21 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int32_t	**allocate_texture(void);
 
 int	resize_texture(t_data *data)
 {
-	int	i;
+	int			i;
 	mlx_image_t	*tmp;
 
 	i = 0;
@@ -33,7 +33,7 @@ int	resize_texture(t_data *data)
 		if (mlx_resize_image(tmp, SIZE, SIZE) != true)
 			return (1);
 		set_scaled_texture(data->text[i], tmp);
-		mlx_delete_image(data->mlx, tmp);	
+		mlx_delete_image(data->mlx, tmp);
 		i++;
 	}
 	clean_texture_nb(&data->textures, 4);
@@ -51,7 +51,7 @@ static int32_t	**allocate_texture(void)
 	i = 0;
 	while (i < 4)
 	{
-		texture[i] = malloc(sizeof(int32_t) * LENGTH);
+		texture[i] = malloc(sizeof(int32_t) * (SIZE * SIZE));
 		texture[i + 1] = NULL;
 		if (texture == NULL)
 		{

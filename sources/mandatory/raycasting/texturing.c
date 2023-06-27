@@ -6,12 +6,13 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 13:42:48 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/26 11:30:54 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/27 09:07:52 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <math.h>
+#include <stdlib.h>
 
 static float	init_start(float step, float length, int *y);
 static void		put_texture(t_data *data, t_ray *ray, float posx, float lengh);
@@ -50,7 +51,7 @@ static void	put_texture(t_data *data, t_ray *ray, float posx, float length)
 
 	step = SIZE / length;
 	posy = init_start(step, length, &y);
-	end = HEIGHT_PLAYER + length;
+	end = HEIGHT / 2 + length;
 	if (end > HEIGHT)
 		end = HEIGHT - 1;
 	while (y <= end && y < HEIGHT - 1)
@@ -69,7 +70,7 @@ static float	init_start(float step, float length, int *y)
 	float	result;
 
 	result = 0.0f;
-	(*y) = HEIGHT_PLAYER - length / 2;
+	(*y) = HEIGHT / 2 - length / 2;
 	if ((*y) < 0)
 	{
 		result = step * abs((*y));
@@ -80,7 +81,7 @@ static float	init_start(float step, float length, int *y)
 
 static int32_t	get_pixel(int32_t *text, float x, float y)
 {
-	int index;
+	int	index;
 
 	index = (int)x + (int)y * SIZE;
 	if (index >= SIZE * SIZE)

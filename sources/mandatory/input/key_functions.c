@@ -6,14 +6,13 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 08:44:08 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/26 11:30:56 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/27 11:28:42 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "MLX42.h"
 
-static void	mouse_control(t_data *data);
 static void	movement_key(t_data *data);
 
 void	user_inputs(void *param)
@@ -24,23 +23,8 @@ void	user_inputs(void *param)
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(data->mlx);
 	movement_key(data);
-	mouse_control(data);
-	if (raycasting(data, &data->player) == 1)
-		mlx_close_window(data->mlx);
+	raycasting(data, &data->player);
 	return ;
-}
-
-static void	mouse_control(t_data *data)
-{
-	int32_t	x;
-	int32_t	y;
-
-	mlx_get_mouse_pos(data->mlx, &x, &y);
-	mlx_set_mouse_pos(data->mlx, WIDTH / 2, HEIGHT / 2);
-	if (x > data->player.mouse_x)
-		rotate_player(&data->player, RIGHTWARD);
-	else if (x < data->player.mouse_x)
-		rotate_player(&data->player, LEFTWARD);
 }
 
 static void	movement_key(t_data *data)

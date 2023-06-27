@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 08:50:20 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/26 11:15:34 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/27 11:09:08 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int		load_file(char **argv, t_data *data);
 void	verify_init(int *verify);
 void	delete_textures(t_data *data, int *verify);
 int		verif_verify(t_data *data, int *verify);
-
+//file : resize_texture.c
 int		resize_texture(t_data *data);
 void	free_textures(int32_t **textures);
 
@@ -53,11 +53,6 @@ int		init_images(t_data *data);
 //-------------DRAW---------------//
 //file : draw_map.c
 void	draw_map(t_data *data);
-//file : draw_player.c
-void	draw_player(mlx_image_t *img, t_player *player, int unit, int flag);
-//file : draw_line.c
-void	draw_line(mlx_image_t *img, float *pos, int32_t color);
-void	draw_pov(t_data *data, t_player *player, int flag);
 //file : draw_utils.c
 int32_t	color_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 //file : draw_background.c
@@ -70,7 +65,6 @@ int		render_start(t_data *data);
 //file : raycasting.c
 int		raycasting(t_data *data, t_player *player);
 //file : raycasting_utils.c
-void	end_coordinate(float *pos, float dist, float alpha, float *coord);
 void	process_ndist(float *n_dist, float *u_vector, float unit);
 void	first_dist(t_raytool *rtool, float *pos, float unit, float alpha);
 void	process_uvector(float alpha, float *u_vector);
@@ -91,7 +85,6 @@ void	move_left_right(t_data *data, t_player *player, t_dir dir);
 bool	check_collide(t_data *data, float x, float y);
 //file : rotate_player.c
 void	rotate_player(t_player *player, t_dir dir);
-void	control_value(float *vector, float angle, int axe);
 
 //-------------INPUT---------------//
 //file : key_functions.c

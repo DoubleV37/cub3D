@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:43:28 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/26 11:30:34 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/27 11:29:21 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,10 @@
 
 # define WIDTH 1920
 # define HEIGHT 1080
-# define SIZE 2160
-# define LENGTH (SIZE * SIZE)
+# define SIZE 1080
 # define RAD_CONV 0.0174532925
-# define FOV 60
-# define HEIGHT_PLAYER (HEIGHT / 2)
+# define FOV 90
 # define ROTATE 3
-# define MOVE (SIZE / 20)
 
 # include "MLX42.h"
 
@@ -60,8 +57,6 @@ typedef enum e_img
 {
 	BACKGROUND,
 	WALL,
-	MAP,
-	PLAYER,
 }	t_img;
 
 typedef enum e_dir
@@ -90,7 +85,6 @@ typedef struct s_ray
 	float	pos[2];
 	float	dist_perp;
 	int		texture;
-	int		texture_size;
 	int		num_ray;
 }	t_ray;
 
@@ -103,8 +97,6 @@ typedef struct s_player
 	float	delta_angle;
 	float	speed;
 	float	rotate;
-	float	height;
-	int32_t	mouse_x;
 }	t_player;
 
 typedef struct s_texture
@@ -117,7 +109,7 @@ typedef struct s_texture
 typedef struct s_data
 {
 	mlx_t		*mlx;
-	mlx_image_t	*img[4];
+	mlx_image_t	*img[2];
 	char		**map;
 	float		unit;
 	float		dfocal;

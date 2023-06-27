@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 13:30:26 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/26 11:31:03 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/27 09:42:33 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,10 @@ void	init_player(t_player *player, t_data *data)
 	player->pos[X] = (player->indexs[X] * data->unit + data->unit / 2.0f);
 	player->pos[Y] = (player->indexs[Y] * data->unit + data->unit / 2.0f);
 	set_vdirection(player, start_view);
-	player->speed = MOVE;
+	player->speed = SIZE / 20;
 	player->rotate = ROTATE;
 	player->delta_angle = (int)FOV / (float)WIDTH;
-	player->mouse_x = WIDTH / 2;
-	mlx_set_mouse_pos(data->mlx, player->mouse_x, player->height);
+	mlx_set_mouse_pos(data->mlx, WIDTH / 2, HEIGHT / 2);
 }
 
 static void	set_vdirection(t_player *player, t_card start)

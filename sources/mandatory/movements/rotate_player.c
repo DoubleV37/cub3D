@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 13:20:15 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/20 12:06:24 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/27 09:59:15 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,21 @@
 
 static void	incr_angle(t_player *player, float rotate, t_dir dir);
 static void	calc_rotation(float *dir, float angle);
+static void	control_value(float *vector, float angle, int axe);
 
-void	control_value(float *vector, float angle, int axe)
+void	rotate_player(t_player *player, t_dir dir)
+{
+	float	norm;
+
+	incr_angle(player, player->rotate, dir);
+	calc_rotation(player->dir, player->angle);
+	norm = sqrtf(powf(player->dir[X], 2.0f) + powf(player->dir[Y], 2.0f));
+	player->dir[X] = player->dir[X] / norm;
+	player->dir[Y] = player->dir[Y] / norm;
+	return ;
+}
+
+static void	control_value(float *vector, float angle, int axe)
 {
 	if (axe == X)
 	{
@@ -33,18 +46,6 @@ void	control_value(float *vector, float angle, int axe)
 		else if (angle > 180.0f && angle < 360.0f && vector[Y] < 0.0f)
 			vector[Y] *= (-1.0f);
 	}
-}
-
-void	rotate_player(t_player *player, t_dir dir)
-{
-	float	norm;
-
-	incr_angle(player, player->rotate, dir);
-	calc_rotation(player->dir, player->angle);
-	norm = sqrtf(powf(player->dir[X], 2.0f) + powf(player->dir[Y], 2.0f));
-	player->dir[X] = player->dir[X] / norm;
-	player->dir[Y] = player->dir[Y] / norm;
-	return ;
 }
 
 static void	calc_rotation(float *dir, float angle)
