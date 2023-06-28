@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 10:22:27 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/27 09:02:08 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/28 11:12:02 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	draw_background_ceiling(t_data *data)
 {
-	int		h;
-	int		w;
-	int32_t	color;
+	int			h;
+	int			w;
+	uint32_t	color;
 
 	color = color_pixel(data->textures.color_ceil[R],
 			data->textures.color_ceil[G], data->textures.color_ceil[B], 255);
@@ -35,9 +35,9 @@ void	draw_background_ceiling(t_data *data)
 
 void	draw_background_floor(t_data *data)
 {
-	int		h;
-	int		w;
-	int32_t	color;
+	int			h;
+	int			w;
+	uint32_t	color;
 
 	color = color_pixel(data->textures.color_floor[R],
 			data->textures.color_floor[G], data->textures.color_floor[B], 255);

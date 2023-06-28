@@ -6,13 +6,15 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 10:56:21 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/23 15:00:28 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/28 11:55:17 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MLX42.h"
 
-int32_t	color_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
+int32_t	color_pixel(uint32_t r, uint32_t g, uint32_t b, uint32_t a)
 {
+	if (a >= 255)
+		a = 254;
 	return (r << 24 | g << 16 | b << 8 | a);
 }

@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 08:50:20 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/27 11:09:08 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/28 11:54:31 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	delete_textures(t_data *data, int *verify);
 int		verif_verify(t_data *data, int *verify);
 //file : resize_texture.c
 int		resize_texture(t_data *data);
-void	free_textures(int32_t **textures);
+void	free_textures(uint32_t **textures);
 
 //-------------INITIALIZATION---------------//
 //file : init_player.c
@@ -54,7 +54,7 @@ int		init_images(t_data *data);
 //file : draw_map.c
 void	draw_map(t_data *data);
 //file : draw_utils.c
-int32_t	color_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
+int32_t	color_pixel(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
 //file : draw_background.c
 void	draw_background_ceiling(t_data *data);
 void	draw_background_floor(t_data *data);

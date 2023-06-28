@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 13:42:48 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/27 09:07:52 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/28 11:55:58 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 static float	init_start(float step, float length, int *y);
 static void		put_texture(t_data *data, t_ray *ray, float posx, float lengh);
-static int32_t	get_pixel(int32_t *text, float x, float y);
+static int32_t	get_pixel(uint32_t *text, float x, float y);
 
 void	draw_texture(t_data *data, t_ray *ray)
 {
@@ -36,18 +36,18 @@ void	draw_texture(t_data *data, t_ray *ray)
 		pos_tex = width_tex - pos_tex - 1;
 	if (ray->dist_perp <= 0.0f)
 		ray->dist_perp = 1.0f;
-	length = (data->unit / ray->dist_perp) * data->dfocal;
+	length = (data->unit / ray->dist_perp) * (data->dfocal);
 	put_texture(data, ray, pos_tex, length);
 	return ;
 }
 
 static void	put_texture(t_data *data, t_ray *ray, float posx, float length)
 {
-	int		y;
-	int		end;
-	float	step;
-	float	posy;
-	int32_t	color;
+	int			y;
+	int			end;
+	float		step;
+	float		posy;
+	int32_t		color;
 
 	step = SIZE / length;
 	posy = init_start(step, length, &y);
@@ -79,7 +79,7 @@ static float	init_start(float step, float length, int *y)
 	return (result);
 }
 
-static int32_t	get_pixel(int32_t *text, float x, float y)
+static int32_t	get_pixel(uint32_t *text, float x, float y)
 {
 	int	index;
 
