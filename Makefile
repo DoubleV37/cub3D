@@ -6,7 +6,7 @@
 #    By: vviovi <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/02 13:27:39 by jduval            #+#    #+#              #
-#    Updated: 2023/06/27 11:40:04 by jduval           ###   ########.fr        #
+#    Updated: 2023/06/28 11:13:46 by jduval           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -143,7 +143,7 @@ clean:
 fclean: clean
 	@${MAKE} -C libft/ fclean
 	@${MAKE} -C MLX42/build/ clean
-	rm -f cub3d cub3d_bonus
+	rm -f cub3D cub3D_bonus
 .PHONY: fclean
 
 re: fclean all

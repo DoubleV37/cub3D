@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 13:42:48 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/27 11:47:14 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/28 11:58:27 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 static float	init_start(float step, float length, int *y);
 static void		put_texture(t_data *data, t_ray *ray, float posx, float lengh);
-static int32_t	get_pixel(int32_t *text, float x, float y);
+static int32_t	get_pixel(uint32_t *text, float x, float y);
 
 void	draw_texture(t_data *data, t_ray *ray)
 {
@@ -79,7 +79,7 @@ static float	init_start(float step, float length, int *y)
 	return (result);
 }
 
-static int32_t	get_pixel(int32_t *text, float x, float y)
+static int32_t	get_pixel(uint32_t *text, float x, float y)
 {
 	int	index;
 

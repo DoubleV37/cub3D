@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 15:05:08 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/27 11:26:35 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/28 11:50:40 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 int	init_images(t_data *data)
 {
 	data->img[BACKGROUND] = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-	//data->img[BACKGROUND] = NULL;
 	if (data->img[BACKGROUND] == NULL)
 		return (printf("%s", mlx_strerror(mlx_errno)));
 	data->img[WALL] = mlx_new_image(data->mlx, WIDTH, HEIGHT);

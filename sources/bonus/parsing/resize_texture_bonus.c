@@ -6,15 +6,15 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:36:04 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/27 11:45:46 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/28 13:07:41 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 #include <stdlib.h>
 
-static void		set_scaled_texture(int32_t *text, mlx_image_t *img);
-static int32_t	**allocate_texture(void);
+static void		set_scaled_texture(uint32_t *text, mlx_image_t *img);
+static uint32_t	**allocate_texture(void);
 
 int	resize_texture(t_data *data)
 {
@@ -40,18 +40,18 @@ int	resize_texture(t_data *data)
 	return (0);
 }
 
-static int32_t	**allocate_texture(void)
+static uint32_t	**allocate_texture(void)
 {
-	int32_t	**texture;
-	int		i;
+	uint32_t	**texture;
+	int			i;
 
-	texture = malloc(sizeof(int32_t *) * (4 + 1));
+	texture = malloc(sizeof(uint32_t *) * (4 + 1));
 	if (texture == NULL)
 		return (NULL);
 	i = 0;
 	while (i < 4)
 	{
-		texture[i] = malloc(sizeof(int32_t) * (SIZE * SIZE));
+		texture[i] = malloc(sizeof(uint32_t) * (SIZE * SIZE));
 		texture[i + 1] = NULL;
 		if (texture == NULL)
 		{
@@ -63,7 +63,7 @@ static int32_t	**allocate_texture(void)
 	return (texture);
 }
 
-static void	set_scaled_texture(int32_t *text, mlx_image_t *img)
+static void	set_scaled_texture(uint32_t *text, mlx_image_t *img)
 {
 	int	i;
 	int	j;
@@ -72,7 +72,7 @@ static void	set_scaled_texture(int32_t *text, mlx_image_t *img)
 	i = 0;
 	j = 0;
 	end = img->width * 4 * img->height;
-	while (i <= end)
+	while (i < end)
 	{
 		text[j] = color_pixel(img->pixels[i], img->pixels[i + 1],
 				img->pixels[i + 2], img->pixels[i + 3]);
@@ -82,7 +82,7 @@ static void	set_scaled_texture(int32_t *text, mlx_image_t *img)
 	return ;
 }
 
-void	free_textures(int32_t **textures)
+void	free_textures(uint32_t **textures)
 {
 	int	i;
 

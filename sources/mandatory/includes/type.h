@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:43:28 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/27 17:55:07 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/06/28 14:38:42 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 # define WIDTH 1920
 # define HEIGHT 1080
-# define SIZE 1080
+# define SIZE 8640
 # define RAD_CONV 0.0174532925
 # define FOV 60
 # define ROTATE 3
@@ -115,7 +115,7 @@ typedef struct s_data
 	float		dfocal;
 	t_player	player;
 	t_texture	textures;
-	int32_t		**text;
+	uint32_t	**text;
 }	t_data;
 
 #endif
