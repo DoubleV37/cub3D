@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 14:02:26 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/23 13:46:32 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/27 18:16:19 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,6 @@ int	get_color_info(char **dataline, char place, t_data *data)
 		ft_free_array(colors);
 		return (1);
 	}
+	ft_free_array(colors);
 	return (0);
 }

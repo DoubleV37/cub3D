@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 10:57:22 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/27 11:45:34 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/28 11:46:03 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	simple_verify_map(char **map)
 		{
 			if (map[i][j] != ' ' && map[i][j] != '1' && map[i][j] != '0'
 				&& map[i][j] != 'N' && map[i][j] != 'S'
-				&& map[i][j] != 'E' && map[i][j] != 'W')
+				&& map[i][j] != 'E' && map[i][j] != 'W' && map[i][j] != 'D')
 				return (print_error_map(3));
 			if (!is_wall_simple_verif(i, j, map)
 				|| !verif_player(i, j, map, &is_player))
