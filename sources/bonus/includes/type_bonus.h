@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:43:28 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/28 12:01:24 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/28 13:46:14 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 
 # define WIDTH 1920
 # define HEIGHT 1080
-# define SIZE 2160
+# define SIZE 540
 # define RAD_CONV 0.0174532925
-# define FOV 90
+# define FOV 60
 # define ROTATE 3
 
 # include "MLX42.h"
@@ -69,6 +69,14 @@ typedef enum e_dir
 	RIGHTWARD
 }	t_dir;
 
+typedef enum e_state
+{
+	OPEN,
+	OPENING,
+	CLOSING,
+	CLOSE
+}	t_state;
+
 //------STRUCT------//
 
 typedef struct s_raytool
@@ -108,6 +116,15 @@ typedef struct s_texture
 	int				color_ceil[3];
 }	t_texture;
 
+typedef struct s_door
+{
+	int				index[2];
+	t_state			statement
+	double			time;
+	double			delta_time;
+	struct s_door	*next;
+}	t_door;
+
 typedef struct s_data
 {
 	mlx_t		*mlx;
@@ -118,6 +135,7 @@ typedef struct s_data
 	t_player	player;
 	t_texture	textures;
 	uint32_t	**text;
+	t_door		*doors;
 }	t_data;
 
 #endif
