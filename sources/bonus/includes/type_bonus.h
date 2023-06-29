@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:43:28 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/28 14:38:27 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/06/28 15:21:44 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ typedef struct s_texture
 typedef struct s_door
 {
 	int				index[2];
-	t_state			statement
+	t_state			statement;
 	double			time;
 	double			delta_time;
 	struct s_door	*next;

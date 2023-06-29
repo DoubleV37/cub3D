@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 10:57:22 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/28 11:46:03 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/06/28 16:10:57 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ static int	is_wall_simple_verif(int i, int j, char **map)
 	if ((i == 0 || i == ft_array_len(map) - 1
 			|| j == 0 || j == len_string(map[i]) - 1)
 		&& (map[i][j] != '1' && map[i][j] != ' '))
+		return (print_error_map(3));
+	if (map[i][j] == 'D' && ((map[i][j + 1] == '1' && map[i][j - 1] == '1')
+		|| (map[i + 1][j] == '1' && map[i - 1][j] == '1')))
+		return (1);
+	else if (map[i][j] == 'D')
 		return (print_error_map(3));
 	return (1);
 }
