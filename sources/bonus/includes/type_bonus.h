@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:43:28 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/29 12:48:11 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/29 17:19:51 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,6 @@ typedef enum e_dir
 	RIGHTWARD
 }	t_dir;
 
-typedef enum e_state
-{
-	OPEN,
-	OPENING,
-	CLOSING,
-	CLOSE
-}	t_state;
-
 //------STRUCT------//
 
 typedef struct s_raytool
@@ -122,7 +114,7 @@ typedef struct s_door
 {
 	int				index[2];
 	t_card			oriented[2];
-	t_state			statement;
+	bool			open;
 	double			time;
 	double			delta_time;
 	struct s_door	*next;

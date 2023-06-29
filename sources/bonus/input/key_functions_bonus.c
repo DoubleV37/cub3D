@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 08:44:08 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/29 13:41:38 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/29 16:43:11 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,12 @@ void	modifier_inputs(mlx_key_data_t keydata, void *param)
 	t_data	*data;
 
 	data = param;
-	if (keydata.key != MLX_KEY_LEFT_ALT && keydata.key != MLX_KEY_ESCAPE)
+	if (keydata.action != MLX_RELEASE)
 		return ;
-	if (keydata.action == MLX_PRESS && keydata.key == MLX_KEY_ESCAPE)
+	if (keydata.key == MLX_KEY_ESCAPE)
 		mlx_close_window(data->mlx);
+	else if (keydata.key == MLX_KEY_F)
+		door_control(data);
 	else if (keydata.action == MLX_RELEASE && keydata.key == MLX_KEY_LEFT_ALT)
 	{
 		if (data->mouse == true)
@@ -36,6 +38,7 @@ void	modifier_inputs(mlx_key_data_t keydata, void *param)
 		{
 			data->mouse = true;
 			mlx_set_cursor_mode(data->mlx, 0x00034002);
+			mlx_set_mouse_pos(data->mlx, WIDTH / 2, HEIGHT / 2);
 		}
 	}
 }
