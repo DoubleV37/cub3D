@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 16:18:47 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/27 11:44:34 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/29 11:51:12 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,14 @@ bool	check_collide(t_data *data, float x, float y)
 
 	x2 = x / data->unit;
 	y2 = y / data->unit;
-	if (data->map[y2][x2] != '0')
+	/*if (data->map[y2][x2] == 'D')
+	{
+		if (check_state_door(data->doors, x2, y2) == OPEN)
+			return (false);
+		else
+			return (true);
+	}*/
+	if (data->map[y2][x2] == '1')
 		return (true);
 	return (false);
 }

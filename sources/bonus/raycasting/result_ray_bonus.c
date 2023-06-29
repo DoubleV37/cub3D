@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 15:51:40 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/27 11:47:05 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/29 11:53:24 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 
 void	set_texture(t_ray *ray, int side, float *u_vector)
 {
+	if (ray->door == true)
+	{
+		ray->texture = D;
+		return ;
+	}
 	if (side == V)
 	{
 		if (u_vector[X] < 0.0f)

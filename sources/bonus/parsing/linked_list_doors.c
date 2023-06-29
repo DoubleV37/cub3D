@@ -6,11 +6,12 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 13:38:28 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/28 13:46:11 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/29 11:55:49 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "type.h"
+#include <stdlib.h>
 
 t_door	*create_node_door(int x, int y)
 {
@@ -33,4 +34,17 @@ void	addfront_node_door(t_door **head, t_door *node)
 		return ;
 	node->next = (*head);
 	(*head) = node;
+}
+
+void	free_lst_door(t_door **head)
+{
+	t_door	*tmp;
+
+	while ((*head) != NULL)
+	{
+		tmp = (*head);
+		(*head) = (*head)->next;
+		free(tmp);
+	}
+	return ;
 }

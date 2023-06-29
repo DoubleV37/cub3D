@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:43:28 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/28 13:46:14 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/29 11:53:52 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 # define WIDTH 1920
 # define HEIGHT 1080
-# define SIZE 540
+# define SIZE 1080
 # define RAD_CONV 0.0174532925
 # define FOV 60
 # define ROTATE 3
@@ -43,7 +43,8 @@ typedef enum e_card
 	NO,
 	SO,
 	WE,
-	EA
+	EA,
+	D
 }	t_card;
 
 typedef enum e_rgb
@@ -96,6 +97,7 @@ typedef struct s_ray
 	float	dist_perp;
 	int		texture;
 	int		num_ray;
+	bool	door;
 }	t_ray;
 
 typedef struct s_player
@@ -119,7 +121,8 @@ typedef struct s_texture
 typedef struct s_door
 {
 	int				index[2];
-	t_state			statement
+	t_card			oriented[2];
+	t_state			statement;
 	double			time;
 	double			delta_time;
 	struct s_door	*next;

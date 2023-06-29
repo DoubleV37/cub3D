@@ -6,15 +6,34 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 10:56:21 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/28 11:55:13 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/29 11:51:35 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MLX42.h"
+#include "type_bonus.h"
 
 int32_t	color_pixel(uint32_t r, uint32_t g, uint32_t b, uint32_t a)
 {
 	if (a >= 255)
 		a = 254;
 	return (r << 24 | g << 16 | b << 8 | a);
+}
+
+void	reset_map(mlx_image_t *img)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < HEIGHT)
+	{
+		j = 0;
+		while (j < WIDTH)
+		{
+			mlx_put_pixel(img, j, i, color_pixel(0, 0, 0, 0));
+			j++;
+		}
+		i++;
+	}
 }
