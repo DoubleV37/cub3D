@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 08:50:20 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/29 11:19:18 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/29 13:41:27 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,6 @@ void	rotate_player(t_player *player, t_dir dir);
 //-------------INPUT---------------//
 //file : key_functions.c
 void	user_inputs(void *param);
+void	modifier_inputs(mlx_key_data_t keydata, void *param);
 
 #endif

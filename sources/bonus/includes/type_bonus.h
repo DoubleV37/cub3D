@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:43:28 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/29 11:59:07 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/29 12:48:11 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ typedef struct s_data
 	char		**map;
 	float		unit;
 	float		dfocal;
+	bool		mouse;
 	t_player	player;
 	t_texture	textures;
 	uint32_t	**text;

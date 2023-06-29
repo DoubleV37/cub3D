@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:34:11 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/27 11:43:52 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/29 13:41:29 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int	main(int argc, char **argv)
 		ft_free_array(data.map);
 	if (flag > 0)
 		return (1);
-	mlx_set_cursor_mode(data.mlx, 0x00034002);
+	data.mouse = true;
+	mlx_key_hook(data.mlx, modifier_inputs, &data);
 	mlx_loop_hook(data.mlx, user_inputs, &data);
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);
@@ -61,5 +62,6 @@ static int	init_start(t_data *data, char **argv)
 		mlx_terminate(data->mlx);
 		return (2);
 	}
+	mlx_set_cursor_mode(data->mlx, 0x00034002);
 	return (0);
 }
