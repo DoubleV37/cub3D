@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 10:57:22 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/23 13:46:35 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/29 11:37:11 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int	valid_extension(char *path, char *extension)
 
 int	valid_color(int red, int green, int blue)
 {
-	return (red < 256 && green < 256 && blue < 256);
+	return ((red < 256 && red >= 0)
+		&& (green < 256 && green >= 0) && (blue < 256 && blue >= 0));
 }
 
 int	valid_texture(char *path_texture)
