@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 11:37:15 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/29 11:55:08 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/30 17:14:01 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static void		init_rtool(t_raytool *rtool, t_data *data,
 					float alpha, float id);
 static bool		send_ray(char **map, t_raytool *rtool, char target);
 static bool		create_ray(t_data *data, t_ray *ray, float alpha, float id);
-static float	make_alpha(float alpha);
 
 int	raycasting(t_data *data, t_player *player)
 {
@@ -31,7 +30,7 @@ int	raycasting(t_data *data, t_player *player)
 	ray.door = false;
 	while (i < WIDTH)
 	{
-		alpha = make_alpha(alpha);
+		alpha = get_right_angle(alpha);
 		if (create_ray(data, &ray, alpha, i) == true)
 			ray.door = true;
 		ray.num_ray = i;
@@ -44,7 +43,7 @@ int	raycasting(t_data *data, t_player *player)
 	return (0);
 }
 
-static float	make_alpha(float alpha)
+float	get_right_angle(float alpha)
 {
 	float	value;
 
@@ -67,7 +66,7 @@ static bool	create_ray(t_data *data, t_ray *ray, float alpha, float id)
 		(void)send_ray(data->map, &rtool, 'D');
 	else
 		door = send_ray(data->map, &rtool, '1');
-	set_texture(ray, rtool.side, rtool.u_vector);
+	set_texture(data, ray, &rtool);
 	ray->dist_perp = set_perpdist(data, &rtool);
 	set_coord(ray, &rtool, data->player.pos, alpha);
 	ray->door = false;

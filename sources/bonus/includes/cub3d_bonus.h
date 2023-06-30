@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 08:50:20 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/29 13:41:27 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/30 17:38:10 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,17 @@ int		verif_verify(t_data *data, int *verify);
 //file : resize_texture.c
 int		resize_texture(t_data *data);
 void	free_textures(uint32_t **textures);
+//file : linked_list_doors.c
+t_door	*create_node_door(int x, int y);
+void	addfront_node_door(t_door **head, t_door *node);
+void	free_door_list(t_door **head);
+t_door	*find_door(t_door **head, int y, int x);
+//file : create_door_list.c
+int		create_door_list(t_data *data);
 
 //-------------INITIALIZATION---------------//
 //file : init_player.c
-void	init_player(t_player *player, t_data *data);
+void	init_parameters(t_player *player, t_data *data);
 //file : init_images.c
 int		init_images(t_data *data);
 
@@ -70,13 +77,14 @@ int		render_start(t_data *data);
 //-------------RAYCASTING---------------//
 //file : raycasting.c
 int		raycasting(t_data *data, t_player *player);
+float	get_right_angle(float alpha);
 //file : raycasting_utils.c
 void	process_ndist(float *n_dist, float *u_vector, float unit);
 void	first_dist(t_raytool *rtool, float *pos, float unit, float alpha);
 void	process_uvector(float alpha, float *u_vector);
 bool	special_angle_uvector(float alpha, float *u_vector);
 //file : result_ray.c
-void	set_texture(t_ray *ray, int side, float *u_vector);
+void	set_texture(t_data *data, t_ray *ray, t_raytool *rtool);
 float	set_perpdist(t_data *data, t_raytool *rtool);
 void	set_coord(t_ray *ray, t_raytool *rtool, float *pos, float alpha);
 //file : texturing.c
@@ -97,4 +105,11 @@ void	rotate_player(t_player *player, t_dir dir);
 void	user_inputs(void *param);
 void	modifier_inputs(mlx_key_data_t keydata, void *param);
 
+//-------------FEATURES---------------//
+//file : door_control.c
+void	door_control(t_data *data);
+//file : door_utils.c
+t_card	door_around_player(char **map, int *index);
+t_door	*is_looking_a_door(t_door **head, char **map, t_card view, int *indexs);
+t_card	view_of_player(float angle);
 #endif

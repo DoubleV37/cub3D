@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   linked_list_doors.c                                :+:      :+:    :+:   */
+/*   linked_list_door_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 13:38:28 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/29 11:55:49 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/30 17:59:32 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "type.h"
+#include "type_bonus.h"
 #include <stdlib.h>
 
 t_door	*create_node_door(int x, int y)
@@ -22,7 +22,6 @@ t_door	*create_node_door(int x, int y)
 		return (NULL);
 	door->index[X] = x;
 	door->index[Y] = y;
-	door->statement = CLOSE;
 	door->time = 0.0;
 	door->next = NULL;
 	return (door);
@@ -32,11 +31,16 @@ void	addfront_node_door(t_door **head, t_door *node)
 {
 	if (node == NULL)
 		return ;
+	if ((*head) == NULL && node != NULL)
+	{
+		(*head) = node;
+		return ;
+	}
 	node->next = (*head);
 	(*head) = node;
 }
 
-void	free_lst_door(t_door **head)
+void	free_door_list(t_door **head)
 {
 	t_door	*tmp;
 
@@ -47,4 +51,18 @@ void	free_lst_door(t_door **head)
 		free(tmp);
 	}
 	return ;
+}
+
+t_door	*find_door(t_door **head, int x, int y)
+{
+	t_door	*door;
+
+	door = (*head);
+	while (door != NULL)
+	{
+		if (x == door->index[X] && y == door->index[Y])
+			return (door);
+		door = door->next;
+	}
+	return (NULL);
 }

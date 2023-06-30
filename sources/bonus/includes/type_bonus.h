@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:43:28 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/29 17:19:51 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/30 17:55:40 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 # define WIDTH 1920
 # define HEIGHT 1080
-# define SIZE 1080
+# define SIZE 30
 # define RAD_CONV 0.0174532925
 # define FOV 60
 # define ROTATE 3
@@ -113,7 +113,7 @@ typedef struct s_texture
 typedef struct s_door
 {
 	int				index[2];
-	t_card			oriented[2];
+	int				frame;
 	bool			open;
 	double			time;
 	double			delta_time;
@@ -130,8 +130,10 @@ typedef struct s_data
 	bool		mouse;
 	t_player	player;
 	t_texture	textures;
+	int			nbr_of_text; //----------> set protection sur le nombre de texture (ex : <= 10)
 	uint32_t	**text;
 	t_door		*doors;
+	bool		there_is_door;
 }	t_data;
 
 #endif

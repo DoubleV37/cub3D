@@ -6,7 +6,7 @@
 #    By: vviovi <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/02 13:27:39 by jduval            #+#    #+#              #
-#    Updated: 2023/06/28 11:13:46 by jduval           ###   ########.fr        #
+#    Updated: 2023/06/30 14:58:14 by jduval           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,28 +64,35 @@ SRCS 		=	main.c							\
 else
 SRC_DIR		=	sources/bonus
 BUILD_DIR 	= 	.obj_bonus
-SRCS 		=	main_bonus.c							\
-				parsing/load_map_bonus.c 				\
-				parsing/utils_map_bonus.c 				\
-				parsing/map_verif_bonus.c				\
-				parsing/content_verif_bonus.c			\
-				parsing/map_get_info_bonus.c 			\
-				parsing/verify_bonus.c 					\
-				parsing/resize_texture_bonus.c			\
-				input/key_functions_bonus.c				\
-				movements/move_player_bonus.c			\
-				movements/shift_player_bonus.c			\
-				movements/rotate_player_bonus.c			\
-				movements/wall_collision_bonus.c		\
-				draw/draw_utils_bonus.c					\
-				draw/draw_background_bonus.c			\
-				draw/render_image_bonus.c				\
-				initialization/init_images_bonus.c		\
-				initialization/init_player_bonus.c		\
-				raycasting/raycasting_bonus.c			\
-				raycasting/raycasting_utils_bonus.c		\
-				raycasting/result_ray_bonus.c			\
-				raycasting/texturing_bonus.c
+SRCS 		=	main_bonus.c								\
+				parsing/load_map_bonus.c 					\
+				parsing/utils_map_bonus.c 					\
+				parsing/map_verif_bonus.c					\
+				parsing/content_verif_bonus.c				\
+				parsing/map_get_info_bonus.c 				\
+				parsing/verify_bonus.c 						\
+				parsing/resize_texture_bonus.c				\
+				parsing/linked_list_door_bonus.c			\
+				parsing/create_door_list_bonus.c			\
+				input/key_functions_bonus.c					\
+				movements/move_player_bonus.c				\
+				movements/shift_player_bonus.c				\
+				movements/rotate_player_bonus.c				\
+				movements/wall_collision_bonus.c			\
+				draw/draw_utils_bonus.c						\
+				draw/draw_background_bonus.c				\
+				draw/render_image_bonus.c					\
+				draw/draw_player_bonus.c					\
+				draw/draw_map_bonus.c						\
+				draw/draw_line_bonus.c						\
+				initialization/init_images_bonus.c			\
+				initialization/init_parameters_bonus.c		\
+				raycasting/raycasting_bonus.c				\
+				raycasting/raycasting_utils_bonus.c			\
+				raycasting/result_ray_bonus.c				\
+				raycasting/texturing_bonus.c				\
+				features/door_control_bonus.c				\
+				features/door_utils_bonus.c
 endif
 
 SRCS		:=	$(SRCS:%=$(SRC_DIR)/%)
@@ -99,7 +106,8 @@ DEPS 		:=	$(OBJS:.o=.d)
 
 CC 			=	gcc
 
-CFLAGS 		=	-Wextra -Wall -Werror -ggdb3 -pedantic-errors -Wunused -Wunreachable-code
+CFLAGS 		=	-Wextra -Wall -Werror -ggdb3
+#-pedantic-errors -Wunused -Wunreachable-code
 
 CPPFLAGS 	=	-MMD -MP $(addprefix -I,$(INCLUDES))
 

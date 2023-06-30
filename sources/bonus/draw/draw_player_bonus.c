@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 10:55:29 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/27 11:41:51 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/30 16:15:26 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	draw_player(mlx_image_t *img, t_player *player, int unit, int flag)
 		while (x1 < x2)
 		{
 			if (flag == 1)
-				mlx_put_pixel(img, x1, y1, color_pixel(255, 0, 0, 255));
+				mlx_put_pixel(img, x1, y1, color_pixel(0, 0, 0, 255));
 			else
 				mlx_put_pixel(img, x1, y1, color_pixel(0, 0, 0, 0));
 			x1++;

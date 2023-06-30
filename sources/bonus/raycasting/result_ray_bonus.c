@@ -6,30 +6,32 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 15:51:40 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/29 11:53:24 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/30 17:55:05 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 #include <math.h>
 
-void	set_texture(t_ray *ray, int side, float *u_vector)
+static void	set_door_texture(t_data *data, t_ray *ray);
+
+void	set_texture(t_data *data, t_ray *ray, t_raytool *rtool)
 {
 	if (ray->door == true)
 	{
-		ray->texture = D;
+		set_door_texture(data, ray);
 		return ;
 	}
-	if (side == V)
+	if (rtool->side == V)
 	{
-		if (u_vector[X] < 0.0f)
+		if (rtool->u_vector[X] < 0.0f)
 			ray->texture = WE;
 		else
 			ray->texture = EA;
 	}
 	else
 	{
-		if (u_vector[Y] < 0.0f)
+		if (rtool->u_vector[Y] < 0.0f)
 			ray->texture = NO;
 		else
 			ray->texture = SO;
@@ -78,4 +80,13 @@ void	set_coord(t_ray *ray, t_raytool *rtool, float *pos, float alpha)
 	ray->pos[X] = floorf(pos[X] + x);
 	ray->pos[Y] = floorf(pos[Y] + y);
 	return ;
+}
+
+static void	set_door_texture(t_data *data, t_ray *ray)
+{
+	t_door	*door;
+
+	door = find_door(&data->doors, 
+			ray->pos[X] / SIZE, ray->pos[Y] / SIZE);
+	ray->texture = door->frame;
 }

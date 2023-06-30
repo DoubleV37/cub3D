@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   doors_utils.c                                      :+:      :+:    :+:   */
+/*   door_utils_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:45:13 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/29 17:19:49 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/30 18:00:05 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "type.h"
+#include "cub3d_bonus.h"
+#include <stdlib.h>
 
 static int	get_right_index(int var, t_card face);
 
@@ -22,18 +23,19 @@ t_card	door_around_player(char **map, int *index)
 	x = index[X];
 	y = index[Y];
 	if (map[y][x - 1] == 'D')
-		return (WE);
+		return (true);
 	else if (map[y][x + 1] == 'D')
-		return (EA);
+		return (true);
 	else if (map[y + 1][x] == 'D')
-		return (SO);
+		return (true);
 	else if (map[y - 1][x] == 'D')
-		return (NO);
+		return (true);
 	else
-		return (-1);
+		return (false);
 }
 
-t_door	*wich_door(t_door **head, int *indexs, t_card face)
+
+t_door	*is_looking_a_door(t_door **head, char **map, t_card view, int *indexs)
 {
 	t_door	*door;
 	int		x;
@@ -41,36 +43,32 @@ t_door	*wich_door(t_door **head, int *indexs, t_card face)
 
 	x = indexs[X];
 	y = indexs[Y];
-	if (face == WE || face == EA)
-		x = get_right_index(indexs[X], face);
+	if (view == WE || view == EA)
+		x = get_right_index(indexs[X], view);
 	else
-		y = get_right_index(indexs[Y], face);
-	door = (*head);
-	while (door != NULL)
+		y = get_right_index(indexs[Y], view);
+	if (map[y][x] != 'D')
+		return (NULL);
+	door = find_door(head, x, y);
+	/*while (door != NULL)
 	{
-		if (face != door->oriented[0] && face != door->oriented[1])
-		{
-			door = door->next;
-			continue ;
-		}
-		if (x == door->index[X] && y == door->index[Y] /*&& face == door->oriented*/)
+		if (x == door->index[X] && y == door->index[Y])
 			return (door);
 		door = door->next;
-	}
-	return (NULL);
+	}*/
+	return (door);
 }
 
-bool	door_in_fov(t_door *door, float angle, t_card face)
+t_card	view_of_player(float angle)
 {
-	float	plus_fov;
-	float	minus_fov;
-
-	plus_fov = get_right_angle(angle, FOV / 2);
-	minus_fov = get_right_angle(angle, -FOV / 2);
-	if (face == SO)
-	{
-		if (plus_fov >= )
-	}
+	if (angle <= 45.0f || angle >= 315.0f)
+		return (EA);
+	else if (angle > 45.0f && angle <= 135.0f)
+		return (NO);
+	else if (angle > 135.0f && angle <= 225.0f)
+		return (WE);
+	else
+		return (SO);
 }
 
 static int	get_right_index(int var, t_card face)
@@ -80,6 +78,6 @@ static int	get_right_index(int var, t_card face)
 	add = -1;
 	if (face == SO || face == EA)
 		add = 1;
-	if (axe == X)
-		var += add;
+	var += add;
+	return (var);
 }

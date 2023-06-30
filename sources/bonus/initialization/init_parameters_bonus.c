@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_player_bonus.c                                :+:      :+:    :+:   */
+/*   init_parameters_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 13:30:26 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/27 11:43:21 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/30 11:12:55 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 static t_card	find_player_pos(t_player *player, char **map);
 static void		set_vdirection(t_player *player, t_card view);
 
-void	init_player(t_player *player, t_data *data)
+void	init_parameters(t_player *player, t_data *data)
 {
 	t_card	start_view;
 
@@ -33,6 +33,10 @@ void	init_player(t_player *player, t_data *data)
 	player->rotate = ROTATE;
 	player->delta_angle = (int)FOV / (float)WIDTH;
 	mlx_set_mouse_pos(data->mlx, WIDTH / 2, HEIGHT / 2);
+	if (data->doors != NULL)
+		data->there_is_door = true;
+	else
+		data->there_is_door = false;
 }
 
 static void	set_vdirection(t_player *player, t_card start)

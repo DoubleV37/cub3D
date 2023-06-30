@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:34:11 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/29 13:41:29 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/30 14:28:23 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,18 @@ int	main(int argc, char **argv)
 		return (print_error_map(404));
 	flag = init_start(&data, argv);
 	if (flag == 2)
+	{
+		free_door_list(&data.doors);
 		ft_free_array(data.map);
+	}
 	if (flag > 0)
 		return (1);
-	data.mouse = true;
 	mlx_key_hook(data.mlx, modifier_inputs, &data);
 	mlx_loop_hook(data.mlx, user_inputs, &data);
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);
 	ft_free_array(data.map);
+	free_door_list(&data.doors);
 	free_textures(data.text);
 	return (0);
 }
@@ -49,19 +52,21 @@ static int	init_start(t_data *data, char **argv)
 		printf("%s", mlx_strerror(mlx_errno));
 		return (2);
 	}
-	if (init_images(data) != 0)
+	if (init_images(data) != 0 || create_door_list(data) != 0)
 	{
 		mlx_terminate(data->mlx);
 		return (2);
 	}
-	init_player(&data->player, data);
-	draw_background_ceiling(data);
-	draw_background_floor(data);
+	init_parameters(&data->player, data);
+	//draw_background_ceiling(data);
+	//draw_background_floor(data);
+	draw_map(data);
 	if (render_start(data) == 1 || resize_texture(data) == 1)
 	{
 		mlx_terminate(data->mlx);
 		return (2);
 	}
 	mlx_set_cursor_mode(data->mlx, 0x00034002);
+	data->mouse = true;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 08:44:08 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/29 16:43:11 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/30 14:55:54 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	modifier_inputs(mlx_key_data_t keydata, void *param)
 		return ;
 	if (keydata.key == MLX_KEY_ESCAPE)
 		mlx_close_window(data->mlx);
-	else if (keydata.key == MLX_KEY_F)
+	else if (data->there_is_door == true && keydata.key == MLX_KEY_F)
 		door_control(data);
 	else if (keydata.action == MLX_RELEASE && keydata.key == MLX_KEY_LEFT_ALT)
 	{
@@ -48,9 +48,13 @@ void	user_inputs(void *param)
 	t_data	*data;
 
 	data = param;
+	draw_player(data->img[PLAYER], &data->player, SIZE, 0);
+	draw_pov(data, &data->player, 0);
 	movement_key(data);
 	mouse_control(data);
-	raycasting(data, &data->player);
+	//raycasting(data, &data->player);
+	draw_player(data->img[PLAYER], &data->player, SIZE, 1);
+	draw_pov(data, &data->player, 1);
 	return ;
 }
 

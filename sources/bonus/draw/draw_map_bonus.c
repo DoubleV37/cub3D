@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:05:05 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/27 11:41:39 by jduval           ###   ########.fr       */
+/*   Updated: 2023/06/30 16:41:41 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,27 @@ static void	fill_border(mlx_image_t *img, int unit)
 	}
 }
 
+static void	fill_door(mlx_image_t *img, int x, int y, int unit)
+{
+	int	x2;
+	int	y2;
+
+	y *= unit;
+	x *= unit;
+	x2 = x + unit;
+	y2 = y + unit;
+	while (y < y2)
+	{
+		x = x2 - unit;
+		while (x < x2)
+		{
+			mlx_put_pixel(img, x, y, color_pixel(255, 0, 0, 255));
+			x++;
+		}
+		y++;
+	}
+}
+
 void	draw_map(t_data *data)
 {
 	int	i;
@@ -93,6 +114,8 @@ void	draw_map(t_data *data)
 				fill_floor(data->img[MAP], j, i, data->unit);
 			else if (data->map[i][j] && data->map[i][j] == '1')
 				fill_wall(data->img[MAP], j, i, data->unit);
+			else if (data->map[i][j] && data->map[i][j] == 'D')
+				fill_door(data->img[MAP], j, i, data->unit);
 			j++;
 		}
 		i++;
