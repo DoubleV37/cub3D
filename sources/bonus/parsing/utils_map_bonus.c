@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 11:32:35 by vviovi            #+#    #+#             */
-/*   Updated: 2023/07/03 16:33:29 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/07/03 16:57:59 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,8 @@ int	print_error_map(int type_error)
 {
 	if (type_error == 404)
 		ft_putstr_fd(2, "Error\nNo map found\n");
-	else if (type_error == 0)
-		ft_putstr_fd(2, "Error\nWrong file extension\n");
 	else if (type_error == 1)
 		ft_putstr_fd(2, "Error\nWrong map parameters\n");
-	else if (type_error == 2)
-		ft_putstr_fd(2, "Error\nWrong color\n");
 	else if (type_error == 3)
 		ft_putstr_fd(2, "Error\nMap incorrect\n");
 	else if (type_error == 4)
