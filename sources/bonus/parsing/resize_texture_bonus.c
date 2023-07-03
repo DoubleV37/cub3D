@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   resize_texture_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:36:04 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/28 13:07:41 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/03 16:27:38 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	resize_texture(t_data *data)
 		mlx_delete_image(data->mlx, tmp);
 		i++;
 	}
-	clean_texture_nb(&data->textures, 4);
+	clean_texture_nb(&data->textures, 4, data->door_frames);
 	return (0);
 }
 

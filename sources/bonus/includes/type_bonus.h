@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:43:28 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/30 17:55:40 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/03 11:19:08 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ typedef struct s_player
 
 typedef struct s_texture
 {
-	mlx_texture_t	*texture[4];
+	mlx_texture_t	*texture[9];
 	int				color_floor[3];
 	int				color_ceil[3];
 }	t_texture;
@@ -130,7 +130,7 @@ typedef struct s_data
 	bool		mouse;
 	t_player	player;
 	t_texture	textures;
-	int			nbr_of_text; //----------> set protection sur le nombre de texture (ex : <= 10)
+	int			door_frames; //----------> set protection sur le nombre de texture porte (ex : <= 10)
 	uint32_t	**text;
 	t_door		*doors;
 	bool		there_is_door;

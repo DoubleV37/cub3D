@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 11:32:35 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/27 11:46:12 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/03 16:33:29 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,19 @@ int	len_string(char *str)
 	return (i);
 }
 
-void	clean_texture_nb(t_texture *textures, int nb_textures)
+void	clean_texture_nb(t_texture *textures, int nb_textures, int door_frames)
 {
 	int	i;
 
 	i = 0;
 	while (i < nb_textures)
+	{
+		if (textures->texture[i])
+			mlx_delete_texture(textures->texture[i]);
+		i++;
+	}
+	i = 4;
+	while (i < 4 + door_frames)
 	{
 		if (textures->texture[i])
 			mlx_delete_texture(textures->texture[i]);
