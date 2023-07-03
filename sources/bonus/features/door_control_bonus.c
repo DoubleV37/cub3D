@@ -6,14 +6,14 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:17:00 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/03 10:26:58 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/03 18:26:28 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 #include <stdlib.h>
 
-static void	fill_door(mlx_image_t *img, int x, int y, int unit, int type);
+//static void	fill_door(mlx_image_t *img, int x, int y, int unit, int type);
 
 void	door_control(t_data *data)
 {
@@ -26,17 +26,17 @@ void	door_control(t_data *data)
 	door = is_looking_a_door(&data->doors, data->map, view, data->player.indexs);
 	if (door == NULL)
 		return ;
-	if (door->open == true)
-		fill_door(data->img[MAP], door->index[X], door->index[Y], SIZE, 0);
-	else
-		fill_door(data->img[MAP], door->index[X], door->index[Y], SIZE, 1);
+	//if (door->open == true)
+	//	fill_door(data->img[MAP], door->index[X], door->index[Y], SIZE, 0);
+	//else
+	//	fill_door(data->img[MAP], door->index[X], door->index[Y], SIZE, 1);
 	//if (door->open == true)
 	//	closing_door(data, door);
 	//else
 	//	opening_door(data, door)
 	door->open ^= true;
 }
-
+/*
 static void	fill_door(mlx_image_t *img, int x, int y, int unit, int type)
 {
 	int	x2;
@@ -59,4 +59,4 @@ static void	fill_door(mlx_image_t *img, int x, int y, int unit, int type)
 		}
 		y++;
 	}
-}
+}*/

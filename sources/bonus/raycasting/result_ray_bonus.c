@@ -6,20 +6,20 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 15:51:40 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/03 10:55:08 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/03 19:08:16 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 #include <math.h>
 
-static void	set_door_texture(t_data *data, t_ray *ray);
+static void	set_door_texture(t_data *data, t_raytool *rtool, t_ray *ray);
 
 void	set_texture(t_data *data, t_ray *ray, t_raytool *rtool)
 {
 	if (ray->door == true)
 	{
-		set_door_texture(data, ray);
+		set_door_texture(data, rtool, ray);
 		return ;
 	}
 	if (rtool->side == V)
@@ -81,12 +81,12 @@ void	set_coord(t_ray *ray, t_raytool *rtool, float *pos, float alpha)
 	ray->pos[Y] = floorf(pos[Y] + y);
 	return ;
 }
-
-static void	set_door_texture(t_data *data, t_ray *ray)
+#include <stdio.h>
+static void	set_door_texture(t_data *data, t_raytool *rtool, t_ray *ray)
 {
 	t_door	*door;
 
-	door = find_door(&data->doors, 
-			ray->pos[X] / SIZE, ray->pos[Y] / SIZE);
+	door = find_door(&data->doors, rtool->ind[X], rtool->ind[Y]);
 	ray->texture = door->frame;
+	printf("frame = %i\n", ray->texture);
 }
