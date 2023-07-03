@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 08:50:20 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/30 17:38:10 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/03 16:29:39 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*gnl_skip_void(int fd_file);
 int		len_dbl_tab(char **tab);
 int		len_string(char *str);
 int		print_error_map(int type_error);
-void	clean_texture_nb(t_texture *textures, int nb_textures);
+void	clean_texture_nb(t_texture *textures, int nb_textures, int door_frames);
 //file : load_map.c
 int		load_file(char **argv, t_data *data);
 //file : verify.c

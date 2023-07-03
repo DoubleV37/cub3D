@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 11:32:35 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/27 11:46:12 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/03 16:57:59 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,19 @@ int	len_string(char *str)
 	return (i);
 }
 
-void	clean_texture_nb(t_texture *textures, int nb_textures)
+void	clean_texture_nb(t_texture *textures, int nb_textures, int door_frames)
 {
 	int	i;
 
 	i = 0;
 	while (i < nb_textures)
+	{
+		if (textures->texture[i])
+			mlx_delete_texture(textures->texture[i]);
+		i++;
+	}
+	i = 4;
+	while (i < 4 + door_frames)
 	{
 		if (textures->texture[i])
 			mlx_delete_texture(textures->texture[i]);
@@ -74,12 +81,8 @@ int	print_error_map(int type_error)
 {
 	if (type_error == 404)
 		ft_putstr_fd(2, "Error\nNo map found\n");
-	else if (type_error == 0)
-		ft_putstr_fd(2, "Error\nWrong file extension\n");
 	else if (type_error == 1)
 		ft_putstr_fd(2, "Error\nWrong map parameters\n");
-	else if (type_error == 2)
-		ft_putstr_fd(2, "Error\nWrong color\n");
 	else if (type_error == 3)
 		ft_putstr_fd(2, "Error\nMap incorrect\n");
 	else if (type_error == 4)
