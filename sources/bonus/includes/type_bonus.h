@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:43:28 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/30 17:55:40 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/03 10:53:01 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ typedef enum e_img
 {
 	BACKGROUND,
 	WALL,
-	MAP,
-	PLAYER,
 }	t_img;
 
 typedef enum e_dir
@@ -123,7 +121,7 @@ typedef struct s_door
 typedef struct s_data
 {
 	mlx_t		*mlx;
-	mlx_image_t	*img[4];
+	mlx_image_t	*img[2];
 	char		**map;
 	float		unit;
 	float		dfocal;

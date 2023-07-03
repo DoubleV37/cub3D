@@ -6,12 +6,15 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 16:18:47 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/29 11:51:12 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/03 10:36:37 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
-#include "type_bonus.h"
+//#include <stdbool.h>
+#include <stdlib.h>
+#include "cub3d_bonus.h"
+
+static bool	door_is_open(t_door **head, int x, int y);
 
 bool	check_collide(t_data *data, float x, float y)
 {
@@ -20,14 +23,27 @@ bool	check_collide(t_data *data, float x, float y)
 
 	x2 = x / data->unit;
 	y2 = y / data->unit;
-	/*if (data->map[y2][x2] == 'D')
+	if (data->map[y2][x2] == 'D')
 	{
-		if (check_state_door(data->doors, x2, y2) == OPEN)
+		if (door_is_open(&data->doors, x2, y2) == true)
 			return (false);
 		else
 			return (true);
-	}*/
+	}
 	if (data->map[y2][x2] == '1')
 		return (true);
 	return (false);
+}
+
+static bool	door_is_open(t_door **head, int x, int y)
+{
+	t_door	*door;
+
+	door = find_door(head, x, y);
+	if (door == NULL)
+		return (true);
+	if (door->open == true)
+		return (true);
+	else
+		return (false);
 }

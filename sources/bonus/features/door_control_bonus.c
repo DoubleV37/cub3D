@@ -6,13 +6,12 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:17:00 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/30 17:55:35 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/03 10:26:58 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 static void	fill_door(mlx_image_t *img, int x, int y, int unit, int type);
 

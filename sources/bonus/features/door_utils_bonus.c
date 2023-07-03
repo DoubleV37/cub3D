@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:45:13 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/30 18:00:05 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/03 10:29:38 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,6 @@ t_door	*is_looking_a_door(t_door **head, char **map, t_card view, int *indexs)
 	if (map[y][x] != 'D')
 		return (NULL);
 	door = find_door(head, x, y);
-	/*while (door != NULL)
-	{
-		if (x == door->index[X] && y == door->index[Y])
-			return (door);
-		door = door->next;
-	}*/
 	return (door);
 }
 
