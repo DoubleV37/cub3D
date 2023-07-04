@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 13:42:48 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/03 19:22:14 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/04 17:35:09 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,17 @@ static float	init_start(float step, float length, int *y);
 static void		put_texture(t_data *data, t_ray *ray, float posx, float lengh);
 static int32_t	get_pixel(uint32_t *text, float x, float y);
 
-void	draw_texture(t_data *data, t_ray *ray)
+void	draw_texture(t_data *data, t_ray *ray, int nbr_ray)
 {
 	float	length;
 	float	pos_tex;
 	float	width_tex;
 
-	ray->num_ray = 1919 - ray->num_ray;
-	if (ray->texture == EA || ray->texture == WE)
-		pos_tex = ray->pos[Y] / data->unit;
+	ray->num_ray = WIDTH - 1 - nbr_ray;
+	if (ray->side == V)
+		pos_tex = ray->pos[Y] / (float)SIZE;
 	else
-		pos_tex = ray->pos[X] / data->unit;
+		pos_tex = ray->pos[X] / (float)SIZE;
 	pos_tex = modff(pos_tex, &width_tex);
 	width_tex = SIZE;
 	pos_tex = roundf(width_tex * pos_tex);
@@ -58,7 +58,7 @@ static void	put_texture(t_data *data, t_ray *ray, float posx, float length)
 	{
 		color = get_pixel(data->text[ray->texture], posx, posy);
 		if (color != -1)
-			mlx_put_pixel(data->img[WALL], ray->num_ray, y, color);
+			mlx_put_pixel(data->img[ray->img], ray->num_ray, y, color);
 		posy += step;
 		y++;
 	}

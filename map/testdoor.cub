@@ -2,6 +2,14 @@ NO textures/color/red.png
 SO textures/color/green.png
 WE textures/color/bleu.png
 EA textures/color/white.png
+D textures/door/P01.png
+D textures/door/P02.png
+D textures/door/P02.png
+D textures/door/P03.png
+D textures/door/P03.png
+D textures/door/P04.png
+D textures/door/P04.png
+D textures/door/P05.png
 
 F 238,130,238
 C 238,130,238
@@ -9,8 +17,8 @@ C 238,130,238
 11111111111111111
 10000000000000001
 10000011D11000001
-10000010N01000001
-100000D000D000001
+10000010001000001
+100000D0N0D000001
 10000010001000001
 10000011D11000001
 10000000000000001

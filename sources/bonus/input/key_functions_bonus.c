@@ -6,12 +6,13 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 08:44:08 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/03 17:33:18 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/04 17:28:52 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 #include "MLX42.h"
+#include <stdio.h>
 
 static void	mouse_control(t_data *data);
 static void	movement_key(t_data *data);
@@ -48,13 +49,10 @@ void	user_inputs(void *param)
 	t_data	*data;
 
 	data = param;
-	//draw_player(data->img[PLAYER], &data->player, SIZE, 0);
-	//draw_pov(data, &data->player, 0);
+	door_animation(data->doors, data->door_frames);
 	movement_key(data);
 	mouse_control(data);
 	raycasting(data, &data->player);
-	//draw_player(data->img[PLAYER], &data->player, SIZE, 1);
-	//draw_pov(data, &data->player, 1);
 	return ;
 }
 

@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:43:28 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/03 19:22:12 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/04 17:41:10 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 //------DEFINE------//
 
-# define WIDTH 1920
-# define HEIGHT 1080
-# define SIZE 480
+# define WIDTH 1280
+# define HEIGHT 720
+# define SIZE 1080
 # define RAD_CONV 0.0174532925
 # define FOV 60
 # define ROTATE 3
@@ -58,6 +58,7 @@ typedef enum e_img
 {
 	BACKGROUND,
 	WALL,
+	DOOR,
 	MAP,
 	PLAYER
 }	t_img;
@@ -69,6 +70,14 @@ typedef enum e_dir
 	LEFTWARD,
 	RIGHTWARD
 }	t_dir;
+
+typedef enum e_status
+{
+	OPEN,
+	OPENING,
+	CLOSING,
+	CLOSE
+}	t_status;
 
 //------STRUCT------//
 
@@ -89,8 +98,9 @@ typedef struct s_ray
 	int		index[2];
 	float	dist_perp;
 	int		texture;
+	int		side;
 	int		num_ray;
-	bool	door;
+	t_img	img;
 }	t_ray;
 
 typedef struct s_player
@@ -106,7 +116,7 @@ typedef struct s_player
 
 typedef struct s_texture
 {
-	mlx_texture_t	*texture[9];
+	mlx_texture_t	*texture[12];
 	int				color_floor[3];
 	int				color_ceil[3];
 }	t_texture;
@@ -115,7 +125,7 @@ typedef struct s_door
 {
 	int				index[2];
 	int				frame;
-	bool			open;
+	t_status		status;
 	double			time;
 	double			delta_time;
 	struct s_door	*next;
@@ -124,14 +134,14 @@ typedef struct s_door
 typedef struct s_data
 {
 	mlx_t		*mlx;
-	mlx_image_t	*img[4];
+	mlx_image_t	*img[5];
 	char		**map;
 	float		unit;
 	float		dfocal;
 	bool		mouse;
 	t_player	player;
 	t_texture	textures;
-	int			door_frames; //----------> set protection sur le nombre de texture porte (ex : <= 10)
+	int			door_frames;
 	uint32_t	**text;
 	t_door		*doors;
 	bool		there_is_door;

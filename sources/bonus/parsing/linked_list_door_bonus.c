@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 13:38:28 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/03 19:05:19 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/04 16:24:35 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_door	*create_node_door(int x, int y)
 	door = malloc(sizeof(t_door));
 	if (door == NULL)
 		return (NULL);
+	door->status = CLOSE;
 	door->index[X] = x;
 	door->index[Y] = y;
 	door->time = 0.0;

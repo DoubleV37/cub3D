@@ -6,7 +6,7 @@
 #    By: vviovi <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/02 13:27:39 by jduval            #+#    #+#              #
-#    Updated: 2023/06/30 14:58:14 by jduval           ###   ########.fr        #
+#    Updated: 2023/07/04 16:40:58 by jduval           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,10 +88,13 @@ SRCS 		=	main_bonus.c								\
 				initialization/init_images_bonus.c			\
 				initialization/init_parameters_bonus.c		\
 				raycasting/raycasting_bonus.c				\
+				raycasting/ray_wall.c						\
+				raycasting/ray_door.c						\
 				raycasting/raycasting_utils_bonus.c			\
 				raycasting/result_ray_bonus.c				\
 				raycasting/texturing_bonus.c				\
 				features/door_control_bonus.c				\
+				features/door_animation_bonus.c				\
 				features/door_utils_bonus.c
 endif
 
