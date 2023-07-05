@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:05:05 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/04 17:11:35 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/07/05 10:29:18 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,17 +107,17 @@ void	draw_map(t_data *data)
 //decalage surement à cause des imprecisions de float
 	i = (int)(data->player.pos[Y]) / SIZE - 5;
 	start[Y] = 0;
-	ft_printf("EE start[Y] = %d | i : %d\n", start[Y], i);
+	//ft_printf("EE start[Y] = %d | i : %d\n", start[Y], i);
 	if (i < 0)
 	{
 		start[Y] = (i * -1) * 30;
 		i = 0;
 	}
-	ft_printf("start[Y] = %d | i : %d\n", start[Y], i);
+	//ft_printf("start[Y] = %d | i : %d\n", start[Y], i);
 	//end[Y] = start[Y] + 30;
 	//if ((int)(data->player.pos[Y]) % SIZE != 0)
 		end[Y] = start[Y] + 30 - ((int)(data->player.pos[Y]) % SIZE * 30 / SIZE);
-	ft_printf("end[Y] = %d\n", end[Y]);
+	//ft_printf("end[Y] = %d\n", end[Y]);
 	while (i < (int)(data->player.pos[Y]) / SIZE + 5 && data->map[i] != NULL)
 	{
 		j = (int)(data->player.pos[X]) / SIZE - 5;
@@ -127,14 +127,14 @@ void	draw_map(t_data *data)
 			start[X] = (j * -1) * 30;
 			j = 0;
 		}
-		ft_printf("i = %d, j = %d\n", i, j);
+		//ft_printf("i = %d, j = %d\n", i, j);
 		//end[X] = start[X] + 30;
 		//ft_printf("pos[X] = %d\n", (int)data->player.pos[X] % SIZE);
 		//if ((int)(data->player.pos[X]) % SIZE != 0)
 			end[X] = start[X] + 30 - ((int)(data->player.pos[X]) % SIZE * 30 / SIZE);
 		while (data->map[i][j] != '\0' && j < (int)(data->player.pos[X]) / SIZE + 5)
 		{
-			ft_printf("start[X] = %d, start[Y] = %d, end[X] = %d, end[Y] = %d\n", start[X], start[Y], end[X], end[Y]);
+			//ft_printf("start[X] = %d, start[Y] = %d, end[X] = %d, end[Y] = %d\n", start[X], start[Y], end[X], end[Y]);
 			if (data->map[i][j] && data->map[i][j] == '0')
 				fill_floor(data->img[MAP], start, end);
 			else if (data->map[i][j] && data->map[i][j] == '1')
