@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:43:28 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/04 16:49:28 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/07/05 10:25:08 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef enum e_img
 {
 	BACKGROUND,
 	WALL,
+	DOOR,
 	MAP,
 	PLAYER
 }	t_img;
@@ -69,6 +70,14 @@ typedef enum e_dir
 	LEFTWARD,
 	RIGHTWARD
 }	t_dir;
+
+typedef enum e_status
+{
+	OPEN,
+	OPENING,
+	CLOSING,
+	CLOSE
+}	t_status;
 
 //------STRUCT------//
 
@@ -86,10 +95,12 @@ typedef struct s_raytool
 typedef struct s_ray
 {
 	float	pos[2];
+	int		index[2];
 	float	dist_perp;
 	int		texture;
+	int		side;
 	int		num_ray;
-	bool	door;
+	t_img	img;
 }	t_ray;
 
 typedef struct s_player
@@ -105,7 +116,7 @@ typedef struct s_player
 
 typedef struct s_texture
 {
-	mlx_texture_t	*texture[9];
+	mlx_texture_t	*texture[12];
 	int				color_floor[3];
 	int				color_ceil[3];
 }	t_texture;
@@ -114,23 +125,24 @@ typedef struct s_door
 {
 	int				index[2];
 	int				frame;
-	bool			open;
+	t_status		status;
 	double			time;
 	double			delta_time;
+	int				timelaps;
 	struct s_door	*next;
 }	t_door;
 
 typedef struct s_data
 {
 	mlx_t		*mlx;
-	mlx_image_t	*img[4];
+	mlx_image_t	*img[5];
 	char		**map;
 	float		unit;
 	float		dfocal;
 	bool		mouse;
 	t_player	player;
 	t_texture	textures;
-	int			door_frames; //----------> set protection sur le nombre de texture porte (ex : <= 10)
+	int			door_frames;
 	uint32_t	**text;
 	t_door		*doors;
 	bool		there_is_door;

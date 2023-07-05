@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 16:18:47 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/03 10:36:37 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/04 12:58:55 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static bool	door_is_open(t_door **head, int x, int y)
 	door = find_door(head, x, y);
 	if (door == NULL)
 		return (true);
-	if (door->open == true)
+	if (door->status == OPEN)
 		return (true);
 	else
 		return (false);

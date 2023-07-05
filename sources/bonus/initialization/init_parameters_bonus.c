@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 13:30:26 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/30 11:12:55 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/04 17:34:34 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	init_parameters(t_player *player, t_data *data)
 	data->dfocal = (WIDTH / 2) / (tanf((FOV / 2) * RAD_CONV));
 	start_view = find_player_pos(player, data->map);
 	data->map[player->indexs[Y]][player->indexs[X]] = '0';
-	player->pos[X] = (player->indexs[X] * data->unit + data->unit / 2.0f);
-	player->pos[Y] = (player->indexs[Y] * data->unit + data->unit / 2.0f);
+	player->pos[X] = (player->indexs[X] * SIZE + SIZE / 2.0f);
+	player->pos[Y] = (player->indexs[Y] * SIZE + SIZE / 2.0f);
 	set_vdirection(player, start_view);
 	player->speed = SIZE / 20;
 	player->rotate = ROTATE;

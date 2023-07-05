@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 08:44:08 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/04 08:32:01 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/07/05 10:24:19 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,10 @@ void	user_inputs(void *param)
 	t_data	*data;
 
 	data = param;
-	draw_player(data->img[PLAYER], &data->player, SIZE, 0);
-	draw_pov(data, &data->player, 0);
+	door_animation(data->doors, data->door_frames);
 	movement_key(data);
 	mouse_control(data);
-	//raycasting(data, &data->player);
+	raycasting(data, &data->player);
 	draw_player(data->img[PLAYER], &data->player, SIZE, 1);
 	reset_map(data->img[MAP]);
 	draw_map(data);

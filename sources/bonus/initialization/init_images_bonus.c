@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 15:05:08 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/27 11:43:03 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/04 09:45:56 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ int	init_images(t_data *data)
 		return (printf("%s", mlx_strerror(mlx_errno)));
 	data->img[PLAYER] = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	if (data->img[PLAYER] == NULL)
+		return (printf("%s", mlx_strerror(mlx_errno)));
+	data->img[DOOR] = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+	if (data->img[DOOR] == NULL)
 		return (printf("%s", mlx_strerror(mlx_errno)));
 	return (0);
 }

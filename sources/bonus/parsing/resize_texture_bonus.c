@@ -6,15 +6,16 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:36:04 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/03 16:27:38 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/07/03 19:21:53 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 static void		set_scaled_texture(uint32_t *text, mlx_image_t *img);
-static uint32_t	**allocate_texture(void);
+static uint32_t	**allocate_texture(int door_frames);
 
 int	resize_texture(t_data *data)
 {
@@ -22,10 +23,10 @@ int	resize_texture(t_data *data)
 	mlx_image_t	*tmp;
 
 	i = 0;
-	data->text = allocate_texture();
+	data->text = allocate_texture(data->door_frames);
 	if (data->text == NULL)
 		return (1);
-	while (i < 4)
+	while (i < 4 + data->door_frames)
 	{
 		tmp = mlx_texture_to_image(data->mlx, data->textures.texture[i]);
 		if (tmp == NULL)
@@ -40,16 +41,16 @@ int	resize_texture(t_data *data)
 	return (0);
 }
 
-static uint32_t	**allocate_texture(void)
+static uint32_t	**allocate_texture(int	door_frames)
 {
 	uint32_t	**texture;
 	int			i;
 
-	texture = malloc(sizeof(uint32_t *) * (4 + 1));
+	texture = malloc(sizeof(uint32_t *) * (4 + door_frames + 1));
 	if (texture == NULL)
 		return (NULL);
 	i = 0;
-	while (i < 4)
+	while (i < 4 + door_frames)
 	{
 		texture[i] = malloc(sizeof(uint32_t) * (SIZE * SIZE));
 		texture[i + 1] = NULL;

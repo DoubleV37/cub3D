@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 08:50:20 by vviovi            #+#    #+#             */
-/*   Updated: 2023/07/03 16:29:39 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/07/04 17:17:29 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	draw_line(mlx_image_t *img, float *pos, int32_t color);
 void	draw_pov(t_data *data, t_player *player, int flag);
 //file : draw_utils.c
 int32_t	color_pixel(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
-void	reset_map(mlx_image_t *img);
+void	reset_map(t_data *data);
 //file : draw_background.c
 void	draw_background_ceiling(t_data *data);
 void	draw_background_floor(t_data *data);
@@ -76,8 +76,12 @@ int		render_start(t_data *data);
 
 //-------------RAYCASTING---------------//
 //file : raycasting.c
-int		raycasting(t_data *data, t_player *player);
+void	raycasting(t_data *data, t_player *player);
 float	get_right_angle(float alpha);
+//file : ray_wall.c
+bool	ray_wall(t_data *data, t_ray *ray, float alpha, float id);
+//file : ray_door.c
+bool	ray_door(t_data *data, t_ray *ray, float alpha, float id);
 //file : raycasting_utils.c
 void	process_ndist(float *n_dist, float *u_vector, float unit);
 void	first_dist(t_raytool *rtool, float *pos, float unit, float alpha);
@@ -88,7 +92,7 @@ void	set_texture(t_data *data, t_ray *ray, t_raytool *rtool);
 float	set_perpdist(t_data *data, t_raytool *rtool);
 void	set_coord(t_ray *ray, t_raytool *rtool, float *pos, float alpha);
 //file : texturing.c
-void	draw_texture(t_data *data, t_ray *ray);
+void	draw_texture(t_data *data, t_ray *ray, int nbr_ray);
 
 //-------------MOVEMENTS---------------//
 //file : move_player.c
@@ -108,6 +112,10 @@ void	modifier_inputs(mlx_key_data_t keydata, void *param);
 //-------------FEATURES---------------//
 //file : door_control.c
 void	door_control(t_data *data);
+void	door_animation(t_door *doors, int nbr_frames);
+//file : door_animation.c
+void	opening_door(t_door *door, int nbr_frames);
+void	closing_door(t_door *door);
 //file : door_utils.c
 t_card	door_around_player(char **map, int *index);
 t_door	*is_looking_a_door(t_door **head, char **map, t_card view, int *indexs);
