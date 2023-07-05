@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:34:11 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/05 10:22:47 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/07/05 15:41:45 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include <stdio.h>
 
 static int	init_start(t_data *data, char **argv);
+static void	draw_start(t_data *data);
+static int	init_parsing_mlx(t_data *data, char **argv);
 
 int	main(int argc, char **argv)
 {
@@ -24,9 +26,11 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		return (print_error_map(404));
+	data.doors = NULL;
 	flag = init_start(&data, argv);
 	if (flag == 2)
 	{
+		clean_texture_nb(&data.textures, 4, data.door_frames);
 		free_door_list(&data.doors);
 		ft_free_array(data.map);
 	}
@@ -44,29 +48,48 @@ int	main(int argc, char **argv)
 
 static int	init_start(t_data *data, char **argv)
 {
+	int	flag;
+
+	flag = init_parsing_mlx(data, argv);
+	if (flag > 0)
+		return (flag);
+	init_parameters(&data->player, data);
+	if (init_images(data) != 0 || render_start(data) == 1
+		|| resize_texture(data) == 1)
+	{
+		mlx_terminate(data->mlx);
+		return (2);
+	}
+	draw_start(data);
+	return (0);
+}
+
+static int	init_parsing_mlx(t_data *data, char **argv)
+{
 	if (!load_file(argv, data))
 		return (1);
+	if (data->door_frames <= 1)
+	{
+		printf("Need at least 2 frames of door\n");
+		return (2);
+	}
 	data->mlx = mlx_init(WIDTH, HEIGHT, "Cub3D", true);
 	if (data->mlx == NULL)
 	{
 		printf("%s", mlx_strerror(mlx_errno));
 		return (2);
 	}
-	if (init_images(data) != 0 || create_door_list(data) != 0)
+	if (create_door_list(data) != 0)
 	{
 		mlx_terminate(data->mlx);
 		return (2);
 	}
-	init_parameters(&data->player, data);
+	return (0);
+}
+
+static void	draw_start(t_data *data)
+{
 	draw_background_ceiling(data);
 	draw_background_floor(data);
 	draw_map(data);
-	if (render_start(data) == 1 || resize_texture(data) == 1)
-	{
-		mlx_terminate(data->mlx);
-		return (2);
-	}
-	mlx_set_cursor_mode(data->mlx, 0x00034002);
-	data->mouse = true;
-	return (0);
 }

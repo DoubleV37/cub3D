@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 08:50:20 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/28 11:54:31 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/05 14:08:34 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ int		simple_verify_map(char **map);
 int		is_wall_surround(char **map);
 //file : utils_map.c
 char	*gnl_skip_void(int fd_file);
-int		len_dbl_tab(char **tab);
-int		len_string(char *str);
 int		print_error_map(int type_error);
 void	clean_texture_nb(t_texture *textures, int nb_textures);
 //file : load_map.c
@@ -65,8 +63,8 @@ int		render_start(t_data *data);
 //file : raycasting.c
 int		raycasting(t_data *data, t_player *player);
 //file : raycasting_utils.c
-void	process_ndist(float *n_dist, float *u_vector, float unit);
-void	first_dist(t_raytool *rtool, float *pos, float unit, float alpha);
+void	process_ndist(float *n_dist, float *u_vector);
+void	first_dist(t_raytool *rtool, float *pos, float alpha);
 void	process_uvector(float alpha, float *u_vector);
 bool	special_angle_uvector(float alpha, float *u_vector);
 //file : result_ray.c

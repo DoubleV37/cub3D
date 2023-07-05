@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 13:30:26 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/04 17:34:34 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/05 15:34:14 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	init_parameters(t_player *player, t_data *data)
 {
 	t_card	start_view;
 
-	data->unit = SIZE;
 	data->dfocal = (WIDTH / 2) / (tanf((FOV / 2) * RAD_CONV));
 	start_view = find_player_pos(player, data->map);
 	data->map[player->indexs[Y]][player->indexs[X]] = '0';
@@ -37,6 +36,8 @@ void	init_parameters(t_player *player, t_data *data)
 		data->there_is_door = true;
 	else
 		data->there_is_door = false;
+	mlx_set_cursor_mode(data->mlx, 0x00034002);
+	data->mouse = true;
 }
 
 static void	set_vdirection(t_player *player, t_card start)
@@ -74,6 +75,7 @@ static t_card	find_player_pos(t_player *player, char **map)
 	int	len;
 
 	i = -1;
+	find = 0;
 	while (map[++i])
 	{
 		len = ft_strlen(map[i]);

@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:45:13 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/04 17:27:51 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/05 11:37:20 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ t_card	door_around_player(char **map, int *index)
 	else
 		return (false);
 }
-
 
 t_door	*is_looking_a_door(t_door **head, char **map, t_card view, int *indexs)
 {

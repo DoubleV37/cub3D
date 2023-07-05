@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 13:42:48 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/04 17:35:09 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/05 11:54:57 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,17 @@ static float	init_start(float step, float length, int *y);
 static void		put_texture(t_data *data, t_ray *ray, float posx, float lengh);
 static int32_t	get_pixel(uint32_t *text, float x, float y);
 
-void	draw_texture(t_data *data, t_ray *ray, int nbr_ray)
+void	draw_texture(t_data *data, t_ray *ray)
 {
 	float	length;
 	float	pos_tex;
 	float	width_tex;
 
-	ray->num_ray = WIDTH - 1 - nbr_ray;
+	ray->num_ray = WIDTH - 1 - ray->num_ray;
 	if (ray->side == V)
-		pos_tex = ray->pos[Y] / (float)SIZE;
+		pos_tex = ray->pos[Y] / SIZE;
 	else
-		pos_tex = ray->pos[X] / (float)SIZE;
+		pos_tex = ray->pos[X] / SIZE;
 	pos_tex = modff(pos_tex, &width_tex);
 	width_tex = SIZE;
 	pos_tex = roundf(width_tex * pos_tex);
@@ -36,7 +36,7 @@ void	draw_texture(t_data *data, t_ray *ray, int nbr_ray)
 		pos_tex = width_tex - pos_tex - 1;
 	if (ray->dist_perp <= 0.0f)
 		ray->dist_perp = 1.0f;
-	length = (data->unit / ray->dist_perp) * data->dfocal;
+	length = (SIZE / ray->dist_perp) * data->dfocal;
 	put_texture(data, ray, pos_tex, length);
 	return ;
 }

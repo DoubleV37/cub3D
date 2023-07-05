@@ -6,14 +6,30 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 09:17:04 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/27 11:46:55 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/05 12:05:49 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 #include <math.h>
 
-void	process_ndist(float *n_dist, float *u_vector, float unit)
+void	init_rtool(t_raytool *rtool, t_data *data, float alpha, float id)
+{
+	rtool->id = id;
+	process_uvector(alpha, rtool->u_vector);
+	process_ndist(rtool->ndist, rtool->u_vector);
+	first_dist(rtool, data->player.pos, alpha);
+	rtool->ind[X] = data->player.pos[X] / SIZE;
+	rtool->ind[Y] = data->player.pos[Y] / SIZE;
+	rtool->step[X] = 1;
+	rtool->step[Y] = 1;
+	if (rtool->u_vector[X] < 0.0f)
+		rtool->step[X] = -1;
+	if (rtool->u_vector[Y] < 0.0f)
+		rtool->step[Y] = -1;
+}
+
+void	process_ndist(float *n_dist, float *u_vector)
 {
 	if (u_vector[X] == 0.0f)
 		n_dist[V] = 1e30;
@@ -22,35 +38,35 @@ void	process_ndist(float *n_dist, float *u_vector, float unit)
 	if (u_vector[X] != 0.0f)
 	{
 		n_dist[V] = sqrtf(1.0f + powf(u_vector[Y], 2.0f)
-				/ powf(u_vector[X], 2.0f)) * unit;
+				/ powf(u_vector[X], 2.0f)) * SIZE;
 	}
 	if (u_vector[Y] != 0.0f)
 	{
 		n_dist[H] = sqrtf(1.0f + powf(u_vector[X], 2.0f)
-				/ powf(u_vector[Y], 2.0f)) * unit;
+				/ powf(u_vector[Y], 2.0f)) * SIZE;
 	}
 }
 
-void	first_dist(t_raytool *rtool, float *pos, float unit, float alpha)
+void	first_dist(t_raytool *rtool, float *pos, float alpha)
 {
 	if (rtool->u_vector[X] < 0.0f)
 	{
-		rtool->dist[V] = pos[X] - (floorf(pos[X] / unit) * unit);
+		rtool->dist[V] = pos[X] - (floorf(pos[X] / SIZE) * SIZE);
 		rtool->dist[V] = fabs(rtool->dist[V] / cosf(alpha * RAD_CONV));
 	}
 	else
 	{
-		rtool->dist[V] = (floorf(pos[X] / unit) + 1.0f) * unit - pos[X];
+		rtool->dist[V] = (floorf(pos[X] / SIZE) + 1.0f) * SIZE - pos[X];
 		rtool->dist[V] = fabs(rtool->dist[V] / cosf(alpha * RAD_CONV));
 	}
 	if (rtool->u_vector[Y] < 0.0f)
 	{
-		rtool->dist[H] = pos[Y] - (floorf(pos[Y] / unit) * unit);
+		rtool->dist[H] = pos[Y] - (floorf(pos[Y] / SIZE) * SIZE);
 		rtool->dist[H] = fabs(rtool->dist[H] / sinf(alpha * RAD_CONV));
 	}
 	else
 	{
-		rtool->dist[H] = (floorf(pos[Y] / unit) + 1.0f) * unit - pos[Y];
+		rtool->dist[H] = (floorf(pos[Y] / SIZE) + 1.0f) * SIZE - pos[Y];
 		rtool->dist[H] = fabs(rtool->dist[H] / sinf(alpha * RAD_CONV));
 	}
 }

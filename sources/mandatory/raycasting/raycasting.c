@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 11:37:15 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/28 11:12:54 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/05 14:26:43 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,10 @@ static void	init_rtool(t_raytool *rtool, t_data *data, float alpha, float id)
 {
 	rtool->id = id;
 	process_uvector(alpha, rtool->u_vector);
-	process_ndist(rtool->ndist, rtool->u_vector, data->unit);
-	first_dist(rtool, data->player.pos, data->unit, alpha);
-	rtool->ind[X] = data->player.pos[X] / data->unit;
-	rtool->ind[Y] = data->player.pos[Y] / data->unit;
+	process_ndist(rtool->ndist, rtool->u_vector);
+	first_dist(rtool, data->player.pos, alpha);
+	rtool->ind[X] = data->player.pos[X] / SIZE;
+	rtool->ind[Y] = data->player.pos[Y] / SIZE;
 	rtool->step[X] = 1;
 	rtool->step[Y] = 1;
 	if (rtool->u_vector[X] < 0.0f)

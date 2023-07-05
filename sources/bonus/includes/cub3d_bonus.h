@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 08:50:20 by vviovi            #+#    #+#             */
-/*   Updated: 2023/07/04 17:17:29 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/05 14:56:20 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ int		simple_verify_map(char **map);
 int		is_wall_surround(char **map);
 //file : utils_map.c
 char	*gnl_skip_void(int fd_file);
-int		len_dbl_tab(char **tab);
-int		len_string(char *str);
 int		print_error_map(int type_error);
 void	clean_texture_nb(t_texture *textures, int nb_textures, int door_frames);
 //file : load_map.c
@@ -77,14 +75,14 @@ int		render_start(t_data *data);
 //-------------RAYCASTING---------------//
 //file : raycasting.c
 void	raycasting(t_data *data, t_player *player);
-float	get_right_angle(float alpha);
 //file : ray_wall.c
-bool	ray_wall(t_data *data, t_ray *ray, float alpha, float id);
+bool	ray_wall(t_data *data, t_ray *ray, float alpha);
 //file : ray_door.c
-bool	ray_door(t_data *data, t_ray *ray, float alpha, float id);
+bool	ray_door(t_data *data, t_ray *ray, float alpha);
 //file : raycasting_utils.c
-void	process_ndist(float *n_dist, float *u_vector, float unit);
-void	first_dist(t_raytool *rtool, float *pos, float unit, float alpha);
+void	init_rtool(t_raytool *rtool, t_data *data, float alpha, float id);
+void	process_ndist(float *n_dist, float *u_vector);
+void	first_dist(t_raytool *rtool, float *pos, float alpha);
 void	process_uvector(float alpha, float *u_vector);
 bool	special_angle_uvector(float alpha, float *u_vector);
 //file : result_ray.c
@@ -92,7 +90,7 @@ void	set_texture(t_data *data, t_ray *ray, t_raytool *rtool);
 float	set_perpdist(t_data *data, t_raytool *rtool);
 void	set_coord(t_ray *ray, t_raytool *rtool, float *pos, float alpha);
 //file : texturing.c
-void	draw_texture(t_data *data, t_ray *ray, int nbr_ray);
+void	draw_texture(t_data *data, t_ray *ray);
 
 //-------------MOVEMENTS---------------//
 //file : move_player.c

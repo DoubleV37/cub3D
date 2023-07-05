@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 10:57:22 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/30 10:37:38 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/05 12:13:47 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 static int	is_wall_simple_verif(int i, int j, char **map)
 {
 	if ((i == 0 || i == ft_array_len(map) - 1
-			|| j == 0 || j == len_string(map[i]) - 1)
+			|| j == 0 || j == (int)ft_strlen(map[i]) - 1)
 		&& (map[i][j] != '1' && map[i][j] != ' '))
 		return (print_error_map(3));
 	if (map[i][j] == 'D' && ((map[i][j + 1] == '1' && map[i][j - 1] == '1')
@@ -69,15 +69,15 @@ int	simple_verify_map(char **map)
 
 static int	verif_hole_map(int i, int j, char **map)
 {
-	if (len_string(map[i - 1]) < (j + 2)
-		|| len_string(map[i + 1]) < (j + 2))
+	if ((int)ft_strlen(map[i - 1]) < (j + 2)
+		|| (int)ft_strlen(map[i + 1]) < (j + 2))
 		return (print_error_map(3));
 	if ((j - 1 > -1 && map[i - 1][j - 1] == ' ')
-		|| (j + 1 < len_string(map[i - 1])
+		|| (j + 1 < (int)ft_strlen(map[i - 1])
 		&& map[i - 1][j + 1] == ' ') || (map[i - 1][j] == ' '))
 		return (print_error_map(3));
 	if ((j - 1 > -1 && map[i + 1][j - 1] == ' ')
-		|| (j + 1 < len_string(map[i + 1])
+		|| (j + 1 < (int)ft_strlen(map[i + 1])
 		&& map[i + 1][j + 1] == ' ')
 		|| (map[i + 1][j] == ' '))
 		return (print_error_map(3));

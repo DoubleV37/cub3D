@@ -2,11 +2,7 @@ NO textures/wall_castle.png
 SO textures/wall_castle.png
 WE textures/wall_castle.png
 EA textures/wall_castle.png
-D textures/door/P01.png
-D textures/door/P02.png
 D textures/door/P03.png
-D textures/door/P04.png
-D textures/door/P05.png
 
 F 238,130,238
 C 238,130,238
