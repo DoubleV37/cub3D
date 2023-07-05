@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:34:11 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/05 15:41:45 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/05 18:29:28 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,11 @@ static int	init_start(t_data *data, char **argv)
 	if (flag > 0)
 		return (flag);
 	init_parameters(&data->player, data);
+	if (data->there_is_door == true && data->door_frames <= 1)
+	{
+		printf("Need at least 2 frames of door\n");
+		return (2);
+	}
 	if (init_images(data) != 0 || render_start(data) == 1
 		|| resize_texture(data) == 1)
 	{
@@ -68,11 +73,6 @@ static int	init_parsing_mlx(t_data *data, char **argv)
 {
 	if (!load_file(argv, data))
 		return (1);
-	if (data->door_frames <= 1)
-	{
-		printf("Need at least 2 frames of door\n");
-		return (2);
-	}
 	data->mlx = mlx_init(WIDTH, HEIGHT, "Cub3D", true);
 	if (data->mlx == NULL)
 	{
