@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 14:02:26 by vviovi            #+#    #+#             */
-/*   Updated: 2023/06/27 18:16:19 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/07/05 14:07:21 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static int	color_separe(char **dataline, char ***colors)
 	if (dataline)
 		ft_free_array(dataline);
 	dataline = NULL;
-	if (!*colors || len_dbl_tab(*colors) != 3)
+	if (!*colors || ft_array_len(*colors) != 3)
 	{
 		ft_free_array(*colors);
 		return (0);
@@ -102,7 +102,7 @@ int	get_color_info(char **dataline, char place, t_data *data)
 	char	**colors;
 
 	if (!dataline || !ft_strlen(dataline[0]) || dataline[0][0] != place
-		|| len_dbl_tab(dataline) != 2)
+		|| ft_array_len(dataline) != 2)
 	{
 		if (dataline)
 			ft_free_array(dataline);

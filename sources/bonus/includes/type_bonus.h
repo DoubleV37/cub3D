@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:43:28 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/05 10:25:08 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/07/05 15:41:17 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 # define WIDTH 1920
 # define HEIGHT 1080
-# define SIZE 500
+# define SIZE 100
 # define RAD_CONV 0.0174532925
 # define FOV 60
 # define ROTATE 3
@@ -126,8 +126,6 @@ typedef struct s_door
 	int				index[2];
 	int				frame;
 	t_status		status;
-	double			time;
-	double			delta_time;
 	int				timelaps;
 	struct s_door	*next;
 }	t_door;
@@ -137,7 +135,6 @@ typedef struct s_data
 	mlx_t		*mlx;
 	mlx_image_t	*img[5];
 	char		**map;
-	float		unit;
 	float		dfocal;
 	bool		mouse;
 	t_player	player;

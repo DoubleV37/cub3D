@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:36:04 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/28 13:08:51 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/05 15:19:31 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ int	resize_texture(t_data *data)
 		if (tmp == NULL)
 			return (1);
 		if (mlx_resize_image(tmp, SIZE, SIZE) != true)
+		{
+			mlx_delete_image(data->mlx, tmp);
 			return (1);
+		}
 		set_scaled_texture(data->text[i], tmp);
 		mlx_delete_image(data->mlx, tmp);
 		i++;

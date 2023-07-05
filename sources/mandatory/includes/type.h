@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:43:28 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/29 11:58:22 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/05 14:27:19 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 # define WIDTH 1920
 # define HEIGHT 1080
-# define SIZE 4320
+# define SIZE 64
 # define RAD_CONV 0.0174532925
 # define FOV 60
 # define ROTATE 3
@@ -111,7 +111,6 @@ typedef struct s_data
 	mlx_t		*mlx;
 	mlx_image_t	*img[2];
 	char		**map;
-	float		unit;
 	float		dfocal;
 	t_player	player;
 	t_texture	textures;

@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 13:42:48 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/28 11:55:58 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/05 13:52:38 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	draw_texture(t_data *data, t_ray *ray)
 
 	ray->num_ray = 1919 - ray->num_ray;
 	if (ray->texture == EA || ray->texture == WE)
-		pos_tex = ray->pos[Y] / data->unit;
+		pos_tex = ray->pos[Y] / SIZE;
 	else
-		pos_tex = ray->pos[X] / data->unit;
+		pos_tex = ray->pos[X] / SIZE;
 	pos_tex = modff(pos_tex, &width_tex);
 	width_tex = SIZE;
 	pos_tex = roundf(width_tex * pos_tex);
@@ -36,7 +36,7 @@ void	draw_texture(t_data *data, t_ray *ray)
 		pos_tex = width_tex - pos_tex - 1;
 	if (ray->dist_perp <= 0.0f)
 		ray->dist_perp = 1.0f;
-	length = (data->unit / ray->dist_perp) * (data->dfocal);
+	length = (SIZE / ray->dist_perp) * (data->dfocal);
 	put_texture(data, ray, pos_tex, length);
 	return ;
 }

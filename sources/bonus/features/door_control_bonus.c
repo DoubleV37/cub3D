@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:17:00 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/04 17:25:09 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/05 11:37:03 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void	door_control(t_data *data)
 	if (door_around_player(data->map, data->player.indexs) == false)
 		return ;
 	view = view_of_player(data->player.angle);
-	door = is_looking_a_door(&data->doors, data->map, view, data->player.indexs);
+	door = is_looking_a_door(&data->doors, data->map, view,
+			data->player.indexs);
 	if (door == NULL)
 		return ;
 	if (door->status == OPEN)

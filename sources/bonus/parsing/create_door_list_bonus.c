@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 07:43:05 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/03 19:04:33 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/05 15:31:37 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	create_door_list(t_data *data)
 				tmp = create_node_door(j, i);
 				if (tmp == NULL)
 					return (1);
-				addfront_node_door(&data->doors, tmp);	
+				addfront_node_door(&data->doors, tmp);
 			}
 			j++;
 		}

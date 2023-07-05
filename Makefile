@@ -6,7 +6,7 @@
 #    By: vviovi <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/02 13:27:39 by jduval            #+#    #+#              #
-#    Updated: 2023/07/04 16:40:58 by jduval           ###   ########.fr        #
+#    Updated: 2023/07/05 13:38:03 by jduval           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -109,7 +109,7 @@ DEPS 		:=	$(OBJS:.o=.d)
 
 CC 			=	gcc
 
-CFLAGS 		=	-Wextra -Wall -Werror -ggdb3
+CFLAGS 		=	-Wextra -Wall -Werror -Ofast
 #-pedantic-errors -Wunused -Wunreachable-code
 
 CPPFLAGS 	=	-MMD -MP $(addprefix -I,$(INCLUDES))

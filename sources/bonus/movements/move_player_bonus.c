@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 09:45:12 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/30 16:36:11 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/05 10:38:49 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	move_backward_forward(t_data *data, t_player *player, t_dir dir)
 	y = player->pos[Y] + player->dir[Y] * player->speed * way;
 	if (check_collide(data, player->pos[X], y) == false)
 		player->pos[Y] = y;
-	player->indexs[X] = player->pos[X] / data->unit;
-	player->indexs[Y] = player->pos[Y] / data->unit;
+	player->indexs[X] = player->pos[X] / (float)SIZE;
+	player->indexs[Y] = player->pos[Y] / (float)SIZE;
 	return ;
 }
