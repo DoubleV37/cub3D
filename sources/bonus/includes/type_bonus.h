@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:43:28 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/04 17:41:10 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/05 10:04:03 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ typedef struct s_door
 	t_status		status;
 	double			time;
 	double			delta_time;
+	int				timelaps;
 	struct s_door	*next;
 }	t_door;
 

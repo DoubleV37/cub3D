@@ -6,13 +6,12 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 08:44:08 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/04 17:28:52 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/05 10:18:48 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 #include "MLX42.h"
-#include <stdio.h>
 
 static void	mouse_control(t_data *data);
 static void	movement_key(t_data *data);
