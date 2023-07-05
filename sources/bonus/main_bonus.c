@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:34:11 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/30 14:28:23 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/04 08:32:10 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ static int	init_start(t_data *data, char **argv)
 	init_parameters(&data->player, data);
 	//draw_background_ceiling(data);
 	//draw_background_floor(data);
-	draw_map(data);
 	if (render_start(data) == 1 || resize_texture(data) == 1)
 	{
 		mlx_terminate(data->mlx);

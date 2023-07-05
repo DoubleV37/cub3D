@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 08:44:08 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/30 14:55:54 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/04 08:32:01 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void	user_inputs(void *param)
 	mouse_control(data);
 	//raycasting(data, &data->player);
 	draw_player(data->img[PLAYER], &data->player, SIZE, 1);
+	reset_map(data->img[MAP]);
+	draw_map(data);
 	draw_pov(data, &data->player, 1);
 	return ;
 }

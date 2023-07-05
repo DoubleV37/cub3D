@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_line_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 08:10:32 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/30 14:26:53 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/04 08:57:10 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,12 @@ void	draw_pov(t_data *data, t_player *player, int flag)
 {
 	float	coord[4];
 
-	coord[X] = player->pos[X];
-	coord[Y] = player->pos[Y];
-	coord[X + 2] = (player->dir[X] * 10.0f) + player->pos[X];
-	coord[Y + 2] = (player->dir[Y] * 10.0f) + player->pos[Y];
+	// coord[X] = player->pos[X];
+	// coord[Y] = player->pos[Y];
+	coord[X] = 5 * 30 + 30 / 2;
+	coord[Y] = 5 * 30 + 30 / 2;
+	coord[X + 2] = (player->dir[X] * 10.0f) + 5 * 30 + 30 / 2;
+	coord[Y + 2] = (player->dir[Y] * 10.0f) + 5 * 30 + 30 / 2;
 	if (flag == 1)
 		draw_line(data->img[PLAYER], coord, color_pixel(0, 0, 0, 255));
 	else

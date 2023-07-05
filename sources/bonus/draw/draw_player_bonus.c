@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_player_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 10:55:29 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/30 16:15:26 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/04 10:16:18 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,18 @@ void	draw_player(mlx_image_t *img, t_player *player, int unit, int flag)
 	int	y1;
 	int	y2;
 
-	x2 = player->pos[X] + unit / 10;
-	y1 = player->pos[Y] - unit / 10;
-	y2 = player->pos[Y] + unit / 10;
+	// x2 = player->pos[X] + unit / 10;
+	// y1 = player->pos[Y] - unit / 10;
+	// y2 = player->pos[Y] + unit / 10;
+	(void) player;
+	(void) unit;
+	x2 = 168;
+	y1 = 162;
+	y2 = 168;
 	while (y1 < y2)
 	{
-		x1 = player->pos[X] - unit / 10;
+		//x1 = player->pos[X] - unit / 10;
+		x1 = 162;
 		while (x1 < x2)
 		{
 			if (flag == 1)
