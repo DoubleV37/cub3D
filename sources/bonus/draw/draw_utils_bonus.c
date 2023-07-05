@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 10:56:21 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/04 10:35:57 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/05 12:04:38 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@ void	reset_map(t_data *data)
 		{
 			mlx_put_pixel(data->img[WALL], j, i, color_pixel(0, 0, 0, 0));
 			mlx_put_pixel(data->img[DOOR], j, i, color_pixel(0, 0, 0, 0));
+			if (j < 300 && i < 300)
+			{
+				mlx_put_pixel(data->img[PLAYER], j, i, color_pixel(0, 0, 0, 0));
+				mlx_put_pixel(data->img[MAP], j, i, color_pixel(0, 0, 0, 0));
+			}
 			j++;
 		}
 		i++;

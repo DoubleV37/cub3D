@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:05:05 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/05 10:29:18 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/07/05 13:47:55 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,66 +94,64 @@ static void	fill_door(mlx_image_t *img, int start[2], int end[2])
 	}
 }
 
-#include <stdio.h>
+static void	launch_draw(t_data *data, int start[2], int end[2], int index[2])
+{
+	if (start[X] > 300)
+		start[X] = 300;
+	if (start[Y] > 300)
+		start[Y] = 300;
+	if (end[X] > 300)
+		end[X] = 300;
+	if (end[Y] > 300)
+		end[Y] = 300;
+	if (data->map[index[0]][index[1]]
+		&& data->map[index[0]][index[1]] == '0')
+		fill_floor(data->img[MAP], start, end);
+	else if (data->map[index[0]][index[1]]
+		&& data->map[index[0]][index[1]] == '1')
+		fill_wall(data->img[MAP], start, end);
+	else if (data->map[index[0]][index[1]]
+		&& data->map[index[0]][index[1]] == 'D')
+		fill_door(data->img[MAP], start, end);
+}
 
 void	draw_map(t_data *data)
 {
 	int	start[2];
 	int	end[2];
-	int	i;
-	int	j;
+	int	index[2];
 
-//ne fais pas le print des murs qd vide et mur seulement qd mur et sol
-//decalage surement à cause des imprecisions de float
-	i = (int)(data->player.pos[Y]) / SIZE - 5;
+	index[0] = (int)((data->player.pos[Y] - 5*SIZE) / SIZE);
 	start[Y] = 0;
-	//ft_printf("EE start[Y] = %d | i : %d\n", start[Y], i);
-	if (i < 0)
+	ft_printf("EE start[Y] = %d | i : %d\n", start[Y], index[0]);
+	if (index[0] < 0)
 	{
-		start[Y] = (i * -1) * 30;
-		i = 0;
+		start[Y] = (index[0] * -1) * 30;
+		index[0] = 0;
 	}
-	//ft_printf("start[Y] = %d | i : %d\n", start[Y], i);
-	//end[Y] = start[Y] + 30;
-	//if ((int)(data->player.pos[Y]) % SIZE != 0)
-		end[Y] = start[Y] + 30 - ((int)(data->player.pos[Y]) % SIZE * 30 / SIZE);
-	//ft_printf("end[Y] = %d\n", end[Y]);
-	while (i < (int)(data->player.pos[Y]) / SIZE + 5 && data->map[i] != NULL)
+	ft_printf("start[Y] = %d | i : %d\n", start[Y], index[0]);
+	end[Y] = start[Y] + 30 - ((int)(data->player.pos[Y]) % SIZE * 30 / SIZE);
+	start[Y] -= 30 - end[Y] % 30;
+	while (index[0] <= (int)(data->player.pos[Y] / SIZE + 5) && data->map[index[0]] != NULL)
 	{
-		j = (int)(data->player.pos[X]) / SIZE - 5;
+		index[1] = (int)(data->player.pos[X]) / SIZE - 5;
 		start[X] = 0;
-		if (j < 0)
+		if (index[1] < 0)
 		{
-			start[X] = (j * -1) * 30;
-			j = 0;
+			start[X] = (index[1] * -1) * 30;
+			index[1] = 0;
 		}
-		//ft_printf("i = %d, j = %d\n", i, j);
-		//end[X] = start[X] + 30;
-		//ft_printf("pos[X] = %d\n", (int)data->player.pos[X] % SIZE);
-		//if ((int)(data->player.pos[X]) % SIZE != 0)
-			end[X] = start[X] + 30 - ((int)(data->player.pos[X]) % SIZE * 30 / SIZE);
-		while (data->map[i][j] != '\0' && j < (int)(data->player.pos[X]) / SIZE + 5)
+		end[X] = start[X] + 30 - ((int)(data->player.pos[X]) % SIZE * 30 / SIZE);
+		while (data->map[index[0]][index[1]] != '\0' && index[1] <= (int)(data->player.pos[X] / SIZE + 5))
 		{
-			//ft_printf("start[X] = %d, start[Y] = %d, end[X] = %d, end[Y] = %d\n", start[X], start[Y], end[X], end[Y]);
-			if (data->map[i][j] && data->map[i][j] == '0')
-				fill_floor(data->img[MAP], start, end);
-			else if (data->map[i][j] && data->map[i][j] == '1')
-				fill_wall(data->img[MAP], start, end);
-			else if (data->map[i][j] && data->map[i][j] == 'D')
-				fill_door(data->img[MAP], start, end);
-			j++;
+			launch_draw(data, start, end, index);
+			index[1]++;
 			start[X] = end[X];
-			//if (start[X] % 30 == 0)
 			end[X] += 30;
-			//else
-			//	end[X] += start[X] - start[X] % 30;
 		}
 		start[Y] = end[Y];
-		//if (start[Y] % 30 == 0)
 		end[Y] += 30;
-		//else
-		//	end[Y] += start[Y] - start[Y] % 30;
-		i++;
+		index[0]++;
 	}
 	fill_border(data->img[MAP], 30);
 }
