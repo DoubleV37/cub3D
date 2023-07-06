@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 08:50:20 by vviovi            #+#    #+#             */
-/*   Updated: 2023/07/06 16:47:35 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/06 17:00:45 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		valid_extension(char *path, char *extension);
 int		valid_color(int red, int green, int blue);
 int		valid_texture(char *path_texture);
 //file : map_verif.c
-int		simple_verify_map(char **map);
+int		simple_verify_map(char **map, int door_frames);
 int		is_wall_surround(char **map);
 //file : utils_map.c
 char	*gnl_skip_void(int fd_file);
