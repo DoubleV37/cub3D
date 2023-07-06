@@ -6,18 +6,23 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 10:57:22 by vviovi            #+#    #+#             */
-/*   Updated: 2023/07/05 12:13:47 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/06 16:13:18 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 #include "libft.h"
 
-static int	is_wall_simple_verif(int i, int j, char **map)
+static int	is_wall_simple_verif(int i, int j, char **map, int door_frames)
 {
 	if ((i == 0 || i == ft_array_len(map) - 1
 			|| j == 0 || j == (int)ft_strlen(map[i]) - 1)
 		&& (map[i][j] != '1' && map[i][j] != ' '))
+		return (print_error_map(3));
+	if (map[i][j] == 'D' && (map[i][j - 1] == 'D' || map[i][j + 1] == 'D'
+			|| map[i - 1][j] == 'D' || map[i + 1][j] == 'D'))
+		return (print_error_map(3));
+	if (map[i][j] == 'D' && door_frames < 2)
 		return (print_error_map(3));
 	if (map[i][j] == 'D' && ((map[i][j + 1] == '1' && map[i][j - 1] == '1')
 		|| (map[i + 1][j] == '1' && map[i - 1][j] == '1')))
@@ -38,7 +43,7 @@ static int	verif_player(int i, int j, char **map, int *player_fnd)
 	return (1);
 }
 
-int	simple_verify_map(char **map)
+int	simple_verify_map(char **map, int door_frames)
 {
 	int	i;
 	int	j;
@@ -55,7 +60,7 @@ int	simple_verify_map(char **map)
 				&& map[i][j] != 'N' && map[i][j] != 'S'
 				&& map[i][j] != 'E' && map[i][j] != 'W' && map[i][j] != 'D')
 				return (print_error_map(3));
-			if (!is_wall_simple_verif(i, j, map)
+			if (!is_wall_simple_verif(i, j, map, door_frames)
 				|| !verif_player(i, j, map, &is_player))
 				return (0);
 			j++;
