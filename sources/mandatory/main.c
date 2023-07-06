@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:34:11 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/05 14:59:33 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/06 17:02:05 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 	flag = init_start(&data, argv);
 	if (flag == 2)
 	{
-		clean_texture_nb(&data.textures, 4);	
+		clean_texture_nb(&data.textures, 4);
 		ft_free_array(data.map);
 	}
 	if (flag > 0)

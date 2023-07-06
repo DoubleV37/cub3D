@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 10:15:52 by vviovi            #+#    #+#             */
-/*   Updated: 2023/07/06 15:49:52 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/07/06 17:01:50 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,8 @@ static int	load_map(int file_fd, t_data *data)
 		clean_texture_nb(&data->textures, 4, data->door_frames);
 		return (0);
 	}
-	if (!simple_verify_map(data->map, data->door_frames) || !is_wall_surround(data->map))
+	if (!simple_verify_map(data->map, data->door_frames)
+		|| !is_wall_surround(data->map))
 	{
 		ft_free_array(data->map);
 		clean_texture_nb(&data->textures, 4, data->door_frames);
