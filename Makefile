@@ -6,7 +6,7 @@
 #    By: vviovi <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/02 13:27:39 by jduval            #+#    #+#              #
-#    Updated: 2023/07/05 13:38:03 by jduval           ###   ########.fr        #
+#    Updated: 2023/07/06 15:00:57 by jduval           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,7 +95,8 @@ SRCS 		=	main_bonus.c								\
 				raycasting/texturing_bonus.c				\
 				features/door_control_bonus.c				\
 				features/door_animation_bonus.c				\
-				features/door_utils_bonus.c
+				features/door_utils_bonus.c	\
+				features/minimap.c
 endif
 
 SRCS		:=	$(SRCS:%=$(SRC_DIR)/%)
@@ -109,7 +110,7 @@ DEPS 		:=	$(OBJS:.o=.d)
 
 CC 			=	gcc
 
-CFLAGS 		=	-Wextra -Wall -Werror -Ofast
+CFLAGS 		=	-Wextra -Wall -Werror -Ofast 
 #-pedantic-errors -Wunused -Wunreachable-code
 
 CPPFLAGS 	=	-MMD -MP $(addprefix -I,$(INCLUDES))

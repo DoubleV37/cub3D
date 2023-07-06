@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 08:44:08 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/05 16:00:24 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/07/06 14:14:48 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 static void	mouse_control(t_data *data);
 static void	movement_key(t_data *data);
+static void	set_bool_key(t_data *data, int type);
 
 void	modifier_inputs(mlx_key_data_t keydata, void *param)
 {
@@ -27,7 +28,32 @@ void	modifier_inputs(mlx_key_data_t keydata, void *param)
 		mlx_close_window(data->mlx);
 	else if (data->there_is_door == true && keydata.key == MLX_KEY_F)
 		door_control(data);
-	else if (keydata.action == MLX_RELEASE && keydata.key == MLX_KEY_LEFT_ALT)
+	else if (keydata.key == MLX_KEY_LEFT_ALT)
+		set_bool_key(data, 1);
+	else if (keydata.key == MLX_KEY_TAB)
+		set_bool_key(data, 0);
+}
+
+void	user_inputs(void *param)
+{
+	t_data	*data;
+
+	data = param;
+	door_animation(data->doors, data->door_frames);
+	movement_key(data);
+	mouse_control(data);
+	raycasting(data, &data->player);
+	if (data->img[MAP]->enabled == true)
+		put_minimap(data, &data->minimap);
+	//draw_player(data->img[PLAYER], &data->player, SIZE, 1);
+	//draw_map(data);
+	//draw_pov(data, &data->player, 1);
+	return ;
+}
+
+static void	set_bool_key(t_data *data, int type)
+{
+	if (type == 1)
 	{
 		if (data->mouse == true)
 		{
@@ -41,21 +67,13 @@ void	modifier_inputs(mlx_key_data_t keydata, void *param)
 			mlx_set_mouse_pos(data->mlx, WIDTH / 2, HEIGHT / 2);
 		}
 	}
-}
-
-void	user_inputs(void *param)
-{
-	t_data	*data;
-
-	data = param;
-	door_animation(data->doors, data->door_frames);
-	movement_key(data);
-	mouse_control(data);
-	raycasting(data, &data->player);
-	draw_player(data->img[PLAYER], &data->player, SIZE, 1);
-	draw_map(data);
-	draw_pov(data, &data->player, 1);
-	return ;
+	else
+	{
+		if (data->img[MAP]->enabled == true)
+			data->img[MAP]->enabled = false;
+		else
+			data->img[MAP]->enabled = true;
+	}
 }
 
 static void	mouse_control(t_data *data)

@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:34:11 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/05 18:29:28 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/06 14:22:18 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,5 @@ static void	draw_start(t_data *data)
 {
 	draw_background_ceiling(data);
 	draw_background_floor(data);
-	draw_map(data);
+	//draw_map(data);
 }

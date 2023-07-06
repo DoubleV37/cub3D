@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:43:28 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/05 15:41:17 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/06 15:37:01 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,13 @@
 
 //------DEFINE------//
 
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 1280
+# define HEIGHT 720
 # define SIZE 100
 # define RAD_CONV 0.0174532925
 # define FOV 60
 # define ROTATE 3
+# define AROUND 10
 
 # include "MLX42.h"
 
@@ -130,6 +131,14 @@ typedef struct s_door
 	struct s_door	*next;
 }	t_door;
 
+typedef struct s_map
+{
+	int		height;
+	int		width;
+	float	unit;
+	float	space;
+}	t_map;
+
 typedef struct s_data
 {
 	mlx_t		*mlx;
@@ -138,6 +147,7 @@ typedef struct s_data
 	float		dfocal;
 	bool		mouse;
 	t_player	player;
+	t_map		minimap;
 	t_texture	textures;
 	int			door_frames;
 	uint32_t	**text;

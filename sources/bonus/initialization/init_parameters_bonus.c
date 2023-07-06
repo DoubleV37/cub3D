@@ -6,17 +6,19 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 13:30:26 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/05 15:34:14 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/06 15:33:54 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
+#include <stdio.h>
 #include "cub3d_bonus.h"
 #include "libft.h"
 #include "MLX42.h"
 
 static t_card	find_player_pos(t_player *player, char **map);
 static void		set_vdirection(t_player *player, t_card view);
+static void	set_minimap_params(t_map *minimap);
 
 void	init_parameters(t_player *player, t_data *data)
 {
@@ -38,6 +40,15 @@ void	init_parameters(t_player *player, t_data *data)
 		data->there_is_door = false;
 	mlx_set_cursor_mode(data->mlx, 0x00034002);
 	data->mouse = true;
+	set_minimap_params(&data->minimap);
+}
+
+static void	set_minimap_params(t_map *minimap)
+{
+	minimap->height = HEIGHT / 4;	
+	minimap->width = minimap->height;
+	minimap->unit = minimap->height / AROUND;
+	minimap->space = minimap->unit * (AROUND / 2);
 }
 
 static void	set_vdirection(t_player *player, t_card start)

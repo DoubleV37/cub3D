@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 08:50:20 by vviovi            #+#    #+#             */
-/*   Updated: 2023/07/05 14:56:20 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/06 14:18:28 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,4 +118,6 @@ void	closing_door(t_door *door);
 t_card	door_around_player(char **map, int *index);
 t_door	*is_looking_a_door(t_door **head, char **map, t_card view, int *indexs);
 t_card	view_of_player(float angle);
+
+void	put_minimap(t_data *data, t_map *minimap);
 #endif

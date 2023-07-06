@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 09:17:04 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/05 12:05:49 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/06 15:39:17 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@ void	init_rtool(t_raytool *rtool, t_data *data, float alpha, float id)
 		rtool->step[X] = -1;
 	if (rtool->u_vector[Y] < 0.0f)
 		rtool->step[Y] = -1;
+	if (rtool->dist[V] < rtool->dist[H])
+		rtool->side = V;
+	else
+		rtool->side = H;
 }
 
 void	process_ndist(float *n_dist, float *u_vector)
