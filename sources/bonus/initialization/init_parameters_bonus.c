@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 13:30:26 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/06 15:33:54 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/06 16:48:56 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 static t_card	find_player_pos(t_player *player, char **map);
 static void		set_vdirection(t_player *player, t_card view);
-static void	set_minimap_params(t_map *minimap);
+static void		set_minimap_params(t_map *minimap);
 
 void	init_parameters(t_player *player, t_data *data)
 {
@@ -45,7 +45,7 @@ void	init_parameters(t_player *player, t_data *data)
 
 static void	set_minimap_params(t_map *minimap)
 {
-	minimap->height = HEIGHT / 4;	
+	minimap->height = HEIGHT / 4;
 	minimap->width = minimap->height;
 	minimap->unit = minimap->height / AROUND;
 	minimap->space = minimap->unit * (AROUND / 2);

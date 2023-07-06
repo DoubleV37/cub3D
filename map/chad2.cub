@@ -2,7 +2,11 @@ NO textures/tkt/1.png
 SO textures/tkt/2.png
 WE textures/tkt/3.png
 EA textures/tkt/4.png
-D textures/space.png
+D textures/door/P01.png
+D textures/door/P02.png
+D textures/door/P03.png
+D textures/door/P04.png
+D textures/door/P05.png
 
 
 F 220,100,0

@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 08:50:20 by vviovi            #+#    #+#             */
-/*   Updated: 2023/07/06 14:18:28 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/06 16:47:35 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,6 @@ void	init_parameters(t_player *player, t_data *data);
 int		init_images(t_data *data);
 
 //-------------DRAW---------------//
-//file : draw_map.c
-void	draw_map(t_data *data);
-//file : draw_player.c
-void	draw_player(mlx_image_t *img, t_player *player, int unit, int flag);
-//file : draw_line.c
-void	draw_line(mlx_image_t *img, float *pos, int32_t color);
-void	draw_pov(t_data *data, t_player *player, int flag);
 //file : draw_utils.c
 int32_t	color_pixel(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
 void	reset_map(t_data *data);
@@ -108,16 +101,18 @@ void	user_inputs(void *param);
 void	modifier_inputs(mlx_key_data_t keydata, void *param);
 
 //-------------FEATURES---------------//
-//file : door_control.c
+//file : door_control_bonus.c
 void	door_control(t_data *data);
 void	door_animation(t_door *doors, int nbr_frames);
-//file : door_animation.c
+//file : door_animation_bonus.c
 void	opening_door(t_door *door, int nbr_frames);
 void	closing_door(t_door *door);
-//file : door_utils.c
+//file : door_utils_bonus.c
 t_card	door_around_player(char **map, int *index);
 t_door	*is_looking_a_door(t_door **head, char **map, t_card view, int *indexs);
 t_card	view_of_player(float angle);
-
+//file : minimap_bonus.c
 void	put_minimap(t_data *data, t_map *minimap);
+//file : mouse_bonus.c
+void	mouse_control(t_data *data);
 #endif

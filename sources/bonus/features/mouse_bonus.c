@@ -1,41 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_door_list_bonus.c                           :+:      :+:    :+:   */
+/*   mouse_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/30 07:43:05 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/06 16:35:52 by jduval           ###   ########.fr       */
+/*   Created: 2023/07/06 16:41:23 by jduval            #+#    #+#             */
+/*   Updated: 2023/07/06 16:44:00 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
-#include <stdlib.h>
+#include "MLX42.h"
+#include <stdbool.h>
 
-int	create_door_list(t_data *data)
+void	mouse_control(t_data *data)
 {
-	int		i;
-	int		j;
-	t_door	*tmp;
+	int32_t	x;
+	int32_t	y;
 
-	i = 0;
-	data->doors = NULL;
-	while (data->map[i] != NULL)
+	if (data->mouse == true)
 	{
-		j = 0;
-		while (data->map[i][j] != '\0')
-		{
-			if (data->map[i][j] == 'D')
-			{
-				tmp = create_node_door(j, i);
-				if (tmp == NULL)
-					return (1);
-				addfront_node_door(&data->doors, tmp);
-			}
-			j++;
-		}
-		i++;
+		mlx_get_mouse_pos(data->mlx, &x, &y);
+		mlx_set_mouse_pos(data->mlx, WIDTH / 2, HEIGHT / 2);
+		if (x > WIDTH / 2)
+			rotate_player(&data->player, RIGHTWARD);
+		else if (x < WIDTH / 2)
+			rotate_player(&data->player, LEFTWARD);
 	}
-	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:43:28 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/06 15:37:01 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/06 16:50:36 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 //------DEFINE------//
 
-# define WIDTH 1280
-# define HEIGHT 720
-# define SIZE 100
+# define WIDTH 1920
+# define HEIGHT 1080
+# define SIZE 600
 # define RAD_CONV 0.0174532925
 # define FOV 60
 # define ROTATE 3
@@ -60,8 +60,7 @@ typedef enum e_img
 	BACKGROUND,
 	WALL,
 	DOOR,
-	MAP,
-	PLAYER
+	MAP
 }	t_img;
 
 typedef enum e_dir
@@ -142,7 +141,7 @@ typedef struct s_map
 typedef struct s_data
 {
 	mlx_t		*mlx;
-	mlx_image_t	*img[5];
+	mlx_image_t	*img[4];
 	char		**map;
 	float		dfocal;
 	bool		mouse;

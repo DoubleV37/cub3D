@@ -6,7 +6,7 @@
 #    By: vviovi <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/02 13:27:39 by jduval            #+#    #+#              #
-#    Updated: 2023/07/06 15:00:57 by jduval           ###   ########.fr        #
+#    Updated: 2023/07/06 16:52:11 by jduval           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,21 +82,19 @@ SRCS 		=	main_bonus.c								\
 				draw/draw_utils_bonus.c						\
 				draw/draw_background_bonus.c				\
 				draw/render_image_bonus.c					\
-				draw/draw_player_bonus.c					\
-				draw/draw_map_bonus.c						\
-				draw/draw_line_bonus.c						\
 				initialization/init_images_bonus.c			\
 				initialization/init_parameters_bonus.c		\
 				raycasting/raycasting_bonus.c				\
-				raycasting/ray_wall.c						\
-				raycasting/ray_door.c						\
+				raycasting/ray_wall_bonus.c					\
+				raycasting/ray_door_bonus.c					\
 				raycasting/raycasting_utils_bonus.c			\
 				raycasting/result_ray_bonus.c				\
 				raycasting/texturing_bonus.c				\
 				features/door_control_bonus.c				\
 				features/door_animation_bonus.c				\
-				features/door_utils_bonus.c	\
-				features/minimap.c
+				features/door_utils_bonus.c					\
+				features/mouse_bonus.c						\
+				features/minimap_bonus.c
 endif
 
 SRCS		:=	$(SRCS:%=$(SRC_DIR)/%)
@@ -111,7 +109,6 @@ DEPS 		:=	$(OBJS:.o=.d)
 CC 			=	gcc
 
 CFLAGS 		=	-Wextra -Wall -Werror -Ofast 
-#-pedantic-errors -Wunused -Wunreachable-code
 
 CPPFLAGS 	=	-MMD -MP $(addprefix -I,$(INCLUDES))
 

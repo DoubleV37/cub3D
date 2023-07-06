@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:34:11 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/06 14:22:18 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/06 16:53:36 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include <stdio.h>
 
 static int	init_start(t_data *data, char **argv);
-static void	draw_start(t_data *data);
 static int	init_parsing_mlx(t_data *data, char **argv);
 
 int	main(int argc, char **argv)
@@ -65,7 +64,8 @@ static int	init_start(t_data *data, char **argv)
 		mlx_terminate(data->mlx);
 		return (2);
 	}
-	draw_start(data);
+	draw_background_ceiling(data);
+	draw_background_floor(data);
 	return (0);
 }
 
@@ -85,11 +85,4 @@ static int	init_parsing_mlx(t_data *data, char **argv)
 		return (2);
 	}
 	return (0);
-}
-
-static void	draw_start(t_data *data)
-{
-	draw_background_ceiling(data);
-	draw_background_floor(data);
-	//draw_map(data);
 }

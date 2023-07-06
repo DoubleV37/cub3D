@@ -6,14 +6,13 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 08:44:08 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/06 14:14:48 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/06 16:42:41 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 #include "MLX42.h"
 
-static void	mouse_control(t_data *data);
 static void	movement_key(t_data *data);
 static void	set_bool_key(t_data *data, int type);
 
@@ -45,9 +44,6 @@ void	user_inputs(void *param)
 	raycasting(data, &data->player);
 	if (data->img[MAP]->enabled == true)
 		put_minimap(data, &data->minimap);
-	//draw_player(data->img[PLAYER], &data->player, SIZE, 1);
-	//draw_map(data);
-	//draw_pov(data, &data->player, 1);
 	return ;
 }
 
@@ -73,22 +69,6 @@ static void	set_bool_key(t_data *data, int type)
 			data->img[MAP]->enabled = false;
 		else
 			data->img[MAP]->enabled = true;
-	}
-}
-
-static void	mouse_control(t_data *data)
-{
-	int32_t	x;
-	int32_t	y;
-
-	if (data->mouse == true)
-	{
-		mlx_get_mouse_pos(data->mlx, &x, &y);
-		mlx_set_mouse_pos(data->mlx, WIDTH / 2, HEIGHT / 2);
-		if (x > WIDTH / 2)
-			rotate_player(&data->player, RIGHTWARD);
-		else if (x < WIDTH / 2)
-			rotate_player(&data->player, LEFTWARD);
 	}
 }
 

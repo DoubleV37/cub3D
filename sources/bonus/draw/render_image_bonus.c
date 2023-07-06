@@ -6,24 +6,13 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:07:22 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/05 10:49:21 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/07/06 16:50:01 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MLX42.h"
 #include "cub3d_bonus.h"
 #include <stdio.h>
-
-static int	render_player(t_data *data)
-{
-	if (mlx_image_to_window(data->mlx, data->img[PLAYER], 0, 0) == -1)
-	{
-		mlx_close_window(data->mlx);
-		printf("%s", mlx_strerror(mlx_errno));
-		return (1);
-	}
-	return (0);
-}
 
 static int	render_wall(t_data *data)
 {
@@ -78,8 +67,6 @@ int	render_start(t_data *data)
 	if (render_door(data) == 1)
 		return (1);
 	if (render_map(data) == 1)
-		return (1);
-	if (render_player(data) == 1)
 		return (1);
 	return (0);
 }
