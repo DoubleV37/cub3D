@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 10:57:22 by vviovi            #+#    #+#             */
-/*   Updated: 2023/07/06 16:13:18 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/07/07 13:00:03 by vviovi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,11 @@ int	is_wall_surround(char **map)
 		j = 0;
 		while (map[i][j])
 		{
-			if (i > 0 && i < (ft_array_len(map) - 1) && map[i][j] == '0'
-				&& !verif_hole_map(i, j, map))
-				return (0);
+			if (map[i][j] != '1' && map[i][j] != ' ')
+			{
+				if (verif_hole_map(i, j, map) == 0)
+					return (0);
+			}
 			j++;
 		}
 		i++;
