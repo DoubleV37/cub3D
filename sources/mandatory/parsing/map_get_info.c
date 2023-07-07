@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 14:02:26 by vviovi            #+#    #+#             */
-/*   Updated: 2023/07/05 14:07:21 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/07 13:29:22 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,8 @@ static int	color_separe(char **dataline, char ***colors)
 	if (dataline)
 		ft_free_array(dataline);
 	dataline = NULL;
-	if (!*colors || ft_array_len(*colors) != 3)
-	{
-		ft_free_array(*colors);
+	if (!*colors || ft_array_len(*colors) != 3 || check_digit_color(*colors) == 0)
 		return (0);
-	}
 	return (1);
 }
 

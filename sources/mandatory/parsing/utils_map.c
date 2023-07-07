@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 11:32:35 by vviovi            #+#    #+#             */
-/*   Updated: 2023/07/07 08:53:14 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/07 13:28:45 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,24 @@ int	print_error_map(int type_error)
 	else if (type_error == 4)
 		ft_putstr_fd(2, "Error\nMissing player in map\n");
 	return (0);
+}
+
+int	check_digit_color(char **colors)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (colors[i] != NULL)
+	{
+		j = 0;
+		while (colors[i][j] != '\0')
+		{
+			if (ft_isdigit(colors[i][j]) == 0 && colors[i][j] != '\n')
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
 }

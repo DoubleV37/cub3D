@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 08:50:20 by vviovi            #+#    #+#             */
-/*   Updated: 2023/07/07 08:47:02 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/07 13:15:28 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int		is_wall_surround(char **map);
 char	*gnl_skip_void(int fd_file);
 int		print_error_map(int type_error);
 void	clean_texture_nb(t_texture *textures, int nb_textures);
+int		check_digit_color(char **colors);
 //file : load_map.c
 int		load_file(char **argv, t_data *data);
 //file : verify.c
