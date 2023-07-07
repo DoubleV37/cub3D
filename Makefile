@@ -6,7 +6,7 @@
 #    By: vviovi <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/02 13:27:39 by jduval            #+#    #+#              #
-#    Updated: 2023/07/07 12:41:00 by jduval           ###   ########.fr        #
+#    Updated: 2023/07/07 13:46:56 by vviovi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -110,8 +110,7 @@ DEPS 		:=	$(OBJS:.o=.d)
 
 CC 			=	gcc
 
-CFLAGS 		=	-Wextra -Wall -Werror -ggdb3
-#-Ofast 
+CFLAGS 		=	-Wextra -Wall -Werror -Ofast 
 
 CPPFLAGS 	=	-MMD -MP $(addprefix -I,$(INCLUDES))
 
