@@ -6,11 +6,10 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 16:18:47 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/05 13:51:54 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/07 08:34:59 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
 #include "type.h"
 
 bool	check_collide(t_data *data, float x, float y)

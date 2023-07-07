@@ -6,12 +6,11 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:07:22 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/27 11:27:14 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/07 08:58:19 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "MLX42.h"
-#include "cub3d.h"
+#include "type.h"
 #include <stdio.h>
 
 static int	render_wall(t_data *data)

@@ -6,16 +6,13 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 11:37:15 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/05 14:26:43 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/07 09:11:56 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include <math.h>
 
 static void		reset_map(mlx_image_t *img);
-static void		init_rtool(t_raytool *rtool, t_data *data,
-					float alpha, float id);
 static void		send_ray(t_data *data, t_ray *ray, float alpha, float id);
 static float	make_alpha(float alpha);
 
@@ -76,22 +73,6 @@ static void	send_ray(t_data *data, t_ray *ray, float alpha, float id)
 	ray->dist_perp = set_perpdist(data, &rtool);
 	set_coord(ray, &rtool, data->player.pos, alpha);
 	return ;
-}
-
-static void	init_rtool(t_raytool *rtool, t_data *data, float alpha, float id)
-{
-	rtool->id = id;
-	process_uvector(alpha, rtool->u_vector);
-	process_ndist(rtool->ndist, rtool->u_vector);
-	first_dist(rtool, data->player.pos, alpha);
-	rtool->ind[X] = data->player.pos[X] / SIZE;
-	rtool->ind[Y] = data->player.pos[Y] / SIZE;
-	rtool->step[X] = 1;
-	rtool->step[Y] = 1;
-	if (rtool->u_vector[X] < 0.0f)
-		rtool->step[X] = -1;
-	if (rtool->u_vector[Y] < 0.0f)
-		rtool->step[Y] = -1;
 }
 
 static void	reset_map(mlx_image_t *img)

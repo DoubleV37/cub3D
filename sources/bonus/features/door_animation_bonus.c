@@ -6,11 +6,11 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 14:52:56 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/05 10:04:19 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/07 09:16:06 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d_bonus.h"
+#include "type_bonus.h"
 
 void	closing_door(t_door *door)
 {

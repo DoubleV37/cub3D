@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_player.c                                      :+:      :+:    :+:   */
+/*   init_parameters.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 13:30:26 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/05 13:42:33 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/07 08:35:23 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
-#include "cub3d.h"
+#include "type.h"
 #include "libft.h"
-#include "MLX42.h"
 
 static t_card	find_player_pos(t_player *player, char **map);
 static void		set_vdirection(t_player *player, t_card view);
 
-void	init_player(t_player *player, t_data *data)
+void	init_parameters(t_player *player, t_data *data)
 {
 	t_card	start_view;
 

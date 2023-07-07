@@ -6,14 +6,35 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 09:17:04 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/05 14:26:42 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/07 08:47:04 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "type.h"
 #include <math.h>
 
-void	process_ndist(float *n_dist, float *u_vector)
+static void	first_dist(t_raytool *rtool, float *pos, float alpha);
+static void	process_uvector(float alpha, float *u_vector);
+static bool	special_angle_uvector(float alpha, float *u_vector);
+static void	process_ndist(float *n_dist, float *u_vector);
+
+void	init_rtool(t_raytool *rtool, t_data *data, float alpha, float id)
+{
+	rtool->id = id;
+	process_uvector(alpha, rtool->u_vector);
+	process_ndist(rtool->ndist, rtool->u_vector);
+	first_dist(rtool, data->player.pos, alpha);
+	rtool->ind[X] = data->player.pos[X] / SIZE;
+	rtool->ind[Y] = data->player.pos[Y] / SIZE;
+	rtool->step[X] = 1;
+	rtool->step[Y] = 1;
+	if (rtool->u_vector[X] < 0.0f)
+		rtool->step[X] = -1;
+	if (rtool->u_vector[Y] < 0.0f)
+		rtool->step[Y] = -1;
+}
+
+static void	process_ndist(float *n_dist, float *u_vector)
 {
 	if (u_vector[X] == 0.0f)
 		n_dist[V] = 1e30;
@@ -31,7 +52,7 @@ void	process_ndist(float *n_dist, float *u_vector)
 	}
 }
 
-void	first_dist(t_raytool *rtool, float *pos, float alpha)
+static void	first_dist(t_raytool *rtool, float *pos, float alpha)
 {
 	if (rtool->u_vector[X] < 0.0f)
 	{
@@ -55,7 +76,7 @@ void	first_dist(t_raytool *rtool, float *pos, float alpha)
 	}
 }
 
-void	process_uvector(float alpha, float *u_vector)
+static void	process_uvector(float alpha, float *u_vector)
 {
 	float	norm;
 
@@ -79,7 +100,7 @@ void	process_uvector(float alpha, float *u_vector)
 	return ;
 }
 
-bool	special_angle_uvector(float alpha, float *u_vector)
+static bool	special_angle_uvector(float alpha, float *u_vector)
 {
 	if (alpha == 0.0f || alpha == 360.0f)
 	{

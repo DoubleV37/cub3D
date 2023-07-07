@@ -6,13 +6,12 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 13:30:26 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/06 16:48:56 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/07 08:32:54 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
-#include <stdio.h>
-#include "cub3d_bonus.h"
+#include "type_bonus.h"
 #include "libft.h"
 #include "MLX42.h"
 

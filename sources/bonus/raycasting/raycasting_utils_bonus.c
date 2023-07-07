@@ -6,12 +6,17 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 09:17:04 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/06 15:39:17 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/07 08:43:25 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d_bonus.h"
+#include "type_bonus.h"
 #include <math.h>
+
+static bool	special_angle_uvector(float alpha, float *u_vector);
+static void	process_uvector(float alpha, float *u_vector);
+static void	process_ndist(float *n_dist, float *u_vector);
+static void	first_dist(t_raytool *rtool, float *pos, float alpha);
 
 void	init_rtool(t_raytool *rtool, t_data *data, float alpha, float id)
 {
@@ -33,7 +38,7 @@ void	init_rtool(t_raytool *rtool, t_data *data, float alpha, float id)
 		rtool->side = H;
 }
 
-void	process_ndist(float *n_dist, float *u_vector)
+static void	process_ndist(float *n_dist, float *u_vector)
 {
 	if (u_vector[X] == 0.0f)
 		n_dist[V] = 1e30;
@@ -51,7 +56,7 @@ void	process_ndist(float *n_dist, float *u_vector)
 	}
 }
 
-void	first_dist(t_raytool *rtool, float *pos, float alpha)
+static void	first_dist(t_raytool *rtool, float *pos, float alpha)
 {
 	if (rtool->u_vector[X] < 0.0f)
 	{
@@ -75,7 +80,7 @@ void	first_dist(t_raytool *rtool, float *pos, float alpha)
 	}
 }
 
-void	process_uvector(float alpha, float *u_vector)
+static void	process_uvector(float alpha, float *u_vector)
 {
 	float	norm;
 
@@ -99,7 +104,7 @@ void	process_uvector(float alpha, float *u_vector)
 	return ;
 }
 
-bool	special_angle_uvector(float alpha, float *u_vector)
+static bool	special_angle_uvector(float alpha, float *u_vector)
 {
 	if (alpha == 0.0f || alpha == 360.0f)
 	{

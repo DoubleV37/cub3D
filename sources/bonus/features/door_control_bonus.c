@@ -6,13 +6,12 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:17:00 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/05 11:37:03 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/07 09:16:17 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 void	door_control(t_data *data)
 {

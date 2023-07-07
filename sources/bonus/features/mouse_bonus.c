@@ -6,13 +6,11 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 16:41:23 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/06 16:44:00 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/07 09:14:23 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
-#include "MLX42.h"
-#include <stdbool.h>
 
 void	mouse_control(t_data *data)
 {

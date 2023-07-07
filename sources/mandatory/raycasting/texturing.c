@@ -6,11 +6,11 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 13:42:48 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/05 13:52:38 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/07 09:13:35 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "type.h"
 #include <math.h>
 #include <stdlib.h>
 

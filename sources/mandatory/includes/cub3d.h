@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 08:50:20 by vviovi            #+#    #+#             */
-/*   Updated: 2023/07/05 14:08:34 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/07 08:47:02 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	free_textures(uint32_t **textures);
 
 //-------------INITIALIZATION---------------//
 //file : init_player.c
-void	init_player(t_player *player, t_data *data);
+void	init_parameters(t_player *player, t_data *data);
 //file : init_images.c
 int		init_images(t_data *data);
 
@@ -63,10 +63,7 @@ int		render_start(t_data *data);
 //file : raycasting.c
 int		raycasting(t_data *data, t_player *player);
 //file : raycasting_utils.c
-void	process_ndist(float *n_dist, float *u_vector);
-void	first_dist(t_raytool *rtool, float *pos, float alpha);
-void	process_uvector(float alpha, float *u_vector);
-bool	special_angle_uvector(float alpha, float *u_vector);
+void	init_rtool(t_raytool *rtool, t_data *data, float alpha, float id);
 //file : result_ray.c
 void	set_texture(t_ray *ray, int side, float *u_vector);
 float	set_perpdist(t_data *data, t_raytool *rtool);
@@ -87,5 +84,4 @@ void	rotate_player(t_player *player, t_dir dir);
 //-------------INPUT---------------//
 //file : key_functions.c
 void	user_inputs(void *param);
-
 #endif

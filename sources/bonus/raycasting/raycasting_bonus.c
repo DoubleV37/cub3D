@@ -6,12 +6,11 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 11:37:15 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/05 12:00:31 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/07 09:11:24 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
-#include <math.h>
 
 static float	get_right_angle(float alpha);
 static bool		which_ray_send(t_data *data,

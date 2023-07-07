@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:34:11 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/06 17:02:05 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/07 08:53:07 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,12 @@ int	main(int argc, char **argv)
 	if (flag == 2)
 	{
 		clean_texture_nb(&data.textures, 4);
+		free_textures(data.text);
 		ft_free_array(data.map);
 	}
 	if (flag > 0)
 		return (1);
-	mlx_set_cursor_mode(data.mlx, 0x00034002);
+	mlx_set_cursor_mode(data.mlx, MLX_MOUSE_HIDDEN);
 	mlx_loop_hook(data.mlx, user_inputs, &data);
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);
@@ -56,7 +57,7 @@ static int	init_start(t_data *data, char **argv)
 		mlx_terminate(data->mlx);
 		return (2);
 	}
-	init_player(&data->player, data);
+	init_parameters(&data->player, data);
 	draw_background_ceiling(data);
 	draw_background_floor(data);
 	if (render_start(data) == 1 || resize_texture(data) == 1)

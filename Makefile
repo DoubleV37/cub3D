@@ -6,7 +6,7 @@
 #    By: vviovi <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/02 13:27:39 by jduval            #+#    #+#              #
-#    Updated: 2023/07/06 16:52:11 by jduval           ###   ########.fr        #
+#    Updated: 2023/07/07 08:29:32 by jduval           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,27 +39,27 @@ endif
 ifndef BONUS
 SRC_DIR		=	sources/mandatory
 BUILD_DIR 	= 	.obj
-SRCS 		=	main.c							\
-				parsing/load_map.c 				\
-				parsing/utils_map.c 			\
-				parsing/map_verif.c				\
-				parsing/content_verif.c			\
-				parsing/map_get_info.c 			\
-				parsing/verify.c 				\
-				parsing/resize_texture.c		\
-				input/key_functions.c			\
-				movements/move_player.c			\
-				movements/shift_player.c		\
-				movements/rotate_player.c		\
-				movements/wall_collision.c		\
-				draw/draw_utils.c				\
-				draw/draw_background.c			\
-				draw/render_image.c				\
-				initialization/init_images.c	\
-				initialization/init_player.c	\
-				raycasting/raycasting.c			\
-				raycasting/raycasting_utils.c	\
-				raycasting/result_ray.c			\
+SRCS 		=	main.c								\
+				parsing/load_map.c 					\
+				parsing/utils_map.c 				\
+				parsing/map_verif.c					\
+				parsing/content_verif.c				\
+				parsing/map_get_info.c 				\
+				parsing/verify.c 					\
+				parsing/resize_texture.c			\
+				input/key_functions.c				\
+				movements/move_player.c				\
+				movements/shift_player.c			\
+				movements/rotate_player.c			\
+				movements/wall_collision.c			\
+				draw/draw_utils.c					\
+				draw/draw_background.c				\
+				draw/render_image.c					\
+				initialization/init_images.c		\
+				initialization/init_parameters.c	\
+				raycasting/raycasting.c				\
+				raycasting/raycasting_utils.c		\
+				raycasting/result_ray.c				\
 				raycasting/texturing.c
 else
 SRC_DIR		=	sources/bonus

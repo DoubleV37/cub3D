@@ -6,11 +6,10 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 16:18:47 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/05 11:30:39 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/07 09:08:15 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include <stdbool.h>
 #include <stdlib.h>
 #include "cub3d_bonus.h"
 

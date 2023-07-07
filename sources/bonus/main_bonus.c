@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:34:11 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/06 16:53:36 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/07 08:56:35 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int	init_start(t_data *data, char **argv)
 	init_parameters(&data->player, data);
 	if (data->there_is_door == true && data->door_frames <= 1)
 	{
-		printf("Need at least 2 frames of door\n");
+		ft_putstr_fd(2, "Need at least 2 frames of door\n");
 		return (2);
 	}
 	if (init_images(data) != 0 || render_start(data) == 1

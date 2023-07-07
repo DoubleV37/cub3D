@@ -6,11 +6,11 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 15:51:40 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/23 13:35:38 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/07 08:37:25 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "type.h"
 #include <math.h>
 
 void	set_texture(t_ray *ray, int side, float *u_vector)

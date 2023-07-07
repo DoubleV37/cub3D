@@ -6,13 +6,12 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:36:04 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/05 15:19:25 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/07 09:16:36 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 static void		set_scaled_texture(uint32_t *text, mlx_image_t *img);
 static uint32_t	**allocate_texture(int door_frames);

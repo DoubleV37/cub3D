@@ -6,11 +6,11 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 13:20:15 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/27 11:44:15 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/07 09:06:34 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d_bonus.h"
+#include "type_bonus.h"
 #include <math.h>
 
 static void	incr_angle(t_player *player, float rotate, t_dir dir);

@@ -6,12 +6,11 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 09:45:12 by jduval            #+#    #+#             */
-/*   Updated: 2023/06/27 09:56:40 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/07 09:00:29 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include <stdbool.h>
 
 void	move_backward_forward(t_data *data, t_player *player, t_dir dir)
 {
