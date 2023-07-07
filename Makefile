@@ -6,7 +6,7 @@
 #    By: vviovi <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/02 13:27:39 by jduval            #+#    #+#              #
-#    Updated: 2023/07/07 08:29:32 by jduval           ###   ########.fr        #
+#    Updated: 2023/07/07 12:33:11 by jduval           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,8 @@ INCLUDES	+=	sources/bonus/includes		\
 endif
 
 ###############################################################################
+
+BUILD_MLX	=	MLX42/build
 
 ifndef BONUS
 SRC_DIR		=	sources/mandatory
@@ -121,7 +123,7 @@ DIRDUP 		= 	mkdir -p $(@D)
 
 ###############################################################################
 
-all: $(NAME)
+all: $(BUILD_MLX) $(NAME)
 .PHONY:all
 
 $(NAME): $(OBJS) $(LIBS_TARGET)
@@ -134,6 +136,9 @@ $(LIBS_TARGET):
 $(BUILD_DIR)/%.o : %.c
 	@$(DIRDUP)
 	@$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
+
+$(BUILD_MLX):
+	cd MLX42 && cmake -B build
 
 -include $(DEPS)
 
@@ -155,5 +160,5 @@ fclean: clean
 	rm -f cub3D cub3D_bonus
 .PHONY: fclean
 
-re: fclean all
+re: $(BUILD_MLX) fclean all
 .PHONY: re
