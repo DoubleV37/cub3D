@@ -6,7 +6,7 @@
 #    By: jduval <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/03 13:18:12 by jduval            #+#    #+#              #
-#    Updated: 2023/05/15 10:20:49 by jduval           ###   ########.fr        #
+#    Updated: 2023/07/10 08:18:19 by jduval           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS		:= -Wall -Werror -Wextra
 
 CPPFLAGS	:= -MMD -MP -I ./include 
 
-CC			:= clang
+CC			:= gcc
 
 DIRDUP		= mkdir -p $(@D)
 

@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:34:11 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/07 08:53:07 by jduval           ###   ########.fr       */
+/*   Updated: 2023/07/10 08:05:55 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		return (print_error_map(404));
+	data.mlx = NULL;
 	flag = init_start(&data, argv);
 	if (flag == 2)
 	{

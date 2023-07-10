@@ -6,7 +6,7 @@
 /*   By: vviovi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:43:28 by jduval            #+#    #+#             */
-/*   Updated: 2023/07/07 14:00:02 by vviovi           ###   ########.fr       */
+/*   Updated: 2023/07/10 08:06:55 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 # define WIDTH 1920
 # define HEIGHT 1080
-# define SIZE 3000
+# define SIZE 1080
 # define RAD_CONV 0.0174532925
 # define FOV 60
 # define ROTATE 3
