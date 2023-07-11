@@ -106,5 +106,6 @@ int	load_file(char **argv, t_data *data)
 		close(fd);
 		return (0);
 	}
+	close(fd);
 	return (1);
 }
